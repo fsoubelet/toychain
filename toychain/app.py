@@ -2,10 +2,12 @@
 Node runner for Blockchain, to interact with using HTTP requests.
 """
 
-from typing import List
+from textwrap import dedent
+from time import time
+from typing import Dict, List
 from uuid import uuid4
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from loguru import logger
 
 from toychain.blockchain import BlockChain
@@ -22,12 +24,64 @@ blockchain = BlockChain()
 
 @app.route("/mine_block", methods=["GET"])
 def mine_block():
-    return "We will mine a new Block"
+    """
+    Mining endpoint, witch does three things:
+        - Calculate the Proof of Work.
+        - Reward the miner by adding a transaction granting 1 coin.
+        - Forge the new Block by adding it to the chain.
+
+    Returns:
+        A flask response.
+    """
+    logger.info("Mining proof for a new block")
+    last_block: Dict = blockchain.last_block
+    last_proof = last_block["proof"]
+    mined_proof: int = blockchain.proof_of_work(last_proof)
+
+    # We must receive a reward for finding the proof.
+    # The sender is "0" to signify that this node has mined a new coin.
+    blockchain.new_transaction(
+        sender="0", recipient=node_identifier, amount=1,
+    )
+
+    logger.info("Forging new block and adding it to the chain")
+    previous_hash = blockchain.hash(last_block)
+    block = blockchain.new_block(proof, previous_hash)
+
+    response = {
+        "message": "New Block Forged",
+        "index": block["index"],
+        "transactions": block["transactions"],
+        "proof": block["proof"],
+        "previous_hash": block["previous_hash"],
+    }
+    return jsonify(response), 200
 
 
 @app.route("/transactions/new", methods=["POST"])
 def new_transaction():
-    return "We will add a new transaction"
+    """
+    Receives transaction data from a POST request and add it to the node's blockchain.
+
+    Returns:
+        A flask response.
+    """
+    logger.info("Received POST request for new transaction, getting data")
+    values: Dict = request.get_json()
+
+    logger.info("Checking that POSTed data contains the appropriate fields")
+    required = ["sender", "recipient", "amount"]
+    if any(key not in values for key in required):
+        logger.error("Missing values in POSTed data")
+        return "Missing Values", 400
+
+    logger.info("Creating new transaction from POSTed data")
+    transaction_index = blockchain.new_transaction(
+        values["sender"], values["recipient"], values["amount"]
+    )
+
+    response = {"message": f"Transaction will be added to Block {transaction_index}"}
+    return jsonify(response), 201
 
 
 @app.route("/chain", methods=["GET"])
@@ -38,6 +92,7 @@ def full_chain():
     Returns:
         The node's full blockchain list, as a flask Response.
     """
+    logger.info("Full chain requested, sending...")
     response = {
         "chain": blockchain.chain,
         "length": len(blockchain.chain),
