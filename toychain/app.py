@@ -17,12 +17,14 @@ app = Flask(__name__)
 
 logger.info("Generating globally unique address for this node")
 node_identifier = str(uuid4()).replace("-", "")
+logger.info(f"This is node ID {node_identifier}")
 
 logger.info("Instantiating Blockchain")
 blockchain = BlockChain()
+logger.success("Blockchain up and running!")
 
 
-@app.route("/mine_block", methods=["GET"])
+@app.route("/mine", methods=["GET"])
 def mine_block():
     """
     Mining endpoint, witch does three things:
@@ -46,7 +48,7 @@ def mine_block():
 
     logger.info("Forging new block and adding it to the chain")
     previous_hash = blockchain.hash(last_block)
-    block = blockchain.new_block(proof, previous_hash)
+    block: Dict = blockchain.add_block(previous_hash=previous_hash, proof=mined_proof)
 
     response = {
         "message": "New Block Forged",
@@ -68,10 +70,11 @@ def new_transaction():
     """
     logger.info("Received POST request for new transaction, getting data")
     values: Dict = request.get_json()
+    print(f"\n{values}\n")
 
     logger.info("Checking that POSTed data contains the appropriate fields")
     required = ["sender", "recipient", "amount"]
-    if any(key not in values for key in required):
+    if not all(k in values for k in required):
         logger.error("Missing values in POSTed data")
         return "Missing Values", 400
 
@@ -100,5 +103,10 @@ def full_chain():
     return jsonify(response), 200
 
 
+def main():
+    """Runs the node"""
+    app.run(host="127.0.0.1", port=5000)
+
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    main()

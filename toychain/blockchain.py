@@ -16,7 +16,7 @@ class BlockChain:
     def __init__(self):
         self.chain: List[Dict] = []
         self.current_transactions = []
-        logger.debug("Initiating first block")
+        logger.info("Initiating first block")
         self.add_block(previous_hash=1, proof=100)
 
     def add_block(self, previous_hash: Optional[str] = None, proof: int = None) -> Dict:
@@ -30,7 +30,7 @@ class BlockChain:
         Returns:
             The new block as a dictionary.
         """
-        logger.debug("Creating new block")
+        logger.debug("Creating a new block")
         block = {
             "index": len(self.chain) + 1,
             "timestamp": time(),
@@ -44,6 +44,7 @@ class BlockChain:
 
         logger.debug("Adding block to the chain")
         self.chain.append(block)
+        return block
 
     def new_transaction(
         self, sender: str = None, recipient: str = None, amount: float = None
@@ -103,14 +104,14 @@ class BlockChain:
         Returns:
             True if new_proof is validated, False otherwise.
         """
-        logger.debug("Checking proof validity")
+        logger.trace("Checking proof validity")
         guess = f"{last_proof}{new_proof}".encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         if guess_hash[:4] == "0000":
-            logger.success("Proof is valid")
+            logger.success("Proof iteration is valid")
             return True
         else:
-            logger.debug("Proof is invalid")
+            logger.trace("Proof is invalid")
             return False
 
     def proof_of_work(self, last_proof: int = None) -> int:
@@ -126,6 +127,7 @@ class BlockChain:
         """
         proof = 0
         while self.validate_proof(last_proof, proof) is False:
+            logger.trace("Proof didn't pass, iterating")
             proof += 1
         logger.success("Successfully mined block proof")
         return proof
