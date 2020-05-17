@@ -91,3 +91,42 @@ class BlockChain:
         block_string = json.dumps(block, sort_keys=True).encode()
         logger.debug("Hashing dumped block")
         return hashlib.sha256(block_string).hexdigest()
+
+    @staticmethod
+    def validate_proof(last_proof: int = None, new_proof: int = None) -> bool:
+        """
+        Validates a proof: does hash(last_proof, new_proof) contain 4 leading zeroes?
+
+        Args:
+            last_proof: integer, the previous proof in the chain.
+            new_proof: integer, the new proof.
+
+        Returns:
+            True if new_proof is validated, False otherwise.
+        """
+        logger.debug("Checking proof validity")
+        guess = f"{last_proof}{new_proof}".encode()
+        guess_hash = hashlib.sha256(guess).hexdigest()
+        if guess_hash[:4] == "0000":
+            logger.success("Proof is valid")
+            return True
+        else:
+            logger.debug("Proof is invalid")
+            return False
+
+    def proof_of_work(self, last_proof: int = None) -> int:
+        """
+        Simple Proof of Work Algorithm:
+            - Find a number p' such that hash(pp') has leading 4 zeroes, where p is the previous p'
+             - p is the previous proof, and p' is the new proof
+        Args:
+            last_proof: integer, the previous proof in the chain.
+
+        Returns:
+            The new proof, an integer.
+        """
+        proof = 0
+        while self.validate_proof(last_proof, proof) is False:
+            proof += 1
+        logger.success("Successfully mined block proof")
+        return proof
