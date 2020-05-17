@@ -4,7 +4,6 @@ Simple emulation of a blockchain.
 
 import hashlib
 import json
-import sys
 from time import time
 from typing import Dict, List, Optional
 
