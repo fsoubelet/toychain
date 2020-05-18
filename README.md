@@ -5,26 +5,22 @@
 toychain is a very simplistic blockchain modeling in Python.
 While the code is my own adaptation, the implementation if from the very good [tutorial][tutorial_link] by Daniel van Flymen.
 
-## Running
+# Running
 
 This repository uses `Poetry` as a build tool.
-To run this, get a copy of this repository through VCS and use Poetry to set yourself up:
-```bash
-git clone https://github.com/fsoubelet/toychain
-cd https://github.com/fsoubelet/toychain
-poetry install
-```
+Get a local copy through VCS and to set yourself up with `poetry install`.
 
-A poetry command is defined to get a node running, simply run `poetry run node`, which will by default run the node on `localhost:5000`.
-Additionally, you can specify the port on which to run the node with the flat `--port`.
+A poetry command is defined to get a node running: use `poetry run node` to start up a node, by default at `localhost:5000`.
+
+Additionally, you can specify the host and port on which to run the node with the `--host` and `--port` flags.
 You can then use the same command to spin up several nodes on different ports.
 
-## Functionality
+# Functionality
 
-### The Chain
+## The Chain
 
 The blockchain is a simple list of blocks.
-A block in the chain consists of a dictionnary with the following keys:
+A `block` in the chain consists of a dictionnary with the following keys:
 - the `index` at which it is located in the chain,
 - a `timestamp` of when the block was added to the chain,
 - the list of `transactions` recorded in the block,
@@ -48,11 +44,12 @@ block = {
 }
 ```
 
-### The Node Implementation
+## The Node Implementation
 
 The blockchain functionality is provided by a single class, `BlockChain`, in the `toychain.blockchain` module.
 An instance of the `BlockChain` class is used to run a node.
-Each node stores the full blockchain and the current transactions (not yet written in the chain), and can:
+Each node stores a full blockchain, the current transactions (not yet written in the chain), and the list of other nodes in the network.
+It can:
 - Add a transaction to the list of current transactions,
 - Add a new (validated) block to the chain,
 - Run the proof of work algorithm (here simple, for the sake of computation time),
@@ -63,11 +60,11 @@ Each node stores the full blockchain and the current transactions (not yet writt
 
 A node is ran as a REST API endpoint using a `Flask` application, and is attributed a `UUID` at startup.
 The implementation is in the `toychain.app` module, and the available endpoints of a node are:
-- `/mine`, accepting a `GET` request. This triggers the calculation of a valid proof of work, rewards the miner by awarding 1 coin, and adds the forged block to the node's chain,
-- `/transactions/new`, accepting a `POST` request with the contents of a transaction, and adding it to the list of current transactions,
-- `/chain`, accepting a `GET` request and returning the entire blockchain as a json payload,
-- `/nodes/register`, accepting a `POST` request and registering the nodes in payload as part of the network,
-- `/nodes/resolve`, accepting a `GET` request and runs the consensus algorithm to resolve conflicts.
+- `/mine`: accepts `GET` requests. GETing `/mine` triggers the calculation of a valid proof of work, rewards the miner (you) by awarding 1 coin, and adds the forged block to the node's chain,
+- `/transactions/new`: accepts `POST` requests. POSTing the contents of a transaction to `/transactions/new` will have the transaction added to the list of current transactions of this node,
+- `/chain`: accepts `GET` requests. GETing `/chain` will return the entire node's chain,
+- `/nodes/register`: accepts `POST` requests. POSTing another node's address to `/nodes/register` will have it added to the node's network,
+- `/nodes/resolve`: accepts `GET` requests. GETing `/nodes/resolve` triggers a run of the consensus algorithm to resolve conflicts. The longest valid chain of all nodes in the network is used as reference, replacing the local one, and is returned.
 
 Let's consider our node is running at `localhost:5000`.
 POSTing a transaction to the node's `transactions/new` endpoint with cURL would be done as follows:
@@ -85,6 +82,14 @@ POSTing a payload to register this new node to the first one's network with cURL
 curl -X POST -H "Content-Type: application/json" -d '{
  "nodes": ["http://127.0.0.1:5001"]
 }' "http://localhost:5000/nodes/register"
+```
+
+If you would rather use httpie, those commands would be: 
+```bash
+echo '{ "sender": "d4ee26eee15148ee92c6cd394edd974e", "recipient": "someone-other-address", "amount": 5 }' | http POST http://localhost:5000/transactions/new
+```
+```bash
+echo '{ "nodes": ["http://127.0.0.1:5001"] }' | http POST http://localhost:5000/nodes/register
 ```
 
 [tutorial_link]: https://hackernoon.com/learn-blockchains-by-building-one-117428612f46

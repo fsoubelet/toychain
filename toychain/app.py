@@ -159,13 +159,20 @@ def _parse_arguments():
         type=int,
         help="The port on which to run a node. Defaults to 5000.",
     )
+    parser.add_argument(
+        "--host",
+        dest="host",
+        default="127.0.0.1",
+        type=str,
+        help="The host on which to run the node. Defaults to '127.0.0.1', knows as 'localhost'.",
+    )
     return parser.parse_args()
 
 
 def run_node():
     """Runs the node"""
     commandline_arguments = _parse_arguments()
-    app.run(host="127.0.0.1", port=commandline_arguments.port)
+    app.run(host=commandline_arguments.host, port=commandline_arguments.port)
 
 
 if __name__ == "__main__":
