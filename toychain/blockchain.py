@@ -111,7 +111,7 @@ class BlockChain:
         guess = f"{last_proof}{new_proof}".encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         if guess_hash[:4] == "0000":
-            logger.success("Proof iteration is valid")
+            logger.debug("Proof iteration is valid")
             return True
         else:
             logger.trace("Proof is invalid")
@@ -192,7 +192,7 @@ class BlockChain:
             logger.trace("Moving on to next block")
             last_block = inspected_block
 
-        logger.success("Chain is valid!")
+        logger.debug("Chain is valid!")
         return True
 
     def resolve_conflicts(self) -> bool:
@@ -207,7 +207,7 @@ class BlockChain:
         new_chain = None
         max_length = len(self.chain)  # initialize with this node's length
 
-        logger.info("Verifying chains from all nodes in the network")
+        logger.debug("Verifying chains from all nodes in the network")
         for node in neighbouring_nodes:
             logger.debug("Querying node for its full chain")
             node_chain_response = requests.get(f"http://{node}/chain")
