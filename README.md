@@ -15,6 +15,26 @@ A poetry command is defined to get a node running: use `poetry run node` to star
 Additionally, you can specify the host and port on which to run the node with the `--host` and `--port` flags.
 You can then use the same command to spin up several nodes on different ports.
 
+## Docker
+
+It is possible to run nodes as docker containers.
+To do so, clone the repository then build the image with `docker build -t blockchain .`
+
+You can then run the container by mapping the node's port to a desired one at `localhost` on your machine.
+To map the node to port 5000, run:
+```bash
+$ docker run --init --rm -p 5000:5000 blockchain
+```
+
+To emulate additional nodes, vary the public port number:
+```bash
+$ docker run --init --rm -p 5001:5000 blockchain
+$ docker run --init --rm -p 5002:5000 blockchain
+$ docker run --init --rm -p 5003:5000 blockchain
+```
+
+You can then play around by POSTing to `/nodes/register` to add all your running instances to one another's networks, POSTing transactions, mining new blocks, and resolving the blockchain.
+
 # Functionality
 
 ## The Chain
