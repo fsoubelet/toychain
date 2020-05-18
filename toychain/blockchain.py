@@ -15,7 +15,7 @@ class BlockChain:
 
     def __init__(self):
         self.chain: List[Dict] = []
-        self.current_transactions = []
+        self.current_transactions: List[Dict] = []
         logger.info("Initiating first block")
         self.add_block(previous_hash=1, proof=100)
 
@@ -46,7 +46,7 @@ class BlockChain:
         self.chain.append(block)
         return block
 
-    def new_transaction(
+    def add_transaction(
         self, sender: str = None, recipient: str = None, amount: float = None
     ) -> int:
         """

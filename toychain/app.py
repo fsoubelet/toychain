@@ -2,9 +2,7 @@
 Node runner for Blockchain, to interact with using HTTP requests.
 """
 
-from textwrap import dedent
-from time import time
-from typing import Dict, List
+from typing import Dict
 from uuid import uuid4
 
 from flask import Flask, jsonify, request
@@ -37,17 +35,17 @@ def mine_block():
     """
     logger.info("Mining proof for a new block")
     last_block: Dict = blockchain.last_block
-    last_proof = last_block["proof"]
+    last_proof: int = last_block["proof"]
     mined_proof: int = blockchain.proof_of_work(last_proof)
 
     # We must receive a reward for finding the proof.
     # The sender is "0" to signify that this node has mined a new coin.
-    blockchain.new_transaction(
+    blockchain.add_transaction(
         sender="0", recipient=node_identifier, amount=1,
     )
 
     logger.info("Forging new block and adding it to the chain")
-    previous_hash = blockchain.hash(last_block)
+    previous_hash: str = blockchain.hash(last_block)
     block: Dict = blockchain.add_block(previous_hash=previous_hash, proof=mined_proof)
 
     response = {
@@ -79,11 +77,11 @@ def new_transaction():
         return "Missing Values", 400
 
     logger.info("Creating new transaction from POSTed data")
-    transaction_index = blockchain.new_transaction(
+    transaction_index: int = blockchain.add_transaction(
         values["sender"], values["recipient"], values["amount"]
     )
 
-    response = {"message": f"Transaction will be added to Block {transaction_index}"}
+    response = {"message": f"Transaction added to the list of current transactions"}
     return jsonify(response), 201
 
 
