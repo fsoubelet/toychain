@@ -6,7 +6,9 @@ import hashlib
 import json
 from time import time
 from typing import Dict, List, Optional
+from urllib.parse import ParseResult, urlparse
 
+import requests
 from loguru import logger
 
 
@@ -16,6 +18,7 @@ class BlockChain:
     def __init__(self):
         self.chain: List[Dict] = []
         self.current_transactions: List[Dict] = []
+        self.nodes = set()
         logger.info("Initiating first block")
         self.add_block(previous_hash=1, proof=100)
 
@@ -131,3 +134,98 @@ class BlockChain:
             proof += 1
         logger.success("Successfully mined block proof")
         return proof
+
+    def register_node(self, address: str = None) -> None:
+        """
+        Register a new node as part of the network by adding it to the list of nodes.
+
+        Args:
+            address: string, address of node to register. Eg. 'http://192.168.0.5:5000'
+
+        Returns:
+            Nothing, adds in place.
+        """
+        logger.debug(f"Parsing new node address {address}")
+        parsed_url: ParseResult = urlparse(address)
+        node_netloc: str = parsed_url.netloc
+
+        if node_netloc in self.nodes:
+            logger.warning(f"Node at {address} is already registered, skipping")
+
+        logger.debug("Adding new element to network's registered nodes")
+        self.nodes.add(node_netloc)
+
+    def validate_chain(self, chain: List[Dict]) -> bool:
+        """
+        Determine if a given blockchain from any arbitrary node in the network is valid.
+
+        Args:
+            chain: list, a complete blockchain (list of blocks as dicts).
+
+        Returns:
+            True if the chain is valid, False otherwise
+        """
+        logger.debug("Determining chain validity")
+        last_block = chain[0]
+
+        for current_index in range(1, len(chain)):
+            logger.trace(f"Inspecting block at index {current_index}")
+            inspected_block = chain[current_index]
+
+            logger.trace("Checking block's hash")
+            if inspected_block["previous_hash"] != self.hash(last_block):
+                logger.error(
+                    f"Invalid block tag 'previous_hash' " f"{inspected_block['previous_hash']}"
+                )
+                return False
+
+            logger.trace("Checking block's proof of work")
+            if not self.validate_proof(
+                last_proof=last_block["proof"], new_proof=inspected_block["proof"]
+            ):
+                logger.error(
+                    f"Invalid proof from last block's proof {last_block['proof']} and "
+                    f"inspected block's proof {inspected_block['proof']}"
+                )
+                return False
+
+            logger.trace("Moving on to next block")
+            last_block = inspected_block
+
+        logger.success("Chain is valid!")
+        return True
+
+    def resolve_conflicts(self) -> bool:
+        """
+        This is the Consensus Algorithm. It resolves conflicts by replacing the node's chain with
+        the longest valid one in the network.
+
+        Returns:
+            True if the node's chain was replaced, False otherwise
+        """
+        neighbouring_nodes = self.nodes
+        new_chain = None
+        max_length = len(self.chain)  # initialize with this node's length
+
+        logger.info("Verifying chains from all nodes in the network")
+        for node in neighbouring_nodes:
+            logger.debug("Querying node for its full chain")
+            node_chain_response = requests.get(f"http://{node}/chain")
+
+            if node_chain_response.status_code == 200:
+                logger.trace("Full chain received")
+                length = node_chain_response.json()["length"]
+                chain = node_chain_response.json()["chain"]
+
+                logger.trace("Checking if requested chain is valid and longer than mine")
+                if length > max_length and self.validate_chain(chain):
+                    max_length = length
+                    new_chain = chain
+
+        if new_chain:
+            logger.info("Found a valid chain longer than this node's, adopting it now")
+            self.chain = new_chain
+            return True
+
+        logger.info("No valid chain was longer than this node's")
+        return False

@@ -54,7 +54,10 @@ Each node stores the full blockchain and the current transactions (not yet writt
 - Add a transaction to the list of current transactions,
 - Add a new (validated) block to the chain,
 - Run the proof of work algorithm (here simple, for the sake of computation time),
-- Validate the `proof` of a block.
+- Validate the `proof` of a block,
+- Register other nodes on the network,
+- Infer an arbitrary node's blockchain's validity,
+- Resolve conflict through a consensus algorithm, checking all nodes' chains in the network and adopting the longest valid one.
 
 A node is ran as a REST API endpoint using a `Flask` application, and is attributed a `UUID`.
 The implementation is in the `toychain.app` module, and the implemented endpoints of a node are:
@@ -70,4 +73,3 @@ curl -X POST -H "Content-Type: application/json" -d '{
  "amount": 5
 }' "http://localhost:5000/transactions/new"
 ```
-
