@@ -59,7 +59,7 @@ It can:
 - Resolve conflict through a consensus algorithm, checking all nodes' chains in the network and adopting the longest valid one.
 
 A node is ran as a REST API endpoint using a `Flask` application, and is attributed a `UUID` at startup.
-The implementation is in the `toychain.app` module, and the available endpoints of a node are:
+The implementation is in the `toychain.node` module, and the available endpoints of a node are:
 - `/mine`: accepts `GET` requests. GETing `/mine` triggers the calculation of a valid proof of work, rewards the miner (you) by awarding 1 coin, and adds the forged block to the node's chain,
 - `/transactions/new`: accepts `POST` requests. POSTing the contents of a transaction to `/transactions/new` will have the transaction added to the list of current transactions of this node,
 - `/chain`: accepts `GET` requests. GETing `/chain` will return the entire node's chain,

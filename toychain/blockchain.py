@@ -114,7 +114,7 @@ class BlockChain:
             logger.debug("Proof iteration is valid")
             return True
         else:
-            logger.trace("Proof is invalid")
+            logger.debug("Proof is invalid")
             return False
 
     def proof_of_work(self, last_proof: int = None) -> int:
