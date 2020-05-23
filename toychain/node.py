@@ -73,7 +73,7 @@ def new_transaction():
 
     logger.debug("Checking that POSTed data contains the appropriate fields")
     required = ["sender", "recipient", "amount"]
-    if not all(k in values for k in required):
+    if any(k not in values for k in required):
         logger.error("Missing values in POSTed data")
         return "Missing Values", 400
 
