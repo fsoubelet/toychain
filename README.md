@@ -2,8 +2,8 @@
   <b>toychain</b>
 </h1>
 
-toychain is a very simplistic blockchain modeling in Python.
-While the code is my own adaptation, the implementation if from the very good [tutorial][tutorial_link] by Daniel van Flymen.
+toychain is a very simplistic blockchain node modeling in Python.
+While the code is my own adaptation, the implementation is from the very good [tutorial][tutorial_link] by Daniel van Flymen.
 
 # Running
 
