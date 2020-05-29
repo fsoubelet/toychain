@@ -4,15 +4,14 @@
 
 toychain is a very simplistic blockchain node modeling in Python.
 While the code is my own adaptation, the implementation is from the very good [tutorial][tutorial_link] by Daniel van Flymen.
-This adaptation uses [`FastAPI`][fastapi_link] as a web framework, and [`uvicorn`][uvicorn_link] as ASGI server instead of the `Flask` app from van Flumen's tutorial.
+This adaptation uses [`FastAPI`][fastapi_link] as a web framework, and [`uvicorn`][uvicorn_link] as ASGI server instead of the `Flask` app from van Flymen's tutorial.
 
 # Running
 
 This repository uses `Poetry` as a build tool.
 Get a local copy through VCS and to set yourself up with `poetry install`.
 
-A poetry command is defined to get a node running: use `poetry run node` to start up a node, by default at `localhost:5000`.
-
+The `poetry run node` command is predefined to start up a node, by default at `localhost:5000`.
 Additionally, you can specify the host and port on which to run the node with the `--host` and `--port` flags.
 You can then use the same command to spin up several nodes on different ports.
 
