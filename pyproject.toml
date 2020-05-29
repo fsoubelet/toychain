@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "toychain"
-version = "0.1.0"
+version = "0.2.0"
 description = "A blockchain toy project, in Python"
 authors = ["Your Name <you@example.com>"]
 license = "MIT"
@@ -12,7 +12,8 @@ repository = "https://github.com/fsoubelet/toychain"
 [tool.poetry.dependencies]
 python = "^3.6"
 loguru = "^0.4.1"
-flask = "^1.1.2"
+fastapi = "^0.55.1"
+uvicorn = "^0.11.5"
 requests = "^2.23.0"
 
 [tool.poetry.dev-dependencies]

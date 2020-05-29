@@ -15,7 +15,8 @@ ENV PIP_DEFAULT_TIMEOUT=100 \
     PIP_NO_CACHE_DIR=1 \
     POETRY_VERSION=1.0.5
 
-RUN apk add --no-cache gcc libffi-dev musl-dev postgresql-dev \
+RUN apk add --no-cache gcc libffi-dev musl-dev postgresql-dev build-base \
+    && pip install -U setuptools pip \
     && pip install "poetry==$POETRY_VERSION" \
     && python -m venv /venv
 
@@ -25,7 +26,7 @@ RUN poetry export -f requirements.txt | /venv/bin/pip install -r /dev/stdin
 COPY . /app/
 RUN poetry build && /venv/bin/pip install dist/*.whl
 
-# Creafting runtime image
+# Creating runtime image
 FROM base as final
 
 RUN apk add --no-cache libffi libpq

@@ -4,6 +4,7 @@
 
 toychain is a very simplistic blockchain node modeling in Python.
 While the code is my own adaptation, the implementation is from the very good [tutorial][tutorial_link] by Daniel van Flymen.
+This adaptation uses [`FastAPI`][fastapi_link] as a web framework, and [`uvicorn`][uvicorn_link] as ASGI server instead of the `Flask` app from van Flumen's tutorial.
 
 # Running
 
@@ -78,13 +79,15 @@ It can:
 - Infer an arbitrary node's blockchain's validity,
 - Resolve conflict through a consensus algorithm, checking all nodes' chains in the network and adopting the longest valid one.
 
-A node is ran as a REST API endpoint using a `Flask` application, and is attributed a `UUID` at startup.
+A node is ran as a REST API using the `FastAPI` web framework, and is attributed a `UUID` at startup.
 The implementation is in the `toychain.node` module, and the available endpoints of a node are:
-- `/mine`: accepts `GET` requests. GETing `/mine` triggers the calculation of a valid proof of work, rewards the miner (you) by awarding 1 coin, and adds the forged block to the node's chain,
-- `/transactions/new`: accepts `POST` requests. POSTing the contents of a transaction to `/transactions/new` will have the transaction added to the list of current transactions of this node,
-- `/chain`: accepts `GET` requests. GETing `/chain` will return the entire node's chain,
-- `/nodes/register`: accepts `POST` requests. POSTing another node's address to `/nodes/register` will have it added to the node's network,
-- `/nodes/resolve`: accepts `GET` requests. GETing `/nodes/resolve` triggers a run of the consensus algorithm to resolve conflicts. The longest valid chain of all nodes in the network is used as reference, replacing the local one, and is returned.
+- `GET` endpoint `/mine` to trigger the addition of a new block to the chain,
+- `POST` endpoint `/transactions/new` to add a transaction to the node's list,
+- `GET` endpoint `/chain` to pull the full chain,
+- `POST` endpoint `/nodes/register` to register other nodes' addresses as part of the network,
+- `GET` endpoint `/nodes/resolve`: to trigger a run of the consensus algorithm and resolve conflicts: the longest valid chain of all nodes in the network is used as reference, replacing the local one, and is returned.
+
+Once the server is running (for instance with `python -m toychain`), an automatic documentation for those is served at the `/docs` and `/redoc` endpoints.
 
 Let's consider our node is running at `localhost:5000`.
 POSTing a transaction to the node's `transactions/new` endpoint with cURL would be done as follows:
@@ -104,7 +107,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
 }' "http://localhost:5000/nodes/register"
 ```
 
-If you would rather use httpie, those commands would be: 
+If you would rather use [`httpie`][httpie_link], those commands would be, respectively: 
 ```bash
 echo '{ "sender": "d4ee26eee15148ee92c6cd394edd974e", "recipient": "someone-other-address", "amount": 5 }' | http POST http://localhost:5000/transactions/new
 ```
@@ -112,4 +115,7 @@ echo '{ "sender": "d4ee26eee15148ee92c6cd394edd974e", "recipient": "someone-othe
 echo '{ "nodes": ["http://127.0.0.1:5001"] }' | http POST http://localhost:5000/nodes/register
 ```
 
+[fastapi_link]: https://fastapi.tiangolo.com/
+[httpie_link]: https://httpie.org/
 [tutorial_link]: https://hackernoon.com/learn-blockchains-by-building-one-117428612f46
+[uvicorn_link]: https://www.uvicorn.org/
