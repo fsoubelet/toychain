@@ -19,9 +19,25 @@ requests = "^2.23.0"
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.2"
 pytest-sugar = "^0.9.3"
+portray = "^1.3.2"
 
 [tool.poetry.scripts]
 node = "toychain.__main__:run_node"
+docs = "portray.cli:__hug__.cli"
+
+[tool.portray]
+# TODO: add "pymdownx.tabbed" to extensions once Portray is compatible with pymdown-extensions >= 7.0
+extra_markdown_extensions = ["admonition", "codehilite", "footnotes", "pymdownx.arithmatex", "pymdownx.betterem", "pymdownx.caret", "pymdownx.critic", "pymdownx.details", "pymdownx.inlinehilite", "pymdownx.magiclink", "pymdownx.tasklist", "pymdownx.keys", "pymdownx.mark", "pymdownx.smartsymbols", "pymdownx.superfences", "pymdownx.tasklist", "pymdownx.tilde"]
+modules = ["toychain"]
+
+[tool.portray.mkdocs]
+repo_url = "https://github.com/fsoubelet/toychain"
+repo_name = "toychain"
+
+[tool.portray.mkdocs.theme]
+name = "material"
+palette = {scheme = "slate", primary = "indico", accent = "pink"}
+font = {text = "Roboto", code = "Fira Code"}
 
 [build-system]
 requires = ["poetry>=0.12"]
