@@ -8,7 +8,7 @@ This adaptation uses [FastAPI] as a web framework, and [uvicorn] as ASGI server 
 
 Link to [documentation].
 
-[documentation]: https://fsoubelet.github.io/toychain
+[documentation]: https://fsoubelet.github.io/toychain/
 [FastAPI]: https://fastapi.tiangolo.com/
 [tutorial]: https://hackernoon.com/learn-blockchains-by-building-one-117428612f46
 [uvicorn]: https://www.uvicorn.org/
