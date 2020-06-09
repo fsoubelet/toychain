@@ -1,6 +1,6 @@
 ## The Node Implementation
 
-A node is ran as a REST API using the [FastAPI][fastapi] web framework, and is attributed a [UUID][uuid] at startup.
+A node is ran as a REST API using the [FastAPI] web framework, and is attributed a [UUID][uuid] at startup.
 
 Each node stores a full blockchain, the current transactions (to be written in the next block), and the list of other nodes registered in the network.
 Each node's blockchain is a `BlockChain` object from the `toychain.blockchain` module.
@@ -30,7 +30,7 @@ A node can:
 ## Interacting with a Node
 
 Let's consider our node is running at `localhost:5000`.
-Here's how to POST a transaction to the node's `transactions/new` endpoint, with either [cURL][curl] or [HTTPie][httpie]:
+Here's how to POST a transaction to the node's `transactions/new` endpoint, with either [cURL] or [HTTPie]:
 
 === "cURL"
     
@@ -65,7 +65,7 @@ POSTing a payload to register this new node to the first one's network would be 
     echo '{ "nodes": ["http://127.0.0.1:5001"] }' | http POST http://localhost:5000/nodes/register
     ```
 
-[curl]: https://curl.haxx.se/
-[fastapi]: https://fastapi.tiangolo.com/
-[httpie]: https://httpie.org/
+[cURL]: https://curl.haxx.se/
+[FastAPI]: https://fastapi.tiangolo.com/
+[HTTPie]: https://httpie.org/
 [uuid]: https://en.wikipedia.org/wiki/Universally_unique_identifier

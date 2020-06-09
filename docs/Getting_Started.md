@@ -2,7 +2,7 @@
 
 ## Installation
 
-There are two possible methods for installing and running toychain: either as a Python package with [pip][pip], or as a [Docker][docker] image.
+There are two possible methods for installing and running toychain: either as a Python package with [pip], or as a [Docker] image.
 
 ### With pip
 
@@ -14,7 +14,7 @@ You can now install this simply in a virtual environment with `pip install toych
 
 ??? note "How about a development environment?"
 
-    Sure thing. This repository uses [Poetry][poetry] as a build tool. To set yourself up,
+    Sure thing. This repository uses [Poetry] as a build tool. To set yourself up,
     get a local copy through VCS and run `poetry install`. You're now good to go, code away!
     
     The `poetry run node` command is predefined to start up a node, by default at
@@ -68,7 +68,7 @@ You can then play around by POSTing to `/nodes/register` to add all your running
 
 Refer to the `Functionality` section of this documentation for more information.
 
-[docker]: https://www.docker.com/
+[Docker]: https://www.docker.com/
 [pip]: https://pip.pypa.io/en/stable/
-[poetry]: https://python-poetry.org/
+[Poetry]: https://python-poetry.org/
 [virtual_env_primer]: https://realpython.com/python-virtual-environments-a-primer/
