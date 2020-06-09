@@ -33,7 +33,7 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - $HOME/.poetry/bin/poetry run pytest --verbose --no-flaky-report -p no:sugar --cov-report=xml --cov-report term-missing --cov=pyhdtoolkit/ tests
+  - $HOME/.poetry/bin/poetry run pytest --verbose -p no:sugar
 
 # Not needed yet
 #after_success:
