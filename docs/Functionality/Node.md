@@ -30,7 +30,7 @@ A node can:
 ## Interacting with a Node
 
 Let's consider our node is running at `localhost:5000`.
-Here's how to POST a transaction to the node's `transactions/new` endpoint, with either [cURL], [HTTPie] or [Wget]:
+Here's how to POST a transaction to the node's `transactions/new` endpoint with either [cURL], [HTTPie] or [Wget]:
 
 === "cURL"
     
