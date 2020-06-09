@@ -177,7 +177,7 @@ def _parse_arguments():
         dest="host",
         default="127.0.0.1",
         type=str,
-        help="The host on which to run the node. Defaults to '127.0.0.1', knows as 'localhost'.",
+        help="The host on which to run the node. Defaults to '127.0.0.1', known as 'localhost'.",
     )
     return parser.parse_args()
 

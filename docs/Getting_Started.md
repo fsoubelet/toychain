@@ -46,7 +46,7 @@ The usage is simple and goes as `python -m toychain`.
       -h, --help            show this help message and exit
       -p PORT, --port PORT  The port on which to run a node. Defaults to 5000.
       --host HOST           The host on which to run the node. Defaults to
-                            '127.0.0.1', knows as 'localhost'.
+                            '127.0.0.1', known as 'localhost'.
     ```
 
 ### As a Docker Container
@@ -64,7 +64,7 @@ docker run --init --rm -p 5002:5000 blockchain
 docker run --init --rm -p 5003:5000 blockchain
 ```
 
-You can then play around by POSTing to `/nodes/register` to add all your running instances to one another's networks, POSTing transactions, mining new blocks, and resolving the blockchain.
+You can then play around by **POST**ing to `/nodes/register` to add all your running instances to one another's networks, **POST**ing transactions, mining new blocks, and resolving the blockchain.
 
 Refer to the `Functionality` section of this documentation for more information.
 
