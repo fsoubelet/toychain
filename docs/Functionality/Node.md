@@ -25,21 +25,24 @@ A node can:
 ??? tip "How do I remember these?"
     Once the server is running, [FastAPI][fastapi] serves an automated documentation at the `/docs` and `/redoc` endpoints.
     So if your node is running at `localhost:5000`, head over to `localhost:5000/docs` for instance. If you
-    simply go to `localhost:5000`, you'll get a hint on where to go ;)
+    simply head to `localhost:5000`, you'll get a hint on where to go ;)
 
 ## Interacting with a Node
 
 Let's consider our node is running at `localhost:5000`.
-Here's how to POST a transaction to the node's `transactions/new` endpoint, with either [cURL] or [HTTPie]:
+Here's how to POST a transaction to the node's `transactions/new` endpoint, with either [cURL], [HTTPie] or [Wget]:
 
 === "cURL"
     
     ```bash
-    curl -X POST -H "Content-Type: application/json" -d '{
+    curl --request POST \
+      --url http://localhost:5000/transactions/new \
+      --header 'content-type: application/json' \
+      --data '{
      "sender": "d4ee26eee15148ee92c6cd394edd974e",
      "recipient": "someone-other-address",
      "amount": 5
-    }' "http://localhost:5000/transactions/new"
+    }'
     ```
 
 === "HTTPie"
@@ -48,15 +51,29 @@ Here's how to POST a transaction to the node's `transactions/new` endpoint, with
     echo '{ "sender": "d4ee26eee15148ee92c6cd394edd974e", "recipient": "someone-other-address", "amount": 5 }' | http POST http://localhost:5000/transactions/new
     ```
 
+=== "Wget"
+    
+    ```bash
+    wget --quiet \
+      --method POST \
+      --header 'content-type: application/json' \
+      --body-data '{\n "sender": "d4ee26eee15148ee92c6cd394edd974e",\n "recipient": "someone-other-address",\n "amount": 5\n}' \
+      --output-document \
+      - http://localhost:5000/transactions/new
+    ```
+
 Let's now consider that we have started a second node at `localhost:5001`.
 POSTing a payload to register this new node to the first one's network would be done as follows:
 
 === "cURL"
     
     ```bash
-    curl -X POST -H "Content-Type: application/json" -d '{
+    curl --request POST \
+      --url http://localhost:5000/nodes/register \
+      --header 'content-type: application/json' \
+      --data '{
      "nodes": ["http://127.0.0.1:5001"]
-    }' "http://localhost:5000/nodes/register"
+    }'
     ```
 
 === "HTTPie"
@@ -64,8 +81,20 @@ POSTing a payload to register this new node to the first one's network would be 
     ```bash
     echo '{ "nodes": ["http://127.0.0.1:5001"] }' | http POST http://localhost:5000/nodes/register
     ```
+    
+=== "Wget"
+
+    ```bash
+    wget --quiet \
+      --method POST \
+      --header 'content-type: application/json' \
+      --body-data '{\n "nodes": ["http://127.0.0.1:5001"]\n}' \
+      --output-document \
+      - http://localhost:5000/nodes/register
+    ```
 
 [cURL]: https://curl.haxx.se/
 [FastAPI]: https://fastapi.tiangolo.com/
 [HTTPie]: https://httpie.org/
 [uuid]: https://en.wikipedia.org/wiki/Universally_unique_identifier
+[Wget]: https://www.gnu.org/software/wget/

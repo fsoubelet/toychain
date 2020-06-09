@@ -48,7 +48,7 @@ exclude = '''
 
 [tool.portray]
 # TODO: add "pymdownx.tabbed" to extensions once Portray is compatible with pymdown-extensions >= 7.0
-extra_markdown_extensions = ["admonition", "codehilite", "footnotes", "pymdownx.arithmatex", "pymdownx.betterem", "pymdownx.caret", "pymdownx.critic", "pymdownx.details", "pymdownx.inlinehilite", "pymdownx.magiclink", "pymdownx.tasklist", "pymdownx.keys", "pymdownx.mark", "pymdownx.smartsymbols", "pymdownx.superfences", "pymdownx.tasklist", "pymdownx.tilde"]
+extra_markdown_extensions = ["admonition", "codehilite", "footnotes", "pymdownx.arithmatex", "pymdownx.betterem", "pymdownx.caret", "pymdownx.critic", "pymdownx.details", "pymdownx.inlinehilite", "pymdownx.magiclink", "pymdownx.tabbed", "pymdownx.tasklist", "pymdownx.keys", "pymdownx.mark", "pymdownx.smartsymbols", "pymdownx.superfences", "pymdownx.tasklist", "pymdownx.tilde"]
 modules = ["toychain"]
 
 [tool.portray.mkdocs]
@@ -57,7 +57,7 @@ repo_name = "toychain"
 
 [tool.portray.mkdocs.theme]
 name = "material"
-palette = {scheme = "slate", primary = "teal", accent = "amber"}
+palette = {scheme = "light", primary = "teal", accent = "amber"}
 font = {text = "Ubuntu Mono", code = "Fira Code"}
 
 [build-system]

@@ -30,6 +30,6 @@ block = {
 
 !!! tip "Want to learn a bit about Blockchains?"
     If you want to dive a bit into how cryptocurrencies and blockchains work,
-    then watch [this excellent video][3b1b_bitcoin] by 3Blue1Brown.
+    I recommend you watch [this excellent video][3b1b_bitcoin] by 3Blue1Brown.
 
 [3b1b_bitcoin]: https://www.youtube.com/watch?v=bBC-nXj3Ng4

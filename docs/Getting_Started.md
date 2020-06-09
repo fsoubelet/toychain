@@ -6,7 +6,11 @@ There are two possible methods for installing and running toychain: either as a 
 
 ### With pip
 
-You can now install this simply in a virtual environment with `pip install toychain`.
+You can now install this simply in a virtual environment with:
+
+```bash
+pip install toychain
+```
 
 !!! tip "Installation in a virtual environment"
     Don't know what a **virtual environment** is or how to set it up? Here is a good
@@ -14,30 +18,45 @@ You can now install this simply in a virtual environment with `pip install toych
 
 ??? note "How about a development environment?"
 
-    Sure thing. This repository uses [Poetry] as a build tool. To set yourself up,
-    get a local copy through VCS and run `poetry install`. You're now good to go, code away!
+    Sure thing. This repository uses [Poetry] as a packaging and build tool. To set yourself 
+    up, get a local copy through VCS and run:
     
-    The `poetry run node` command is predefined to start up a node, by default at
-    `localhost:5000`. Additionally, you can specify the host and port on which to
-    run the node with the `--host` and `--port` flags. You can then use the same
-    command to spin up several nodes on different ports.
+    ```bash
+    poetry install
+    ```
+    You're now good to go, code away!
+    To test your changes to the code, you can start up a node at `localhost:5000` with the
+    predefined command:
+    
+    ```bash
+    poetry run node
+    ```
 
 ### With Docker
 
 It is possible to run nodes as Docker containers.
 For now, there is no existing image you can pull from Docker Hub, so you will have to build it localy.
-To do so, clone the repository and build the image with `docker build -t blockchain .`
+To do so, clone the repository and build the image with:
+
+```bash
+docker build -t blockchain .
+```
 
 ## Running
 
 ### As a Python Package
 
-The usage is simple and goes as `python -m toychain`.
+The usage is simple and goes as:
+
+```bash
+python -m toychain
+```
 
 ??? summary "Command Line Options"
     
     You can specify the port as well as the host on which to run the node
-    with the `--port` and `--host` flags. The usage goes as:
+    with the `--port` and `--host` flags, which allows you to easily spin
+    up several nodes. The usage goes as:
 
     ``` bash
     usage: __main__.py [-h] [-p PORT] [--host HOST]
@@ -64,9 +83,9 @@ docker run --init --rm -p 5002:5000 blockchain
 docker run --init --rm -p 5003:5000 blockchain
 ```
 
-You can then play around by **POST**ing to `/nodes/register` to add all your running instances to one another's networks, **POST**ing transactions, mining new blocks, and resolving the blockchain.
+You can then play around by POSTing to `/nodes/register` to add all your running instances to one another's networks, POSTing transactions, mining new blocks, and resolving the blockchain.
 
-Refer to the `Functionality` section of this documentation for more information.
+Refer to the [Functionality](./Functionality/Blockchain.md "Functionality") section of this documentation for more information.
 
 [Docker]: https://www.docker.com/
 [pip]: https://pip.pypa.io/en/stable/
