@@ -27,6 +27,25 @@ portray = "^1.3.2"
 node = "toychain.__main__:run_node"
 docs = "portray.cli:__hug__.cli"
 
+[tool.black]
+line-length = 100
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | tests/.*/setup.py
+)/
+'''
+
 [tool.portray]
 # TODO: add "pymdownx.tabbed" to extensions once Portray is compatible with pymdown-extensions >= 7.0
 extra_markdown_extensions = ["admonition", "codehilite", "footnotes", "pymdownx.arithmatex", "pymdownx.betterem", "pymdownx.caret", "pymdownx.critic", "pymdownx.details", "pymdownx.inlinehilite", "pymdownx.magiclink", "pymdownx.tasklist", "pymdownx.keys", "pymdownx.mark", "pymdownx.smartsymbols", "pymdownx.superfences", "pymdownx.tasklist", "pymdownx.tilde"]
