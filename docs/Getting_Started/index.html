@@ -543,7 +543,7 @@
                 
                 <h1 id="getting-started">Getting Started</h1>
 <h2 id="installation">Installation</h2>
-<p>There are two possible methods for installing and running toychain: either as a Python package with <a href="https://pip.pypa.io/en/stable/">pip</a>, or as a <a href="https://www.docker.com/">Docker</a> image.</p>
+<p>There are two possible methods for installing and running toychain: either as a Python package with <a href="https://pip.pypa.io/en/stable/" target="_blank">pip</a>, or as a <a href="https://www.docker.com/" target="_blank">Docker</a> image.</p>
 <h3 id="with-pip">With pip</h3>
 <p>You can now install this simply in a virtual environment with:</p>
 <div class="highlight"><pre><span></span><code>pip install toychain
@@ -552,9 +552,9 @@
 <div class="admonition tip">
 <p class="admonition-title">Installation in a virtual environment</p>
 <p>Don't know what a <strong>virtual environment</strong> is or how to set it up? Here is a good
-<a href="https://realpython.com/python-virtual-environments-a-primer/">primer on virtual environments</a> by RealPython.</p>
+<a href="https://realpython.com/python-virtual-environments-a-primer/" target="_blank">primer on virtual environments</a> by RealPython.</p>
 </div>
-<details class="note"><summary>How about a development environment?</summary><p>Sure thing. This repository uses <a href="https://python-poetry.org/">Poetry</a> as a packaging and build tool. To set yourself 
+<details class="note"><summary>How about a development environment?</summary><p>Sure thing. This repository uses <a href="https://python-poetry.org/" target="_blank">Poetry</a> as a packaging and build tool. To set yourself 
 up, get a local copy through VCS and run:</p>
 <p><div class="highlight"><pre><span></span><code>poetry install
 </code></pre></div>
@@ -572,7 +572,7 @@ project's documentation makes use of features from <code>mkdocs-material &gt;= 5
 <p>The workaround to get those working is to build and install Portray locally with compatibility for these higher versions.
 You can do so by modifying the requirements in Portray's <code>pyproject.toml</code> file, specifying:</p>
 <ul>
-<li><code>mkdocs-material = "^5.0"</code> and</li>
+<li><code>mkdocs-material = "^5.0"</code></li>
 <li><code>pymdown-extensions = "^7.0"</code>.</li>
 </ul>
 <p>You can then build wheels for this version with <code>poetry publish</code>. The final step is
