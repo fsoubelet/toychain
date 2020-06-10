@@ -19,7 +19,7 @@ class BlockChain:
         self.chain: List[Dict] = []
         self.current_transactions: List[Dict] = []
         self.nodes = set()
-        logger.info("Initiating first block")
+        logger.debug("Initiating first block")
         self.add_block(previous_hash=1, proof=100)
 
     def add_block(self, previous_hash: Optional[str] = None, proof: int = None) -> Dict:

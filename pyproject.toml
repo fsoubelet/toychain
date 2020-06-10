@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "toychain"
-version = "0.1.0"
+version = "0.2.0"
 description = "A blockchain toy project, in Python"
 authors = ["Your Name <you@example.com>"]
 license = "MIT"
@@ -12,15 +12,53 @@ repository = "https://github.com/fsoubelet/toychain"
 [tool.poetry.dependencies]
 python = "^3.6"
 loguru = "^0.4.1"
-flask = "^1.1.2"
+fastapi = "^0.55.1"
+uvicorn = "^0.11.5"
 requests = "^2.23.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.2"
 pytest-sugar = "^0.9.3"
+black = { version = "^19.10b0", python = "^3.6" }
+pylint = "^2.4.4"
+portray = "^1.3.2"
 
 [tool.poetry.scripts]
 node = "toychain.__main__:run_node"
+docs = "portray.cli:__hug__.cli"
+
+[tool.black]
+line-length = 100
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | tests/.*/setup.py
+)/
+'''
+
+[tool.portray]
+# TODO: add "pymdownx.tabbed" to extensions once Portray is compatible with pymdown-extensions >= 7.0
+extra_markdown_extensions = ["admonition", "codehilite", "footnotes", "pymdownx.arithmatex", "pymdownx.betterem", "pymdownx.caret", "pymdownx.critic", "pymdownx.details", "pymdownx.inlinehilite", "pymdownx.magiclink", "pymdownx.tabbed", "pymdownx.tasklist", "pymdownx.keys", "pymdownx.mark", "pymdownx.smartsymbols", "pymdownx.superfences", "pymdownx.tasklist", "pymdownx.tilde"]
+modules = ["toychain"]
+
+[tool.portray.mkdocs]
+repo_url = "https://github.com/fsoubelet/toychain"
+repo_name = "toychain"
+
+[tool.portray.mkdocs.theme]
+name = "material"
+palette = {scheme = "light", primary = "teal", accent = "amber"}
+font = {text = "Ubuntu Mono", code = "Fira Code"}
 
 [build-system]
 requires = ["poetry>=0.12"]
