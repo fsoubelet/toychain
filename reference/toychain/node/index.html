@@ -1,0 +1,2199 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>Node - toychain</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:300,400,400i,700%7CFira+Code&display=fallback">
+        <style>body,input{font-family:"Ubuntu Mono",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Code",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="light" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-toychainnode" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="toychain" class="md-header-nav__button md-logo" aria-label="toychain">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            toychain
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Node
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/fsoubelet/toychain/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    toychain
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="toychain" class="md-nav__button md-logo" aria-label="toychain">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    toychain
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/fsoubelet/toychain/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    toychain
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../docs/Getting_Started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Functionality
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Functionality" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Functionality
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../docs/Functionality/Blockchain/" title="Blockchain" class="md-nav__link">
+      Blockchain
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../docs/Functionality/Node/" title="Node" class="md-nav__link">
+      Node
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Reference
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" checked>
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Toychain
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Toychain" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Toychain
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../blockchain/" title="Blockchain" class="md-nav__link">
+      Blockchain
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Node
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Node" class="md-nav__link md-nav__link--active">
+      Node
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consensus" class="md-nav__link">
+    consensus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full_chain" class="md-nav__link">
+    full_chain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mine_block" class="md-nav__link">
+    mine_block
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new_transaction" class="md-nav__link">
+    new_transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register_nodes" class="md-nav__link">
+    register_nodes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root" class="md-nav__link">
+    root
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run_node" class="md-nav__link">
+    run_node
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activenode" class="md-nav__link">
+    ActiveNode
+  </a>
+  
+    <nav class="md-nav" aria-label="ActiveNode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    Static methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Static methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#construct" class="md-nav__link">
+    construct
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from_orm" class="md-nav__link">
+    from_orm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_file" class="md-nav__link">
+    parse_file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_obj" class="md-nav__link">
+    parse_obj
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_raw" class="md-nav__link">
+    parse_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema_json" class="md-nav__link">
+    schema_json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_forward_refs" class="md-nav__link">
+    update_forward_refs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate" class="md-nav__link">
+    validate
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-variables" class="md-nav__link">
+    Instance variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy" class="md-nav__link">
+    copy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dict" class="md-nav__link">
+    dict
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to_string" class="md-nav__link">
+    to_string
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transaction" class="md-nav__link">
+    Transaction
+  </a>
+  
+    <nav class="md-nav" aria-label="Transaction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro_1" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-variables_1" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-methods_1" class="md-nav__link">
+    Static methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Static methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#construct_1" class="md-nav__link">
+    construct
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from_orm_1" class="md-nav__link">
+    from_orm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_file_1" class="md-nav__link">
+    parse_file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_obj_1" class="md-nav__link">
+    parse_obj
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_raw_1" class="md-nav__link">
+    parse_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema_1" class="md-nav__link">
+    schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema_json_1" class="md-nav__link">
+    schema_json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_forward_refs_1" class="md-nav__link">
+    update_forward_refs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_1" class="md-nav__link">
+    validate
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-variables_1" class="md-nav__link">
+    Instance variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy_1" class="md-nav__link">
+    copy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dict_1" class="md-nav__link">
+    dict
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_1" class="md-nav__link">
+    json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to_string_1" class="md-nav__link">
+    to_string
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consensus" class="md-nav__link">
+    consensus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full_chain" class="md-nav__link">
+    full_chain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mine_block" class="md-nav__link">
+    mine_block
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new_transaction" class="md-nav__link">
+    new_transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register_nodes" class="md-nav__link">
+    register_nodes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root" class="md-nav__link">
+    root
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run_node" class="md-nav__link">
+    run_node
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activenode" class="md-nav__link">
+    ActiveNode
+  </a>
+  
+    <nav class="md-nav" aria-label="ActiveNode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    Static methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Static methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#construct" class="md-nav__link">
+    construct
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from_orm" class="md-nav__link">
+    from_orm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_file" class="md-nav__link">
+    parse_file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_obj" class="md-nav__link">
+    parse_obj
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_raw" class="md-nav__link">
+    parse_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema_json" class="md-nav__link">
+    schema_json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_forward_refs" class="md-nav__link">
+    update_forward_refs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate" class="md-nav__link">
+    validate
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-variables" class="md-nav__link">
+    Instance variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy" class="md-nav__link">
+    copy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dict" class="md-nav__link">
+    dict
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to_string" class="md-nav__link">
+    to_string
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transaction" class="md-nav__link">
+    Transaction
+  </a>
+  
+    <nav class="md-nav" aria-label="Transaction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro_1" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-variables_1" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-methods_1" class="md-nav__link">
+    Static methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Static methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#construct_1" class="md-nav__link">
+    construct
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from_orm_1" class="md-nav__link">
+    from_orm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_file_1" class="md-nav__link">
+    parse_file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_obj_1" class="md-nav__link">
+    parse_obj
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_raw_1" class="md-nav__link">
+    parse_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema_1" class="md-nav__link">
+    schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema_json_1" class="md-nav__link">
+    schema_json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_forward_refs_1" class="md-nav__link">
+    update_forward_refs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_1" class="md-nav__link">
+    validate
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-variables_1" class="md-nav__link">
+    Instance variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy_1" class="md-nav__link">
+    copy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dict_1" class="md-nav__link">
+    dict
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_1" class="md-nav__link">
+    json
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to_string_1" class="md-nav__link">
+    to_string
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/fsoubelet/toychain/edit/master/reference/toychain/node.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="module-toychainnode">Module toychain.node</h1>
+<p>Node runner for Blockchain, to interact with using HTTP requests.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">Node runner for Blockchain, to interact with using HTTP requests.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+
+<span class="kn">import</span> <span class="nn">uvicorn</span>
+
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+
+<span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
+
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="kn">from</span> <span class="nn">toychain.blockchain</span> <span class="kn">import</span> <span class="n">BlockChain</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Instantiating node&quot;</span><span class="p">)</span>
+
+<span class="n">node</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Generating globally unique address for this node&quot;</span><span class="p">)</span>
+
+<span class="n">node_identifier</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;This is node ID {node_identifier}&quot;</span><span class="p">)</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Instantiating Blockchain for this node&quot;</span><span class="p">)</span>
+
+<span class="n">blockchain</span> <span class="o">=</span> <span class="n">BlockChain</span><span class="p">()</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Blockchain up and running!&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">ActiveNode</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+
+    <span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">Transaction</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+
+    <span class="n">sender</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="n">recipient</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span>
+
+<span class="nd">@node.get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">root</span><span class="p">():</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Greet the user and direct to the docs, that will detail the available endpoints.</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        A simple text</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+
+        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;This is a running node. To get a documentation overview of the available &quot;</span>
+
+        <span class="s2">&quot;endpoints and their functionality, head over to the &#39;/docs&#39; endpoint (Swagger&quot;</span>
+
+        <span class="s2">&quot;UI style), or the &#39;/redoc&#39; endpoint (ReDoc style).&quot;</span>
+
+    <span class="p">}</span>
+
+<span class="nd">@node.get</span><span class="p">(</span><span class="s2">&quot;/mine&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">mine_block</span><span class="p">():</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Mining endpoint. GETing `/mine` triggers the following actions:\n</span>
+
+<span class="sd">        - Calculating the Proof of Work.\n</span>
+
+<span class="sd">        - Rewarding the miner (this node) by adding a transaction granting 1 coin.\n</span>
+
+<span class="sd">        - Forging the new Block by adding it to the chain.\n</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        A JSON response.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Received GET request to add a block, mining proof for a new block&quot;</span><span class="p">)</span>
+
+    <span class="n">last_block</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">last_block</span>
+
+    <span class="n">last_proof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">last_block</span><span class="p">[</span><span class="s2">&quot;proof&quot;</span><span class="p">]</span>
+
+    <span class="n">mined_proof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">proof_of_work</span><span class="p">(</span><span class="n">last_proof</span><span class="p">)</span>
+
+    <span class="c1"># We must receive a reward for finding the proof.</span>
+
+    <span class="c1"># The sender is &quot;0&quot; to signify that this node has mined a new coin.</span>
+
+    <span class="n">blockchain</span><span class="o">.</span><span class="n">add_transaction</span><span class="p">(</span>
+
+        <span class="n">sender</span><span class="o">=</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="n">recipient</span><span class="o">=</span><span class="n">node_identifier</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+
+    <span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Forging new block and adding it to the chain&quot;</span><span class="p">)</span>
+
+    <span class="n">previous_hash</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">last_block</span><span class="p">)</span>
+
+    <span class="n">block</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">add_block</span><span class="p">(</span><span class="n">previous_hash</span><span class="o">=</span><span class="n">previous_hash</span><span class="p">,</span> <span class="n">proof</span><span class="o">=</span><span class="n">mined_proof</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+
+        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;New Block Forged&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">],</span>
+
+        <span class="s2">&quot;transactions&quot;</span><span class="p">:</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;transactions&quot;</span><span class="p">],</span>
+
+        <span class="s2">&quot;proof&quot;</span><span class="p">:</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;proof&quot;</span><span class="p">],</span>
+
+        <span class="s2">&quot;previous_hash&quot;</span><span class="p">:</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;previous_hash&quot;</span><span class="p">],</span>
+
+    <span class="p">}</span>
+
+<span class="nd">@node.post</span><span class="p">(</span><span class="s2">&quot;/transactions/new&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">new_transaction</span><span class="p">(</span><span class="n">posted_transaction</span><span class="p">:</span> <span class="n">Transaction</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Receives transaction data from a POST request and add it to the node&#39;s blockchain.</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        A JSON response.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Received POST request for new transaction&quot;</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Creating new transaction from POSTed data&quot;</span><span class="p">)</span>
+
+    <span class="n">transaction_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">add_transaction</span><span class="p">(</span>
+
+        <span class="n">sender</span><span class="o">=</span><span class="n">posted_transaction</span><span class="o">.</span><span class="n">sender</span><span class="p">,</span>
+
+        <span class="n">recipient</span><span class="o">=</span><span class="n">posted_transaction</span><span class="o">.</span><span class="n">recipient</span><span class="p">,</span>
+
+        <span class="n">amount</span><span class="o">=</span><span class="n">posted_transaction</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span>
+
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+
+        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Transaction added to the list of current transactions at &quot;</span>
+
+        <span class="n">f</span><span class="s2">&quot;index {transaction_index}&quot;</span>
+
+    <span class="p">}</span>
+
+<span class="nd">@node.post</span><span class="p">(</span><span class="s2">&quot;/nodes/register&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">register_nodes</span><span class="p">(</span><span class="n">posted_transaction</span><span class="p">:</span> <span class="n">ActiveNode</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Receives new nodes&#39; location from a POST request and register those to this node&#39;s network.</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        A JSON response.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Received POST request for new nodes registration, getting payload&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">posted_transaction</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Registering new node to the network&quot;</span><span class="p">)</span>
+
+        <span class="n">blockchain</span><span class="o">.</span><span class="n">register_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+
+        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{len(posted_transaction.nodes)} new nodes have been successfully added&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;total_nodes&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">blockchain</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
+
+    <span class="p">}</span>
+
+<span class="nd">@node.get</span><span class="p">(</span><span class="s2">&quot;/nodes/resolve&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">consensus</span><span class="p">():</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Run consensus algorithm to resolve conflicts, sends back status (local node&#39;s chain changed,</span>
+
+<span class="sd">    or not).</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        A JSON response.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Received a GET request to resolve conflicts&quot;</span><span class="p">)</span>
+
+    <span class="n">is_replaced</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">resolve_conflicts</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">is_replaced</span><span class="p">:</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Our chain was replaced&quot;</span><span class="p">,</span> <span class="s2">&quot;new_chain&quot;</span><span class="p">:</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">chain</span><span class="p">}</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Our chain is authoritative&quot;</span><span class="p">,</span> <span class="s2">&quot;chain&quot;</span><span class="p">:</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">chain</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">response</span>
+
+<span class="nd">@node.get</span><span class="p">(</span><span class="s2">&quot;/chain&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">full_chain</span><span class="p">():</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    GETing `/chain` will returns the full blockchain.</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        The node&#39;s full blockchain list, as a JSON response.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Full chain requested, sending...&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+
+        <span class="s2">&quot;chain&quot;</span><span class="p">:</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">chain</span><span class="p">,</span>
+
+        <span class="s2">&quot;length&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">blockchain</span><span class="o">.</span><span class="n">chain</span><span class="p">),</span>
+
+    <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">_parse_arguments</span><span class="p">():</span>
+
+    <span class="sd">&quot;&quot;&quot;Simply parse the port on which to run.&quot;&quot;&quot;</span>
+
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+
+        <span class="s2">&quot;-p&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;--port&quot;</span><span class="p">,</span>
+
+        <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;port&quot;</span><span class="p">,</span>
+
+        <span class="n">default</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The port on which to run a node. Defaults to 5000.&quot;</span><span class="p">,</span>
+
+    <span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+
+        <span class="s2">&quot;--host&quot;</span><span class="p">,</span>
+
+        <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;host&quot;</span><span class="p">,</span>
+
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The host on which to run the node. Defaults to &#39;127.0.0.1&#39;, known as &#39;localhost&#39;.&quot;</span><span class="p">,</span>
+
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">run_node</span><span class="p">():</span>
+
+    <span class="sd">&quot;&quot;&quot;Runs the node&quot;&quot;&quot;</span>
+
+    <span class="n">commandline_arguments</span> <span class="o">=</span> <span class="n">_parse_arguments</span><span class="p">()</span>
+
+    <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">commandline_arguments</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">commandline_arguments</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="n">run_node</span><span class="p">()</span>
+</code></pre></div>
+
+
+</details>
+<h2 id="variables">Variables</h2>
+<div class="highlight"><pre><span></span><code><span class="n">blockchain</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">node</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">node_identifier</span>
+</code></pre></div>
+
+<h2 id="functions">Functions</h2>
+<h3 id="consensus">consensus</h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">consensus</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+Run consensus algorithm to resolve conflicts, sends back status (local node's chain changed,
+or not).</p>
+<p>Returns:
+    A JSON response.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">@node</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="ss">&quot;/nodes/resolve&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">consensus</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Run consensus algorithm to resolve conflicts, sends back status (local node&#39;s chain changed,</span>
+
+<span class="ss">    or not).</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        A JSON response.</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Received a GET request to resolve conflicts&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">is_replaced</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">resolve_conflicts</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nl">is_replaced</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;message&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Our chain was replaced&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;new_chain&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">chain</span><span class="err">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;message&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Our chain is authoritative&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;chain&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">chain</span><span class="err">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">response</span><span class="w"></span>
+</code></pre></div>
+
+
+</details>
+<h3 id="full_chain">full_chain</h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">full_chain</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+GETing <code>/chain</code> will returns the full blockchain.</p>
+<p>Returns:
+    The node's full blockchain list, as a JSON response.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">@node</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="ss">&quot;/chain&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">full_chain</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    GETing `/chain` will returns the full blockchain.</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        The node&#39;s full blockchain list, as a JSON response.</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Full chain requested, sending...&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;chain&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">chain</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;length&quot;</span><span class="err">:</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">blockchain</span><span class="p">.</span><span class="n">chain</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+
+</details>
+<h3 id="mine_block">mine_block</h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">mine_block</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+Mining endpoint. GETing <code>/mine</code> triggers the following actions:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">-</span> <span class="n">Calculating</span> <span class="n">the</span> <span class="n">Proof</span> <span class="k">of</span> <span class="k">Work</span><span class="p">.</span>
+
+<span class="o">-</span> <span class="n">Rewarding</span> <span class="n">the</span> <span class="n">miner</span> <span class="p">(</span><span class="n">this</span> <span class="n">node</span><span class="p">)</span> <span class="k">by</span> <span class="n">adding</span> <span class="n">a</span> <span class="n">transaction</span> <span class="n">granting</span> <span class="mi">1</span> <span class="n">coin</span><span class="p">.</span>
+
+<span class="o">-</span> <span class="n">Forging</span> <span class="n">the</span> <span class="k">new</span> <span class="n">Block</span> <span class="k">by</span> <span class="n">adding</span> <span class="n">it</span> <span class="k">to</span> <span class="n">the</span> <span class="k">chain</span><span class="p">.</span>
+</code></pre></div>
+
+
+<p>Returns:
+    A JSON response.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">@node</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="ss">&quot;/mine&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">mine_block</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Mining endpoint. GETing `/mine` triggers the following actions:\n</span>
+
+<span class="ss">        - Calculating the Proof of Work.\n</span>
+
+<span class="ss">        - Rewarding the miner (this node) by adding a transaction granting 1 coin.\n</span>
+
+<span class="ss">        - Forging the new Block by adding it to the chain.\n</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        A JSON response.</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Received GET request to add a block, mining proof for a new block&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">last_block</span><span class="p">:</span><span class="w"> </span><span class="n">Dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">last_block</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">last_proof</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">last_block</span><span class="o">[</span><span class="n">&quot;proof&quot;</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">mined_proof</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">proof_of_work</span><span class="p">(</span><span class="n">last_proof</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">We</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">receive</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">reward</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">finding</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">proof</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">sender</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ss">&quot;0&quot;</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">signify</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">mined</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">coin</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">blockchain</span><span class="p">.</span><span class="n">add_transaction</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">sender</span><span class="o">=</span><span class="ss">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">recipient</span><span class="o">=</span><span class="n">node_identifier</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Forging new block and adding it to the chain&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">previous_hash</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">last_block</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">block</span><span class="p">:</span><span class="w"> </span><span class="n">Dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">add_block</span><span class="p">(</span><span class="n">previous_hash</span><span class="o">=</span><span class="n">previous_hash</span><span class="p">,</span><span class="w"> </span><span class="n">proof</span><span class="o">=</span><span class="n">mined_proof</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;message&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;New Block Forged&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;index&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">block</span><span class="o">[</span><span class="n">&quot;index&quot;</span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;transactions&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">block</span><span class="o">[</span><span class="n">&quot;transactions&quot;</span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;proof&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">block</span><span class="o">[</span><span class="n">&quot;proof&quot;</span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;previous_hash&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">block</span><span class="o">[</span><span class="n">&quot;previous_hash&quot;</span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+
+</details>
+<h3 id="new_transaction">new_transaction</h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">new_transaction</span><span class="p">(</span>
+    <span class="n">posted_transaction</span><span class="p">:</span> <span class="n">toychain</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">Transaction</span>
+<span class="p">)</span>
+</code></pre></div>
+Receives transaction data from a POST request and add it to the node's blockchain.</p>
+<p>Returns:
+    A JSON response.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">@node</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="ss">&quot;/transactions/new&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">new_transaction</span><span class="p">(</span><span class="nl">posted_transaction</span><span class="p">:</span><span class="w"> </span><span class="k">Transaction</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Receives transaction data from a POST request and add it to the node&#39;s blockchain.</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        A JSON response.</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Received POST request for new transaction&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Creating new transaction from POSTed data&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">transaction_index</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">add_transaction</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">sender</span><span class="o">=</span><span class="n">posted_transaction</span><span class="p">.</span><span class="n">sender</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">recipient</span><span class="o">=</span><span class="n">posted_transaction</span><span class="p">.</span><span class="n">recipient</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">amount</span><span class="o">=</span><span class="n">posted_transaction</span><span class="p">.</span><span class="n">amount</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;message&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Transaction added to the list of current transactions at &quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">f</span><span class="ss">&quot;index {transaction_index}&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+
+</details>
+<h3 id="register_nodes">register_nodes</h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">register_nodes</span><span class="p">(</span>
+    <span class="n">posted_transaction</span><span class="p">:</span> <span class="n">toychain</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">ActiveNode</span>
+<span class="p">)</span>
+</code></pre></div>
+Receives new nodes' location from a POST request and register those to this node's network.</p>
+<p>Returns:
+    A JSON response.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">@node</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="ss">&quot;/nodes/register&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">register_nodes</span><span class="p">(</span><span class="nl">posted_transaction</span><span class="p">:</span><span class="w"> </span><span class="n">ActiveNode</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Receives new nodes&#39; location from a POST request and register those to this node&#39;s network.</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        A JSON response.</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Received POST request for new nodes registration, getting payload&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">posted_transaction</span><span class="p">.</span><span class="nl">nodes</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Registering new node to the network&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">blockchain</span><span class="p">.</span><span class="n">register_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;message&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;{len(posted_transaction.nodes)} new nodes have been successfully added&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;total_nodes&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">list</span><span class="p">(</span><span class="n">blockchain</span><span class="p">.</span><span class="n">nodes</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+
+</details>
+<h3 id="root">root</h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">root</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+Greet the user and direct to the docs, that will detail the available endpoints.</p>
+<p>Returns:
+    A simple text</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">@node</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="ss">&quot;/&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">root</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Greet the user and direct to the docs, that will detail the available endpoints.</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        A simple text</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;message&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;This is a running node. To get a documentation overview of the available &quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;endpoints and their functionality, head over to the &#39;/docs&#39; endpoint (Swagger&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;UI style), or the &#39;/redoc&#39; endpoint (ReDoc style).&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+
+</details>
+<h3 id="run_node">run_node</h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">run_node</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+Runs the node</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">run_node</span><span class="p">():</span>
+
+    <span class="ss">&quot;&quot;&quot;Runs the node&quot;&quot;&quot;</span>
+
+    <span class="n">commandline_arguments</span> <span class="o">=</span> <span class="n">_parse_arguments</span><span class="p">()</span>
+
+    <span class="n">uvicorn</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="k">host</span><span class="o">=</span><span class="n">commandline_arguments</span><span class="p">.</span><span class="k">host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">commandline_arguments</span><span class="p">.</span><span class="n">port</span><span class="p">)</span>
+</code></pre></div>
+
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="activenode">ActiveNode</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ActiveNode</span><span class="p">(</span>
+    <span class="n">__pydantic_self__</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="n">ActiveNode</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">nodes</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">str</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
+
+
+</details>
+<hr />
+<h4 id="ancestors-in-mro">Ancestors (in MRO)</h4>
+<ul>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h4 id="class-variables">Class variables</h4>
+<div class="highlight"><pre><span></span><code><span class="n">Config</span>
+</code></pre></div>
+
+<h4 id="static-methods">Static methods</h4>
+<h5 id="construct">construct</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">construct</span><span class="p">(</span>
+    <span class="n">_fields_set</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;SetStr&#39;</span><span class="p">),</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">values</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+Creates a new model setting <strong>dict</strong> and <strong>fields_set</strong> from trusted or pre-validated data.
+Default values are respected, but no other validation is performed.</p>
+<h5 id="from_orm">from_orm</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">from_orm</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+
+<h5 id="parse_file">parse_file</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_file</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">content_type</span><span class="p">:</span> <span class="s1">&#39;unicode&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="p">:</span> <span class="s1">&#39;unicode&#39;</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+    <span class="n">proto</span><span class="p">:</span> <span class="n">pydantic</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">Protocol</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">allow_pickle</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+
+<h5 id="parse_obj">parse_obj</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_obj</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+
+<h5 id="parse_raw">parse_raw</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_raw</span><span class="p">(</span>
+    <span class="n">b</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">content_type</span><span class="p">:</span> <span class="s1">&#39;unicode&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="p">:</span> <span class="s1">&#39;unicode&#39;</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+    <span class="n">proto</span><span class="p">:</span> <span class="n">pydantic</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">Protocol</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">allow_pickle</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+
+<h5 id="schema">schema</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">schema</span><span class="p">(</span>
+    <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;DictStrAny&#39;</span>
+</code></pre></div>
+
+<h5 id="schema_json">schema_json</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">schema_json</span><span class="p">(</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">dumps_kwargs</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;unicode&#39;</span>
+</code></pre></div>
+
+<h5 id="update_forward_refs">update_forward_refs</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_forward_refs</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">localns</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+Try to update ForwardRefs on fields based on this Model, globalns and localns.</p>
+<h5 id="validate">validate</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+
+<h4 id="instance-variables">Instance variables</h4>
+<div class="highlight"><pre><span></span><code><span class="n">fields</span>
+</code></pre></div>
+
+<h4 id="methods">Methods</h4>
+<h5 id="copy">copy</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">copy</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">include</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">update</span><span class="p">:</span> <span class="s1">&#39;DictStrAny&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">deep</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+Duplicate a model, optionally choose which fields to include, exclude and change.</p>
+<p>:param include: fields to include in new model
+:param exclude: fields to exclude from new model, as with values this takes precedence over include
+:param update: values to change/add in the new model. Note: the data is not validated before creating
+    the new model: you should trust this data
+:param deep: set to <code>True</code> to make a deep copy of the model
+:return: new model instance</p>
+<h5 id="dict">dict</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">dict</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">include</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">skip_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude_unset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">exclude_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">exclude_none</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;DictStrAny&#39;</span>
+</code></pre></div>
+Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.</p>
+<h5 id="json">json</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">json</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">include</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">skip_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude_unset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">exclude_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">exclude_none</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">encoder</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">dumps_kwargs</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;unicode&#39;</span>
+</code></pre></div>
+Generate a JSON representation of the model, <code>include</code> and <code>exclude</code> arguments as per <code>dict()</code>.</p>
+<p><code>encoder</code> is an optional function to supply as <code>default</code> to json.dumps(), other arguments as per <code>json.dumps()</code>.</p>
+<h5 id="to_string">to_string</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">pretty</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;unicode&#39;</span>
+</code></pre></div>
+
+<h3 id="transaction">Transaction</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Transaction</span><span class="p">(</span>
+    <span class="n">__pydantic_self__</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">Transaction</span>(<span class="n">BaseModel</span>):
+
+    <span class="n">sender:</span> <span class="n">str</span>
+
+    <span class="n">recipient:</span> <span class="n">str</span>
+
+    <span class="n">amount:</span> <span class="n">float</span>
+</code></pre></div>
+
+
+</details>
+<hr />
+<h4 id="ancestors-in-mro_1">Ancestors (in MRO)</h4>
+<ul>
+<li>pydantic.main.BaseModel</li>
+<li>pydantic.utils.Representation</li>
+</ul>
+<h4 id="class-variables_1">Class variables</h4>
+<div class="highlight"><pre><span></span><code><span class="n">Config</span>
+</code></pre></div>
+
+<h4 id="static-methods_1">Static methods</h4>
+<h5 id="construct_1">construct</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">construct</span><span class="p">(</span>
+    <span class="n">_fields_set</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;SetStr&#39;</span><span class="p">),</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">values</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+Creates a new model setting <strong>dict</strong> and <strong>fields_set</strong> from trusted or pre-validated data.
+Default values are respected, but no other validation is performed.</p>
+<h5 id="from_orm_1">from_orm</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">from_orm</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+
+<h5 id="parse_file_1">parse_file</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_file</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">content_type</span><span class="p">:</span> <span class="s1">&#39;unicode&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="p">:</span> <span class="s1">&#39;unicode&#39;</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+    <span class="n">proto</span><span class="p">:</span> <span class="n">pydantic</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">Protocol</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">allow_pickle</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+
+<h5 id="parse_obj_1">parse_obj</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_obj</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+
+<h5 id="parse_raw_1">parse_raw</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_raw</span><span class="p">(</span>
+    <span class="n">b</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">content_type</span><span class="p">:</span> <span class="s1">&#39;unicode&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="p">:</span> <span class="s1">&#39;unicode&#39;</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+    <span class="n">proto</span><span class="p">:</span> <span class="n">pydantic</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">Protocol</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">allow_pickle</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+
+<h5 id="schema_1">schema</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">schema</span><span class="p">(</span>
+    <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;DictStrAny&#39;</span>
+</code></pre></div>
+
+<h5 id="schema_json_1">schema_json</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">schema_json</span><span class="p">(</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">dumps_kwargs</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;unicode&#39;</span>
+</code></pre></div>
+
+<h5 id="update_forward_refs_1">update_forward_refs</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_forward_refs</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">localns</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+Try to update ForwardRefs on fields based on this Model, globalns and localns.</p>
+<h5 id="validate_1">validate</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+
+<h4 id="instance-variables_1">Instance variables</h4>
+<div class="highlight"><pre><span></span><code><span class="n">fields</span>
+</code></pre></div>
+
+<h4 id="methods_1">Methods</h4>
+<h5 id="copy_1">copy</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">copy</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">include</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">update</span><span class="p">:</span> <span class="s1">&#39;DictStrAny&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">deep</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
+</code></pre></div>
+Duplicate a model, optionally choose which fields to include, exclude and change.</p>
+<p>:param include: fields to include in new model
+:param exclude: fields to exclude from new model, as with values this takes precedence over include
+:param update: values to change/add in the new model. Note: the data is not validated before creating
+    the new model: you should trust this data
+:param deep: set to <code>True</code> to make a deep copy of the model
+:return: new model instance</p>
+<h5 id="dict_1">dict</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">dict</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">include</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">skip_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude_unset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">exclude_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">exclude_none</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;DictStrAny&#39;</span>
+</code></pre></div>
+Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.</p>
+<h5 id="json_1">json</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">json</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">include</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">skip_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude_unset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">exclude_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">exclude_none</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">encoder</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">dumps_kwargs</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;unicode&#39;</span>
+</code></pre></div>
+Generate a JSON representation of the model, <code>include</code> and <code>exclude</code> arguments as per <code>dict()</code>.</p>
+<p><code>encoder</code> is an optional function to supply as <code>default</code> to json.dumps(), other arguments as per <code>json.dumps()</code>.</p>
+<h5 id="to_string_1">to_string</h5>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">pretty</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;unicode&#39;</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../" title="Index" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Index
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

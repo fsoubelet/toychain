@@ -1,0 +1,1952 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>Blockchain - toychain</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:300,400,400i,700%7CFira+Code&display=fallback">
+        <style>body,input{font-family:"Ubuntu Mono",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Code",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="light" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-toychainblockchain" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="toychain" class="md-header-nav__button md-logo" aria-label="toychain">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            toychain
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Blockchain
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/fsoubelet/toychain/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    toychain
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="toychain" class="md-nav__button md-logo" aria-label="toychain">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    toychain
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/fsoubelet/toychain/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    toychain
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../docs/Getting_Started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Functionality
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Functionality" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Functionality
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../docs/Functionality/Blockchain/" title="Blockchain" class="md-nav__link">
+      Blockchain
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../docs/Functionality/Node/" title="Node" class="md-nav__link">
+      Node
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Reference
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" checked>
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Toychain
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Toychain" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Toychain
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Blockchain
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Blockchain" class="md-nav__link md-nav__link--active">
+      Blockchain
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#blockchain" class="md-nav__link">
+    BlockChain
+  </a>
+  
+    <nav class="md-nav" aria-label="BlockChain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    Static methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Static methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hash" class="md-nav__link">
+    hash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_proof" class="md-nav__link">
+    validate_proof
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-variables" class="md-nav__link">
+    Instance variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_block" class="md-nav__link">
+    add_block
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_transaction" class="md-nav__link">
+    add_transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proof_of_work" class="md-nav__link">
+    proof_of_work
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register_node" class="md-nav__link">
+    register_node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resolve_conflicts" class="md-nav__link">
+    resolve_conflicts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_chain" class="md-nav__link">
+    validate_chain
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../node/" title="Node" class="md-nav__link">
+      Node
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#blockchain" class="md-nav__link">
+    BlockChain
+  </a>
+  
+    <nav class="md-nav" aria-label="BlockChain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-methods" class="md-nav__link">
+    Static methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Static methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hash" class="md-nav__link">
+    hash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_proof" class="md-nav__link">
+    validate_proof
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-variables" class="md-nav__link">
+    Instance variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_block" class="md-nav__link">
+    add_block
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_transaction" class="md-nav__link">
+    add_transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proof_of_work" class="md-nav__link">
+    proof_of_work
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register_node" class="md-nav__link">
+    register_node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resolve_conflicts" class="md-nav__link">
+    resolve_conflicts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_chain" class="md-nav__link">
+    validate_chain
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/fsoubelet/toychain/edit/master/reference/toychain/blockchain.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="module-toychainblockchain">Module toychain.blockchain</h1>
+<p>Simple emulation of a blockchain.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">Simple emulation of a blockchain.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">ParseResult</span><span class="p">,</span> <span class="n">urlparse</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
+
+<span class="k">class</span> <span class="nc">BlockChain</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Simple class to emulate a blockchain&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_transactions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Initiating first block&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_block</span><span class="p">(</span><span class="n">previous_hash</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">proof</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_block</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">previous_hash</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">proof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Create a new block and add it to the chain.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            previous_hash: string (optional), hash of the previous block in the chain.</span>
+
+<span class="sd">            proof: integer, the proof given by the proof of work algorithm.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            The new block as a dictionary.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Creating a new block&quot;</span><span class="p">)</span>
+
+        <span class="n">block</span> <span class="o">=</span> <span class="p">{</span>
+
+            <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">time</span><span class="p">(),</span>
+
+            <span class="s2">&quot;transactions&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_transactions</span><span class="p">,</span>
+
+            <span class="s2">&quot;proof&quot;</span><span class="p">:</span> <span class="n">proof</span><span class="p">,</span>
+
+            <span class="s2">&quot;previous_hash&quot;</span><span class="p">:</span> <span class="n">previous_hash</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+
+        <span class="p">}</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Resetting the current list of transations&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_transactions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Adding block to the chain&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">block</span>
+
+    <span class="k">def</span> <span class="nf">add_transaction</span><span class="p">(</span>
+
+        <span class="bp">self</span><span class="p">,</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">recipient</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Adds a new transaction to the list of transactions.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            sender: string, address of the sender.</span>
+
+<span class="sd">            recipient: string, address of the recipient.</span>
+
+<span class="sd">            amount: float, the amount of the transaction.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            An integer containing the address of the block that will hold this transaction.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Adding transaction to the blockchain&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_transactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+
+            <span class="p">{</span><span class="s2">&quot;sender&quot;</span><span class="p">:</span> <span class="n">sender</span><span class="p">,</span> <span class="s2">&quot;recipient&quot;</span><span class="p">:</span> <span class="n">recipient</span><span class="p">,</span> <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="n">amount</span><span class="p">}</span>
+
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_block</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="nd">@property</span>
+
+    <span class="k">def</span> <span class="nf">last_block</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Returns the last block in the chain.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            The last block in the chain, as a dictionnary object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+
+    <span class="k">def</span> <span class="nf">hash</span><span class="p">(</span><span class="n">block</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Hashes a new block.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            block: dictionnary with the block&#39;s contents.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            The block&#39;s hash.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Ordering dictionary and dumping to json&quot;</span><span class="p">)</span>  <span class="c1"># ordering for consistent hashes</span>
+
+        <span class="n">block_string</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Hashing dumped block&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">block_string</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+    <span class="nd">@staticmethod</span>
+
+    <span class="k">def</span> <span class="nf">validate_proof</span><span class="p">(</span><span class="n">last_proof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">new_proof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Validates a proof: does hash(last_proof, new_proof) contain 4 leading zeroes?</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            last_proof: integer, the previous proof in the chain.</span>
+
+<span class="sd">            new_proof: integer, the new proof.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            True if new_proof is validated, False otherwise.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Checking proof validity&quot;</span><span class="p">)</span>
+
+        <span class="n">guess</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;{last_proof}{new_proof}&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+
+        <span class="n">guess_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">guess</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">guess_hash</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0000&quot;</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Proof iteration is valid&quot;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="bp">True</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Proof is invalid&quot;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">proof_of_work</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">last_proof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Simple Proof of Work Algorithm:</span>
+
+<span class="sd">            - Find a number p&#39; such that hash(pp&#39;) has leading 4 zeroes, where p is the previous p&#39;</span>
+
+<span class="sd">             - p is the previous proof, and p&#39; is the new proof</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            last_proof: integer, the previous proof in the chain.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            The new proof, an integer.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">proof</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_proof</span><span class="p">(</span><span class="n">last_proof</span><span class="p">,</span> <span class="n">proof</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Proof didn&#39;t pass, iterating&quot;</span><span class="p">)</span>
+
+            <span class="n">proof</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Successfully mined block proof&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">proof</span>
+
+    <span class="k">def</span> <span class="nf">register_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Register a new node as part of the network by adding it to the list of nodes.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            address: string, address of node to register. Eg. &#39;http://192.168.0.5:5000&#39;</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            Nothing, adds in place.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Parsing new node address {address}&quot;</span><span class="p">)</span>
+
+        <span class="n">parsed_url</span><span class="p">:</span> <span class="n">ParseResult</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+
+        <span class="n">node_netloc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">parsed_url</span><span class="o">.</span><span class="n">netloc</span>
+
+        <span class="k">if</span> <span class="n">node_netloc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Node at {address} is already registered, skipping&quot;</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Adding new element to network&#39;s registered nodes&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node_netloc</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">validate_chain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chain</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Determine if a given blockchain from any arbitrary node in the network is valid.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            chain: list, a complete blockchain (list of blocks as dicts).</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            True if the chain is valid, False otherwise</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Determining chain validity&quot;</span><span class="p">)</span>
+
+        <span class="n">last_block</span> <span class="o">=</span> <span class="n">chain</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">current_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chain</span><span class="p">)):</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Inspecting block at index {current_index}&quot;</span><span class="p">)</span>
+
+            <span class="n">inspected_block</span> <span class="o">=</span> <span class="n">chain</span><span class="p">[</span><span class="n">current_index</span><span class="p">]</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Checking block&#39;s hash&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">inspected_block</span><span class="p">[</span><span class="s2">&quot;previous_hash&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">last_block</span><span class="p">):</span>
+
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+
+                    <span class="n">f</span><span class="s2">&quot;Invalid block tag &#39;previous_hash&#39; &quot;</span> <span class="n">f</span><span class="s2">&quot;{inspected_block[&#39;previous_hash&#39;]}&quot;</span>
+
+                <span class="p">)</span>
+
+                <span class="k">return</span> <span class="bp">False</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Checking block&#39;s proof of work&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_proof</span><span class="p">(</span>
+
+                <span class="n">last_proof</span><span class="o">=</span><span class="n">last_block</span><span class="p">[</span><span class="s2">&quot;proof&quot;</span><span class="p">],</span> <span class="n">new_proof</span><span class="o">=</span><span class="n">inspected_block</span><span class="p">[</span><span class="s2">&quot;proof&quot;</span><span class="p">]</span>
+
+            <span class="p">):</span>
+
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+
+                    <span class="n">f</span><span class="s2">&quot;Invalid proof from last block&#39;s proof {last_block[&#39;proof&#39;]} and &quot;</span>
+
+                    <span class="n">f</span><span class="s2">&quot;inspected block&#39;s proof {inspected_block[&#39;proof&#39;]}&quot;</span>
+
+                <span class="p">)</span>
+
+                <span class="k">return</span> <span class="bp">False</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Moving on to next block&quot;</span><span class="p">)</span>
+
+            <span class="n">last_block</span> <span class="o">=</span> <span class="n">inspected_block</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Chain is valid!&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">resolve_conflicts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        This is the Consensus Algorithm. It resolves conflicts by replacing the node&#39;s chain with</span>
+
+<span class="sd">        the longest valid one in the network.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            True if the node&#39;s chain was replaced, False otherwise</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">neighbouring_nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span>
+
+        <span class="n">new_chain</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="n">max_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="p">)</span>  <span class="c1"># initialize with this node&#39;s length</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Verifying chains from all nodes in the network&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">neighbouring_nodes</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Querying node for its full chain&quot;</span><span class="p">)</span>
+
+            <span class="n">node_chain_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;http://{node}/chain&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">node_chain_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+
+                <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Full chain received&quot;</span><span class="p">)</span>
+
+                <span class="n">length</span> <span class="o">=</span> <span class="n">node_chain_response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;length&quot;</span><span class="p">]</span>
+
+                <span class="n">chain</span> <span class="o">=</span> <span class="n">node_chain_response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;chain&quot;</span><span class="p">]</span>
+
+                <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Checking if requested chain is valid and longer than mine&quot;</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="n">max_length</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_chain</span><span class="p">(</span><span class="n">chain</span><span class="p">):</span>
+
+                    <span class="n">max_length</span> <span class="o">=</span> <span class="n">length</span>
+
+                    <span class="n">new_chain</span> <span class="o">=</span> <span class="n">chain</span>
+
+        <span class="k">if</span> <span class="n">new_chain</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Found a valid chain longer than this node&#39;s, adopting it now&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">chain</span> <span class="o">=</span> <span class="n">new_chain</span>
+
+            <span class="k">return</span> <span class="bp">True</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No valid chain was longer than this node&#39;s&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">False</span>
+</code></pre></div>
+
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="blockchain">BlockChain</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BlockChain</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Simple class to emulate a blockchain</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nl">BlockChain</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Simple class to emulate a blockchain&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="nl">chain</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Dict</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="nl">current_transactions</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Dict</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">nodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">set</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Initiating first block&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">add_block</span><span class="p">(</span><span class="n">previous_hash</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">proof</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">add_block</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">previous_hash</span><span class="p">:</span><span class="w"> </span><span class="n">Optional</span><span class="o">[</span><span class="n">str</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">,</span><span class="w"> </span><span class="nl">proof</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nl">Dict</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Create a new block and add it to the chain.</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            previous_hash: string (optional), hash of the previous block in the chain.</span>
+
+<span class="ss">            proof: integer, the proof given by the proof of work algorithm.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            The new block as a dictionary.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Creating a new block&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+
+<span class="w">            </span><span class="ss">&quot;index&quot;</span><span class="err">:</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">chain</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="ss">&quot;timestamp&quot;</span><span class="err">:</span><span class="w"> </span><span class="nc">time</span><span class="p">(),</span><span class="w"></span>
+
+<span class="w">            </span><span class="ss">&quot;transactions&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">current_transactions</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="ss">&quot;proof&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">proof</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="ss">&quot;previous_hash&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">previous_hash</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">chain</span><span class="o">[</span><span class="n">-1</span><span class="o">]</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Resetting the current list of transations&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">current_transactions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Adding block to the chain&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">chain</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">block</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">add_transaction</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">sender</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">,</span><span class="w"> </span><span class="nl">recipient</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">,</span><span class="w"> </span><span class="nl">amount</span><span class="p">:</span><span class="w"> </span><span class="nc">float</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">int</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Adds a new transaction to the list of transactions.</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            sender: string, address of the sender.</span>
+
+<span class="ss">            recipient: string, address of the recipient.</span>
+
+<span class="ss">            amount: float, the amount of the transaction.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            An integer containing the address of the block that will hold this transaction.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Adding transaction to the blockchain&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">current_transactions</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">{</span><span class="ss">&quot;sender&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;recipient&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">recipient</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;amount&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">amount</span><span class="err">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">last_block</span><span class="o">[</span><span class="n">&quot;index&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">@property</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">last_block</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nl">Dict</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Returns the last block in the chain.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            The last block in the chain, as a dictionnary object.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">chain</span><span class="o">[</span><span class="n">-1</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">hash</span><span class="p">(</span><span class="nl">block</span><span class="p">:</span><span class="w"> </span><span class="n">Dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nf">str</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Hashes a new block.</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            block: dictionnary with the block&#39;s contents.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            The block&#39;s hash.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Ordering dictionary and dumping to json&quot;</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">ordering</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">consistent</span><span class="w"> </span><span class="n">hashes</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">block_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">sort_keys</span><span class="o">=</span><span class="k">True</span><span class="p">).</span><span class="n">encode</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Hashing dumped block&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">block_string</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">validate_proof</span><span class="p">(</span><span class="nl">last_proof</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">,</span><span class="w"> </span><span class="nl">new_proof</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nl">bool</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Validates a proof: does hash(last_proof, new_proof) contain 4 leading zeroes?</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            last_proof: integer, the previous proof in the chain.</span>
+
+<span class="ss">            new_proof: integer, the new proof.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            True if new_proof is validated, False otherwise.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Checking proof validity&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">guess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;{last_proof}{new_proof}&quot;</span><span class="p">.</span><span class="n">encode</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">guess_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">guess</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">guess_hash</span><span class="o">[</span><span class="n">:4</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;0000&quot;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Proof iteration is valid&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">True</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Proof is invalid&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">False</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">proof_of_work</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">last_proof</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nc">int</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Simple Proof of Work Algorithm:</span>
+
+<span class="ss">            - Find a number p&#39; such that hash(pp&#39;) has leading 4 zeroes, where p is the previous p&#39;</span>
+
+<span class="ss">             - p is the previous proof, and p&#39; is the new proof</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            last_proof: integer, the previous proof in the chain.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            The new proof, an integer.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">proof</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">validate_proof</span><span class="p">(</span><span class="n">last_proof</span><span class="p">,</span><span class="w"> </span><span class="n">proof</span><span class="p">)</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">False</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Proof didn&#39;t pass, iterating&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">proof</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="ss">&quot;Successfully mined block proof&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">proof</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">register_node</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">address</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Register a new node as part of the network by adding it to the list of nodes.</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            address: string, address of node to register. Eg. &#39;http://192.168.0.5:5000&#39;</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            Nothing, adds in place.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Parsing new node address {address}&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">parsed_url</span><span class="p">:</span><span class="w"> </span><span class="n">ParseResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urlparse</span><span class="p">(</span><span class="n">address</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">node_netloc</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parsed_url</span><span class="p">.</span><span class="n">netloc</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">node_netloc</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">nodes</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Node at {address} is already registered, skipping&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Adding new element to network&#39;s registered nodes&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">nodes</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">node_netloc</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">validate_chain</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">chain</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Dict</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nl">bool</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Determine if a given blockchain from any arbitrary node in the network is valid.</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            chain: list, a complete blockchain (list of blocks as dicts).</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            True if the chain is valid, False otherwise</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Determining chain validity&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">last_block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chain</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">current_index</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">chain</span><span class="p">))</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Inspecting block at index {current_index}&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">inspected_block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chain</span><span class="o">[</span><span class="n">current_index</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Checking block&#39;s hash&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">inspected_block</span><span class="o">[</span><span class="n">&quot;previous_hash&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">last_block</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">logger</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">f</span><span class="ss">&quot;Invalid block tag &#39;previous_hash&#39; &quot;</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;{inspected_block[&#39;previous_hash&#39;]}&quot;</span><span class="w"></span>
+
+<span class="w">                </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">False</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Checking block&#39;s proof of work&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">validate_proof</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">last_proof</span><span class="o">=</span><span class="n">last_block</span><span class="o">[</span><span class="n">&quot;proof&quot;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">new_proof</span><span class="o">=</span><span class="n">inspected_block</span><span class="o">[</span><span class="n">&quot;proof&quot;</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">logger</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">f</span><span class="ss">&quot;Invalid proof from last block&#39;s proof {last_block[&#39;proof&#39;]} and &quot;</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">f</span><span class="ss">&quot;inspected block&#39;s proof {inspected_block[&#39;proof&#39;]}&quot;</span><span class="w"></span>
+
+<span class="w">                </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">False</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Moving on to next block&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">last_block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inspected_block</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Chain is valid!&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">True</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">resolve_conflicts</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nl">bool</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        This is the Consensus Algorithm. It resolves conflicts by replacing the node&#39;s chain with</span>
+
+<span class="ss">        the longest valid one in the network.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            True if the node&#39;s chain was replaced, False otherwise</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">neighbouring_nodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">nodes</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">new_chain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">max_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">chain</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="k">initialize</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">node</span><span class="s1">&#39;s length</span>
+
+<span class="s1">        logger.debug(&quot;Verifying chains from all nodes in the network&quot;)</span>
+
+<span class="s1">        for node in neighbouring_nodes:</span>
+
+<span class="s1">            logger.debug(&quot;Querying node for its full chain&quot;)</span>
+
+<span class="s1">            node_chain_response = requests.get(f&quot;http://{node}/chain&quot;)</span>
+
+<span class="s1">            if node_chain_response.status_code == 200:</span>
+
+<span class="s1">                logger.trace(&quot;Full chain received&quot;)</span>
+
+<span class="s1">                length = node_chain_response.json()[&quot;length&quot;]</span>
+
+<span class="s1">                chain = node_chain_response.json()[&quot;chain&quot;]</span>
+
+<span class="s1">                logger.trace(&quot;Checking if requested chain is valid and longer than mine&quot;)</span>
+
+<span class="s1">                if length &gt; max_length and self.validate_chain(chain):</span>
+
+<span class="s1">                    max_length = length</span>
+
+<span class="s1">                    new_chain = chain</span>
+
+<span class="s1">        if new_chain:</span>
+
+<span class="s1">            logger.info(&quot;Found a valid chain longer than this node&#39;</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">adopting</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">now</span><span class="ss">&quot;)</span>
+
+<span class="ss">            self.chain = new_chain</span>
+
+<span class="ss">            return True</span>
+
+<span class="ss">        logger.info(&quot;</span><span class="k">No</span><span class="w"> </span><span class="n">valid</span><span class="w"> </span><span class="n">chain</span><span class="w"> </span><span class="n">was</span><span class="w"> </span><span class="n">longer</span><span class="w"> </span><span class="k">than</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">node</span><span class="err">&#39;</span><span class="n">s</span><span class="err">&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">False</span><span class="w"></span>
+</code></pre></div>
+
+
+</details>
+<hr />
+<h4 id="static-methods">Static methods</h4>
+<h5 id="hash">hash</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">hash</span><span class="p">(</span>
+    <span class="n">block</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+Hashes a new block.</p>
+<p>Args:
+    block: dictionnary with the block's contents.</p>
+<p>Returns:
+    The block's hash.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">hash</span><span class="p">(</span><span class="nl">block</span><span class="p">:</span><span class="w"> </span><span class="n">Dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nf">str</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Hashes a new block.</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            block: dictionnary with the block&#39;s contents.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            The block&#39;s hash.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Ordering dictionary and dumping to json&quot;</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">ordering</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">consistent</span><span class="w"> </span><span class="n">hashes</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">block_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">sort_keys</span><span class="o">=</span><span class="k">True</span><span class="p">).</span><span class="n">encode</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Hashing dumped block&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">block_string</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+
+</details>
+<h5 id="validate_proof">validate_proof</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">validate_proof</span><span class="p">(</span>
+    <span class="n">last_proof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">new_proof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
+</code></pre></div>
+Validates a proof: does hash(last_proof, new_proof) contain 4 leading zeroes?</p>
+<p>Args:
+    last_proof: integer, the previous proof in the chain.
+    new_proof: integer, the new proof.</p>
+<p>Returns:
+    True if new_proof is validated, False otherwise.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">validate_proof</span><span class="p">(</span><span class="nl">last_proof</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">,</span><span class="w"> </span><span class="nl">new_proof</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nl">bool</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Validates a proof: does hash(last_proof, new_proof) contain 4 leading zeroes?</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            last_proof: integer, the previous proof in the chain.</span>
+
+<span class="ss">            new_proof: integer, the new proof.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            True if new_proof is validated, False otherwise.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Checking proof validity&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">guess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;{last_proof}{new_proof}&quot;</span><span class="p">.</span><span class="n">encode</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">guess_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">guess</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">guess_hash</span><span class="o">[</span><span class="n">:4</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;0000&quot;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Proof iteration is valid&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">True</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Proof is invalid&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">False</span><span class="w"></span>
+</code></pre></div>
+
+
+</details>
+<h4 id="instance-variables">Instance variables</h4>
+<p><div class="highlight"><pre><span></span><code><span class="n">last_block</span>
+</code></pre></div>
+Returns the last block in the chain.</p>
+<p>Returns:
+    The last block in the chain, as a dictionnary object.</p>
+<h4 id="methods">Methods</h4>
+<h5 id="add_block">add_block</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_block</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">previous_hash</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">proof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+</code></pre></div>
+Create a new block and add it to the chain.</p>
+<p>Args:
+    previous_hash: string (optional), hash of the previous block in the chain.
+    proof: integer, the proof given by the proof of work algorithm.</p>
+<p>Returns:
+    The new block as a dictionary.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">add_block</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">previous_hash</span><span class="p">:</span><span class="w"> </span><span class="n">Optional</span><span class="o">[</span><span class="n">str</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">,</span><span class="w"> </span><span class="nl">proof</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nl">Dict</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Create a new block and add it to the chain.</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            previous_hash: string (optional), hash of the previous block in the chain.</span>
+
+<span class="ss">            proof: integer, the proof given by the proof of work algorithm.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            The new block as a dictionary.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Creating a new block&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+
+<span class="w">            </span><span class="ss">&quot;index&quot;</span><span class="err">:</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">chain</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="ss">&quot;timestamp&quot;</span><span class="err">:</span><span class="w"> </span><span class="nc">time</span><span class="p">(),</span><span class="w"></span>
+
+<span class="w">            </span><span class="ss">&quot;transactions&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">current_transactions</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="ss">&quot;proof&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">proof</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="ss">&quot;previous_hash&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">previous_hash</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">chain</span><span class="o">[</span><span class="n">-1</span><span class="o">]</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Resetting the current list of transations&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">current_transactions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Adding block to the chain&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">chain</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">block</span><span class="w"></span>
+</code></pre></div>
+
+
+</details>
+<h5 id="add_transaction">add_transaction</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_transaction</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">sender</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">recipient</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+</code></pre></div>
+Adds a new transaction to the list of transactions.</p>
+<p>Args:
+    sender: string, address of the sender.
+    recipient: string, address of the recipient.
+    amount: float, the amount of the transaction.</p>
+<p>Returns:
+    An integer containing the address of the block that will hold this transaction.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">add_transaction</span><span class="p">(</span>
+
+        <span class="k">self</span><span class="p">,</span> <span class="n">sender</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="k">None</span><span class="p">,</span> <span class="n">recipient</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="k">None</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="k">None</span>
+
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Adds a new transaction to the list of transactions.</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            sender: string, address of the sender.</span>
+
+<span class="ss">            recipient: string, address of the recipient.</span>
+
+<span class="ss">            amount: float, the amount of the transaction.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            An integer containing the address of the block that will hold this transaction.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Adding transaction to the blockchain&quot;</span><span class="p">)</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">current_transactions</span><span class="p">.</span><span class="n">append</span><span class="p">(</span>
+
+            <span class="err">{</span><span class="ss">&quot;sender&quot;</span><span class="p">:</span> <span class="n">sender</span><span class="p">,</span> <span class="ss">&quot;recipient&quot;</span><span class="p">:</span> <span class="n">recipient</span><span class="p">,</span> <span class="ss">&quot;amount&quot;</span><span class="p">:</span> <span class="n">amount</span><span class="err">}</span>
+
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="k">self</span><span class="p">.</span><span class="n">last_block</span><span class="p">[</span><span class="ss">&quot;index&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div>
+
+
+</details>
+<h5 id="proof_of_work">proof_of_work</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">proof_of_work</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">last_proof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+</code></pre></div>
+Simple Proof of Work Algorithm:
+    - Find a number p' such that hash(pp') has leading 4 zeroes, where p is the previous p'
+     - p is the previous proof, and p' is the new proof
+Args:
+    last_proof: integer, the previous proof in the chain.</p>
+<p>Returns:
+    The new proof, an integer.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">proof_of_work</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">last_proof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="k">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Simple Proof of Work Algorithm:</span>
+
+<span class="ss">            - Find a number p&#39; such that hash(pp&#39;) has leading 4 zeroes, where p is the previous p&#39;</span>
+
+<span class="ss">             - p is the previous proof, and p&#39; is the new proof</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            last_proof: integer, the previous proof in the chain.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            The new proof, an integer.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="n">proof</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">while</span> <span class="k">self</span><span class="p">.</span><span class="n">validate_proof</span><span class="p">(</span><span class="n">last_proof</span><span class="p">,</span> <span class="n">proof</span><span class="p">)</span> <span class="k">is</span> <span class="k">False</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Proof didn&#39;t pass, iterating&quot;</span><span class="p">)</span>
+
+            <span class="n">proof</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">logger</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="ss">&quot;Successfully mined block proof&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">proof</span>
+</code></pre></div>
+
+
+</details>
+<h5 id="register_node">register_node</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">register_node</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">address</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+Register a new node as part of the network by adding it to the list of nodes.</p>
+<p>Args:
+    address: string, address of node to register. Eg. '<a href="http://192.168.0.5:5000">http://192.168.0.5:5000</a>'</p>
+<p>Returns:
+    Nothing, adds in place.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">register_node</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="k">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">None</span><span class="p">:</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Register a new node as part of the network by adding it to the list of nodes.</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            address: string, address of node to register. Eg. &#39;http://192.168.0.5:5000&#39;</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            Nothing, adds in place.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Parsing new node address {address}&quot;</span><span class="p">)</span>
+
+        <span class="n">parsed_url</span><span class="p">:</span> <span class="n">ParseResult</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+
+        <span class="n">node_netloc</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="n">parsed_url</span><span class="p">.</span><span class="n">netloc</span>
+
+        <span class="k">if</span> <span class="n">node_netloc</span> <span class="k">in</span> <span class="k">self</span><span class="p">.</span><span class="n">nodes</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Node at {address} is already registered, skipping&quot;</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Adding new element to network&#39;s registered nodes&quot;</span><span class="p">)</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">nodes</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">node_netloc</span><span class="p">)</span>
+</code></pre></div>
+
+
+</details>
+<h5 id="resolve_conflicts">resolve_conflicts</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">resolve_conflicts</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
+</code></pre></div>
+This is the Consensus Algorithm. It resolves conflicts by replacing the node's chain with
+the longest valid one in the network.</p>
+<p>Returns:
+    True if the node's chain was replaced, False otherwise</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">resolve_conflicts</span><span class="p">(</span><span class="k">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">bool</span><span class="p">:</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        This is the Consensus Algorithm. It resolves conflicts by replacing the node&#39;s chain with</span>
+
+<span class="ss">        the longest valid one in the network.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            True if the node&#39;s chain was replaced, False otherwise</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="n">neighbouring_nodes</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">nodes</span>
+
+        <span class="n">new_chain</span> <span class="o">=</span> <span class="k">None</span>
+
+        <span class="n">max_length</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="k">chain</span><span class="p">)</span>  <span class="o">#</span> <span class="k">initialize</span> <span class="k">with</span> <span class="n">this</span> <span class="n">node</span><span class="s1">&#39;s length</span>
+
+<span class="s1">        logger.debug(&quot;Verifying chains from all nodes in the network&quot;)</span>
+
+<span class="s1">        for node in neighbouring_nodes:</span>
+
+<span class="s1">            logger.debug(&quot;Querying node for its full chain&quot;)</span>
+
+<span class="s1">            node_chain_response = requests.get(f&quot;http://{node}/chain&quot;)</span>
+
+<span class="s1">            if node_chain_response.status_code == 200:</span>
+
+<span class="s1">                logger.trace(&quot;Full chain received&quot;)</span>
+
+<span class="s1">                length = node_chain_response.json()[&quot;length&quot;]</span>
+
+<span class="s1">                chain = node_chain_response.json()[&quot;chain&quot;]</span>
+
+<span class="s1">                logger.trace(&quot;Checking if requested chain is valid and longer than mine&quot;)</span>
+
+<span class="s1">                if length &gt; max_length and self.validate_chain(chain):</span>
+
+<span class="s1">                    max_length = length</span>
+
+<span class="s1">                    new_chain = chain</span>
+
+<span class="s1">        if new_chain:</span>
+
+<span class="s1">            logger.info(&quot;Found a valid chain longer than this node&#39;</span><span class="n">s</span><span class="p">,</span> <span class="n">adopting</span> <span class="n">it</span> <span class="n">now</span><span class="ss">&quot;)</span>
+
+<span class="ss">            self.chain = new_chain</span>
+
+<span class="ss">            return True</span>
+
+<span class="ss">        logger.info(&quot;</span><span class="k">No</span> <span class="k">valid</span> <span class="k">chain</span> <span class="n">was</span> <span class="n">longer</span> <span class="k">than</span> <span class="n">this</span> <span class="n">node</span><span class="err">&#39;</span><span class="n">s</span><span class="err">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="k">False</span>
+</code></pre></div>
+
+
+</details>
+<h5 id="validate_chain">validate_chain</h5>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">validate_chain</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">chain</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
+</code></pre></div>
+Determine if a given blockchain from any arbitrary node in the network is valid.</p>
+<p>Args:
+    chain: list, a complete blockchain (list of blocks as dicts).</p>
+<p>Returns:
+    True if the chain is valid, False otherwise</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">validate_chain</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">chain</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Dict</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nl">bool</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Determine if a given blockchain from any arbitrary node in the network is valid.</span>
+
+<span class="ss">        Args:</span>
+
+<span class="ss">            chain: list, a complete blockchain (list of blocks as dicts).</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">            True if the chain is valid, False otherwise</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Determining chain validity&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">last_block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chain</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">current_index</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">chain</span><span class="p">))</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Inspecting block at index {current_index}&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">inspected_block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chain</span><span class="o">[</span><span class="n">current_index</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Checking block&#39;s hash&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">inspected_block</span><span class="o">[</span><span class="n">&quot;previous_hash&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">last_block</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">logger</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">f</span><span class="ss">&quot;Invalid block tag &#39;previous_hash&#39; &quot;</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;{inspected_block[&#39;previous_hash&#39;]}&quot;</span><span class="w"></span>
+
+<span class="w">                </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">False</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Checking block&#39;s proof of work&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">validate_proof</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">last_proof</span><span class="o">=</span><span class="n">last_block</span><span class="o">[</span><span class="n">&quot;proof&quot;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">new_proof</span><span class="o">=</span><span class="n">inspected_block</span><span class="o">[</span><span class="n">&quot;proof&quot;</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">logger</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">f</span><span class="ss">&quot;Invalid proof from last block&#39;s proof {last_block[&#39;proof&#39;]} and &quot;</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">f</span><span class="ss">&quot;inspected block&#39;s proof {inspected_block[&#39;proof&#39;]}&quot;</span><span class="w"></span>
+
+<span class="w">                </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">False</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Moving on to next block&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">last_block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inspected_block</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Chain is valid!&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">True</span><span class="w"></span>
+</code></pre></div>
+
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../../docs/Functionality/Node/" title="Node" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Node
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../" title="Index" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Index
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
