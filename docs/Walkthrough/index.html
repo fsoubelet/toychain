@@ -805,7 +805,7 @@ one. The dummy first block is always initiated with a <code>previous_hash</code>
 <h2 id="resolving-conflicts">Resolving Conflicts</h2>
 <p>Right now, both nodes have the same chain (with slightly different timestamps for the blocks).
 What happens when a node gets slightly off tune with the rest of the others, or hears conflicting information from the nodes in the network?
-This is when the <a href="https://en.wikipedia.org/wiki/Consensus_(computer_science)" target="_blank">consensus</a> algorithm is used, and we decide to refer to the longest chain, the one with the most work put into it.</p>
+This is when the <a href="https://en.wikipedia.org/wiki/Consensus_(computer_science)" target="_blank">consensus</a> algorithm is used: we decide to refer to the longest chain, the one with the most work put into it.</p>
 <p>Let's say that we mine a new block, but only on our node at <code>localhost:5001</code>:</p>
 <div class="tabbed-set" data-tabs="5:4"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><label for="__tabbed_5_1">cURL</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>curl --request GET <span class="se">\</span>
