@@ -309,18 +309,30 @@
       
 
 
+  <li class="md-nav__item">
+    <a href="../../Walkthrough/" title="Example Walkthrough" class="md-nav__link">
+      Example Walkthrough
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
-    <label class="md-nav__link" for="nav-4">
+    <label class="md-nav__link" for="nav-5">
       Reference
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Reference" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
+      <label class="md-nav__title" for="nav-5">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -336,16 +348,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
     
-    <label class="md-nav__link" for="nav-4-1">
+    <label class="md-nav__link" for="nav-5-1">
       Toychain
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Toychain" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-1">
+      <label class="md-nav__title" for="nav-5-1">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -501,17 +513,22 @@ Here's how to POST a transaction to the node's <code>transactions/new</code> end
 
 </div>
 <input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">HTTPie</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;{ &quot;sender&quot;: &quot;d4ee26eee15148ee92c6cd394edd974e&quot;, &quot;recipient&quot;: &quot;someone-other-address&quot;, &quot;amount&quot;: 5 }&#39;</span> <span class="p">|</span> http POST http://localhost:5000/transactions/new
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;{</span>
+<span class="s1">  &quot;sender&quot;: &quot;d4ee26eee15148ee92c6cd394edd974e&quot;,</span>
+<span class="s1">  &quot;recipient&quot;: &quot;someone-other-address&quot;,</span>
+<span class="s1">  &quot;amount&quot;: 5</span>
+<span class="s1">}&#39;</span> <span class="p">|</span> http POST http://localhost:5000/transactions/new
 </code></pre></div>
 
 </div>
 <input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Wget</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>wget --quiet <span class="se">\</span>
-  --method POST <span class="se">\</span>
-  --header <span class="s1">&#39;content-type: application/json&#39;</span> <span class="se">\</span>
-  --body-data <span class="s1">&#39;{\n &quot;sender&quot;: &quot;d4ee26eee15148ee92c6cd394edd974e&quot;,\n &quot;recipient&quot;: &quot;someone-other-address&quot;,\n &quot;amount&quot;: 5\n}&#39;</span> <span class="se">\</span>
-  --output-document <span class="se">\</span>
-  - http://localhost:5000/transactions/new
+<div class="highlight"><pre><span></span><code>wget -qSO- <span class="se">\</span>
+--header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
+--post-data<span class="o">=</span><span class="s1">&#39;{</span>
+<span class="s1">  &quot;sender&quot;: &quot;d4ee26eee15148ee92c6cd394edd974e&quot;,</span>
+<span class="s1">  &quot;recipient&quot;: &quot;someone-other-address&quot;,</span>
+<span class="s1">  &quot;amount&quot;: 5</span>
+<span class="s1">}&#39;</span> http://localhost:5000/transactions/new
 </code></pre></div>
 
 </div>
@@ -529,17 +546,18 @@ POSTing a payload to register this new node to the first one's network would be 
 
 </div>
 <input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">HTTPie</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;{ &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;] }&#39;</span> <span class="p">|</span> http POST http://localhost:5000/nodes/register
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;{</span>
+<span class="s1">  &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;]</span>
+<span class="s1">}&#39;</span> <span class="p">|</span> http POST http://localhost:5000/nodes/register
 </code></pre></div>
 
 </div>
 <input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><label for="__tabbed_2_3">Wget</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>wget --quiet <span class="se">\</span>
-  --method POST <span class="se">\</span>
-  --header <span class="s1">&#39;content-type: application/json&#39;</span> <span class="se">\</span>
-  --body-data <span class="s1">&#39;{\n &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;]\n}&#39;</span> <span class="se">\</span>
-  --output-document <span class="se">\</span>
-  - http://localhost:5000/nodes/register
+<div class="highlight"><pre><span></span><code>wget -qSO- <span class="se">\</span>
+--header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
+--post-data<span class="o">=</span><span class="s1">&#39;{</span>
+<span class="s1">  &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;]</span>
+<span class="s1">}&#39;</span> http://localhost:5000/nodes/register
 </code></pre></div>
 
 </div>
@@ -577,13 +595,13 @@ POSTing a payload to register this new node to the first one's network would be 
           </a>
         
         
-          <a href="../../../reference/toychain/blockchain/" title="Blockchain" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../Walkthrough/" title="Example Walkthrough" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Blockchain
+                Example Walkthrough
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

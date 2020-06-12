@@ -1,0 +1,995 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+    
+    
+      
+        <title>Example Walkthrough - toychain</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:300,400,400i,700%7CFira+Code&display=fallback">
+        <style>body,input{font-family:"Ubuntu Mono",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Code",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="light" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#starting-nodes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="toychain" class="md-header-nav__button md-logo" aria-label="toychain">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            toychain
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Example Walkthrough
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/fsoubelet/toychain/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    toychain
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="toychain" class="md-nav__button md-logo" aria-label="toychain">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    toychain
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/fsoubelet/toychain/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    toychain
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Getting_Started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Functionality
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Functionality" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Functionality
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Functionality/Blockchain/" title="Blockchain" class="md-nav__link">
+      Blockchain
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Functionality/Node/" title="Node" class="md-nav__link">
+      Node
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Example Walkthrough
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Example Walkthrough" class="md-nav__link md-nav__link--active">
+      Example Walkthrough
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#starting-nodes" class="md-nav__link">
+    Starting Nodes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registering-nodes" class="md-nav__link">
+    Registering Nodes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-transactions" class="md-nav__link">
+    Adding Transactions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mining-blocks" class="md-nav__link">
+    Mining Blocks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#querying-chains" class="md-nav__link">
+    Querying Chains
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolving-conflicts" class="md-nav__link">
+    Resolving Conflicts
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Reference
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      Toychain
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Toychain" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Toychain
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/toychain/blockchain/" title="Blockchain" class="md-nav__link">
+      Blockchain
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/toychain/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reference/toychain/node/" title="Node" class="md-nav__link">
+      Node
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#starting-nodes" class="md-nav__link">
+    Starting Nodes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registering-nodes" class="md-nav__link">
+    Registering Nodes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-transactions" class="md-nav__link">
+    Adding Transactions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mining-blocks" class="md-nav__link">
+    Mining Blocks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#querying-chains" class="md-nav__link">
+    Querying Chains
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolving-conflicts" class="md-nav__link">
+    Resolving Conflicts
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/fsoubelet/toychain/edit/master/docs/Walkthrough.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                  <h1>Example Walkthrough</h1>
+                
+                <p>In this section, we'll walk through the process of spinning up a few nodes and playing around with their functionality by adding and querying their chains.</p>
+<p>I will be using FastAPI's automatic interactive documentation to perform those operations (see the <code>Magic documentation</code> block below), but you can also use your favorite the REST client or simply the command line.
+If you decide to go with the latter, you will find included the command to run for each operation.</p>
+<h2 id="starting-nodes">Starting Nodes</h2>
+<p>For convenience, I'll use Docker to spin up two detached nodes:</p>
+<div class="highlight"><pre><span></span><code>docker run --init --rm -dp <span class="m">5000</span>:5000 toychain
+docker run --init --rm -dp <span class="m">5001</span>:5000 toychain
+</code></pre></div>
+
+<details class="note"><summary>As a Python command</summary><p>If you don't want to use Docker, you can use the toychain Python package. Run:</p>
+<div class="highlight"><pre><span></span><code>python -m toychain --port <span class="m">5000</span>
+python -m toychain --port <span class="m">5001</span>
+</code></pre></div>
+
+<div class="admonition warning">
+<p class="admonition-title">About processes</p>
+<p>The node needs an ASGI server to run, and we're using <a href="https://www.uvicorn.org/" target="_blank">uvicorn</a> for this. However, since
+<code>uvicorn.run()</code> is a blocking call you'll need to run the above commands in two separated terminal windows or tabs.</p>
+</div>
+</details>
+<p>We now have two nodes running at respectively <code>localhost:5000</code> and <code>localhost:5001</code>, and each one has initialized its blockchain at startup.</p>
+<details class="info"><summary>Magic documentation</summary><p>If you open your browser and head over to the <code>/docs</code> (or <code>/redocs</code>) endpoint for any one of those two, you should
+see the automatic documentation generated by <a href="https://fastapi.tiangolo.com/" target="-blank">FastAPI</a>.</p>
+<p>Each item expands to reveal details, and even let you interact with the corresponding endpoint if you click the
+<code>Try it out</code> option.</p>
+<p><img alt="Autodoc" src="../Images/fastapi_autodoc.png" /></p>
+</details>
+<h2 id="registering-nodes">Registering Nodes</h2>
+<p>Let's register each node in the other's network so they'll be aware of each other's existence.</p>
+<p>To do so, we have to POST to a node's <code>/nodes/register</code> endpoint, with the list of node addresses to register.
+Let's first register the node at <code>localhost:5001</code> to the node at <code>localhost:5000</code>:</p>
+<div class="tabbed-set" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">cURL</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>curl --request POST <span class="se">\</span>
+  --url http://localhost:5000/nodes/register <span class="se">\</span>
+  --header <span class="s1">&#39;content-type: application/json&#39;</span> <span class="se">\</span>
+  --data <span class="s1">&#39;{</span>
+<span class="s1">  &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;]</span>
+<span class="s1">}&#39;</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">HTTPie</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;{</span>
+<span class="s1">  &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;]</span>
+<span class="s1">}&#39;</span> <span class="p">|</span> http POST http://localhost:5000/nodes/register
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Wget</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>wget -qSO- <span class="se">\</span>
+--header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
+--post-data<span class="o">=</span><span class="s1">&#39;{</span>
+<span class="s1">  &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;]</span>
+<span class="s1">}&#39;</span> http://localhost:5000/nodes/register
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><label for="__tabbed_1_4">Through documentation</label><div class="tabbed-content">
+<p>To do so through the documentation, let's expand the <code>nodes/register</code> endpoint section at <code>localhost:5000/docs</code> and
+click on <code>Try it out</code>. There, in the request body, let's replace <code>string</code> by <code>http://127.0.0.1:5001</code> and click 
+<code>Execute</code>.</p>
+<p><img alt="Register_Node" src="../Images/register_node.png" /></p>
+</div>
+</div>
+<p>You should receive a response saying:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;1 new nodes have been successfully added&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;total_nodes&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;127.0.0.1:5001&quot;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Registering the second one is the same process, by POSTing to <code>localhost:5001/nodes/register</code> and changing the port number to <code>5000</code> in the request body.</p>
+<div class="admonition tip">
+<p class="admonition-title">Watch the logs</p>
+<p>If you're running as a Python command or without detaching the Docker container, you should see the logging outputs.
+They'll give you some insight into what goes on when we trigger those operations.</p>
+</div>
+<h2 id="adding-transactions">Adding Transactions</h2>
+<p>Alright, we have two nodes up and running, aware of each other.
+What if someone named Lea makes a transaction and sends 10 coins to Mark.
+Let's make the nodes aware.</p>
+<p>For this, we need to create the appropriate payload and POST it to the <code>transactions/new</code> endpoint of our running nodes:</p>
+<div class="tabbed-set" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">cURL</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>curl --request POST <span class="se">\</span>
+  --url http://localhost:5000/transactions/new <span class="se">\</span>
+  --header <span class="s1">&#39;content-type: application/json&#39;</span> <span class="se">\</span>
+  --data <span class="s1">&#39;{</span>
+<span class="s1"> &quot;sender&quot;: &quot;Lea&quot;,</span>
+<span class="s1"> &quot;recipient&quot;: &quot;Mark&quot;,</span>
+<span class="s1"> &quot;amount&quot;: 10</span>
+<span class="s1">}&#39;</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">HTTPie</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;{</span>
+<span class="s1">  &quot;sender&quot;: &quot;Lea&quot;,</span>
+<span class="s1">  &quot;recipient&quot;: &quot;Mark&quot;,</span>
+<span class="s1">  &quot;amount&quot;: 10</span>
+<span class="s1">}&#39;</span> <span class="p">|</span> http POST http://localhost:5000/transactions/new
+</code></pre></div>
+
+</div>
+<input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><label for="__tabbed_2_3">Wget</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>wget -qSO- <span class="se">\</span>
+--header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
+--post-data<span class="o">=</span><span class="s1">&#39;{</span>
+<span class="s1">  &quot;sender&quot;: &quot;Lea&quot;,</span>
+<span class="s1">  &quot;recipient&quot;: &quot;Mark&quot;,</span>
+<span class="s1">  &quot;amount&quot;: 10</span>
+<span class="s1">}&#39;</span> http://localhost:5000/transactions/new
+</code></pre></div>
+
+</div>
+<input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><label for="__tabbed_2_4">Through documentation</label><div class="tabbed-content">
+<p>Expand the <code>transactions/new</code> endpoint section at <code>localhost:5000/docs</code>, click <code>Try it out</code> and fill in the request
+body as in the screenshot below.</p>
+<p><img alt="Lea_Mark_Transaction" src="../Images/post_transaction.png" /></p>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Technically the <code>sender</code> and <code>recipient</code> fields should be cryptowallet addresses, but we'll keep names for convenience's sake.</p>
+</div>
+<p>We get a successful response reading:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Transaction added to the list of current transactions and will mined into the block at index 2&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<div class="admonition example">
+<p>Let's POST the same transaction at <code>localhost:5001/transactions/new</code> so both nodes receive the same info.</p>
+</div>
+<p>Oh no! Lea just realized she actually owed Mark 15 coins and not 10.
+She sends a new transaction: let's go ahead and repeat the above process with an <code>amount</code> of 5.</p>
+<h2 id="mining-blocks">Mining Blocks</h2>
+<p>The transactions registered, it's time write them in the chain by mining a block.
+To do so, we need to trigger a block mining by sending a GET request at the <code>/mine</code> endpoint:</p>
+<div class="tabbed-set" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">cURL</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>curl --request GET <span class="se">\</span>
+  --url http://localhost:5000/mine <span class="se">\</span>
+  --header <span class="s1">&#39;content-type: application/json&#39;</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">HTTPie</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>http http://localhost:5000/mine
+</code></pre></div>
+
+</div>
+<input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><label for="__tabbed_3_3">Wget</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>wget -qSO- --header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span> http://localhost:5000/mine
+</code></pre></div>
+
+</div>
+<input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><label for="__tabbed_3_4">Through documentation</label><div class="tabbed-content">
+<p>Expand the <code>/mine</code> endpoint section at <code>localhost:5000/docs</code>, click <code>Try it out</code> then <code>Execute</code>.</p>
+<p><img alt="Mining_Block" src="../Images/mine.png" /></p>
+</div>
+</div>
+<p>This takes a few seconds, since mining requires computing a proof of work for the block.
+The confirmation follows:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;index&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;New Block Forged&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;previous_hash&quot;</span><span class="p">:</span> <span class="s2">&quot;022ec08cc0852b351781413c74a4f189e7910de1029d0ba33b04b178d9fe2b86&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;proof&quot;</span><span class="p">:</span> <span class="mi">35293</span><span class="p">,</span>
+    <span class="nt">&quot;transactions&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+            <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;Mark&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;sender&quot;</span><span class="p">:</span> <span class="s2">&quot;Lea&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+            <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;Mark&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;sender&quot;</span><span class="p">:</span> <span class="s2">&quot;Lea&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;65d83305a11e458abb96bdfb2256b365&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;sender&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>It contains many things:</p>
+<ul>
+<li>the <code>index</code> at which the block is located in the chain,</li>
+<li>a confirmation <code>message</code>,</li>
+<li>the hash of the previous block in the chain (<code>previous_hash</code>),</li>
+<li>the <code>proof</code> of work for this block,</li>
+<li>the list of <code>transactions</code> written in this block.</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Where does this third transaction come from?</p>
+<p>For cryptocurrencies, many entities listen for transactions in order to mine them into new blocks. Whoever manages
+to get the proof of work first will be the block's creator, and can add a special transaction in which they get
+rewared some coins: it's the <code>block reward</code>. Since through this process creating blocks introduces new bits of
+currency into the economy, it is called <code>mining</code>.</p>
+<p>The <code>sender</code> is set to 0 to specify that the transaction corresponds to currency creation, and the <code>recipient</code> is set
+to this node's UUID.</p>
+</div>
+<div class="admonition example">
+<p>Let's also send a GET request at <code>localhost:5001/mine</code> so both nodes mine a block.</p>
+</div>
+<h2 id="querying-chains">Querying Chains</h2>
+<p>To see where a node's chain is at, we can send a GET request to the <code>/chain</code> endpoint to receive the full chain:</p>
+<div class="tabbed-set" data-tabs="4:4"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">cURL</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>curl --request GET <span class="se">\</span>
+  --url http://localhost:5000/chain <span class="se">\</span>
+  --header <span class="s1">&#39;content-type: application/json&#39;</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">HTTPie</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>http http://localhost:5000/chain
+</code></pre></div>
+
+</div>
+<input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><label for="__tabbed_4_3">Wget</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>wget -qSO- --header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span> http://localhost:5000/chain
+</code></pre></div>
+
+</div>
+<input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><label for="__tabbed_4_4">Through documentation</label><div class="tabbed-content">
+<p>Expand the <code>/chain</code> endpoint section at <code>localhost:5000/docs</code>, click <code>Try it out</code> then <code>Execute</code>.</p>
+<p><img alt="Mining_Block" src="../Images/get_chain.png" /></p>
+</div>
+</div>
+<p>Here is the response payload, containing the full <code>chain</code> (all blocks) and its <code>length</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;chain&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;index&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;previous_hash&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;proof&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1591985797.9658592</span><span class="p">,</span>
+            <span class="nt">&quot;transactions&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;index&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="nt">&quot;previous_hash&quot;</span><span class="p">:</span> <span class="s2">&quot;022ec08cc0852b351781413c74a4f189e7910de1029d0ba33b04b178d9fe2b86&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;proof&quot;</span><span class="p">:</span> <span class="mi">35293</span><span class="p">,</span>
+            <span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1591985867.153815</span><span class="p">,</span>
+            <span class="nt">&quot;transactions&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+                    <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;Mark&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;sender&quot;</span><span class="p">:</span> <span class="s2">&quot;Lea&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+                    <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;Mark&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;sender&quot;</span><span class="p">:</span> <span class="s2">&quot;Lea&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;65d83305a11e458abb96bdfb2256b365&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;sender&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;length&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<div class="admonition question">
+<p class="admonition-title">Where does the first block come from?</p>
+<p>A first block is always mined when the node is started. This is because in this implementation, the proof of work is
+based on the <code>proof</code> value of the previous block, so manually mining a block requires that there is already a previous
+one. The dummy first block is always initiated <code>previous_hash</code> of 1, a <code>proof</code> of 100 and no transactions.</p>
+</div>
+<h2 id="resolving-conflicts">Resolving Conflicts</h2>
+<p>Right now, both nodes have the same chain (with slightly different timestamps for the blocks).
+What happens when a node gets slightly off tune with the rest of the others, or hears conflicting information from the nodes in the network?
+This is when the <a href="https://en.wikipedia.org/wiki/Consensus_(computer_science)" target="_blank">consensus</a> algorithm is used, and we decide to refer to the longest chain, the one with the most work put into it.</p>
+<p>Let's say that we mine a new block, but only on our node at <code>localhost:5001</code>:</p>
+<div class="tabbed-set" data-tabs="5:4"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><label for="__tabbed_5_1">cURL</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>curl --request GET <span class="se">\</span>
+  --url http://localhost:5001/mine <span class="se">\</span>
+  --header <span class="s1">&#39;content-type: application/json&#39;</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><label for="__tabbed_5_2">HTTPie</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>http http://localhost:5001/mine
+</code></pre></div>
+
+</div>
+<input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><label for="__tabbed_5_3">Wget</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>wget -qSO- --header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span> http://localhost:5001/mine
+</code></pre></div>
+
+</div>
+<input id="__tabbed_5_4" name="__tabbed_5" type="radio" /><label for="__tabbed_5_4">Through documentation</label><div class="tabbed-content">
+<p>Expand the <code>/mine</code> endpoint section at <code>localhost:5001/docs</code>, click <code>Try it out</code> then <code>Execute</code>.</p>
+</div>
+</div>
+<p>Our node at <code>localhost:5000</code> is now one block behind and needs to catch up.
+Let's have it run the consensus algorithm by sending a GET request at its <code>/nodes/resolve</code> endpoint, and see if it adopts the other chain (which is now the longest one):</p>
+<div class="tabbed-set" data-tabs="6:4"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><label for="__tabbed_6_1">cURL</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>curl --request GET <span class="se">\</span>
+  --url http://localhost:5000/nodes/resolve <span class="se">\</span>
+  --header <span class="s1">&#39;content-type: application/json&#39;</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><label for="__tabbed_6_2">HTTPie</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>http http://localhost:5000/nodes/resolve
+</code></pre></div>
+
+</div>
+<input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><label for="__tabbed_6_3">Wget</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>wget -qSO- --header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span> http://localhost:5000/nodes/resolve
+</code></pre></div>
+
+</div>
+<input id="__tabbed_6_4" name="__tabbed_6" type="radio" /><label for="__tabbed_6_4">Through documentation</label><div class="tabbed-content">
+<p>Expand the <code>/nodes/resolve</code> endpoint section at <code>localhost:5000/docs</code>, click <code>Try it out</code> then <code>Execute</code>.</p>
+<p><img alt="Mining_Block" src="../Images/consensus.png" /></p>
+</div>
+</div>
+<p>Here is the response:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Our chain was replaced&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;new_chain&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;index&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;previous_hash&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;proof&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1591985802.621658</span><span class="p">,</span>
+            <span class="nt">&quot;transactions&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;index&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="nt">&quot;previous_hash&quot;</span><span class="p">:</span> <span class="s2">&quot;be86c08da07a6f5863b3bcacaf1e945d53b407604c6b4b01e02daa5342f6630a&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;proof&quot;</span><span class="p">:</span> <span class="mi">35293</span><span class="p">,</span>
+            <span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1591985874.232369</span><span class="p">,</span>
+            <span class="nt">&quot;transactions&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+                    <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;Mark&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;sender&quot;</span><span class="p">:</span> <span class="s2">&quot;Lea&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+                    <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;Mark&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;sender&quot;</span><span class="p">:</span> <span class="s2">&quot;Lea&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;2e2cdb00cc614637b248f7ae1806cd8b&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;sender&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;index&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="nt">&quot;previous_hash&quot;</span><span class="p">:</span> <span class="s2">&quot;9dad19a1b27ecee43df60fe2d073d402b484a47a89e1430e847a35520cf3038a&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;proof&quot;</span><span class="p">:</span> <span class="mi">35089</span><span class="p">,</span>
+            <span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1591986065.7304928</span><span class="p">,</span>
+            <span class="nt">&quot;transactions&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;2e2cdb00cc614637b248f7ae1806cd8b&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;sender&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>As we can see in the returned <code>message</code>, the node did replace its chain.
+You can GET <code>localhost:5001</code> to make sure the <code>chain</code> returned in the message above corresponds to the chain from the second node at <code>localhost:5001</code>.</p>
+<details class="tip"><summary>Why do we keep the longest chain?</summary><p>Once again, I can only recommend watching <a href="https://www.youtube.com/watch?v=bBC-nXj3Ng4" target="_blank">this excellent video</a> by 3Blue1Brown.
+To only watch the explanation of why we keep the longest chain, you can skip to this <a href="https://youtu.be/bBC-nXj3Ng4?t=1138" target="_blank">timestamp</a>,
+but watching the whole thing will give you a better understanding.</p>
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../Functionality/Node/" title="Node" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Node
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../reference/toychain/blockchain/" title="Blockchain" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Blockchain
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.c03f0417.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

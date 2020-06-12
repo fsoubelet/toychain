@@ -261,21 +261,33 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href="../../../docs/Walkthrough/" title="Example Walkthrough" class="md-nav__link">
+      Example Walkthrough
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
-    <label class="md-nav__link" for="nav-4">
+    <label class="md-nav__link" for="nav-5">
       Reference
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Reference" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
+      <label class="md-nav__title" for="nav-5">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -293,16 +305,16 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1" checked>
     
-    <label class="md-nav__link" for="nav-4-1">
+    <label class="md-nav__link" for="nav-5-1">
       Toychain
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Toychain" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-1">
+      <label class="md-nav__title" for="nav-5-1">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -747,6 +759,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
 
+        <span class="n">logger</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Added block to the chain&quot;</span><span class="p">)</span>
+
         <span class="k">return</span> <span class="n">block</span>
 
     <span class="k">def</span> <span class="nf">add_transaction</span><span class="p">(</span>
@@ -773,7 +787,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Adding transaction to the blockchain&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Adding transaction to the list of current transactions&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">current_transactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
 
@@ -817,7 +831,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Ordering dictionary and dumping to json&quot;</span><span class="p">)</span>  <span class="c1"># ordering for consistent hashes</span>
+        <span class="c1"># Ordering the block dict for consistent hashes</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Ordering block dictionary and dumping to json&quot;</span><span class="p">)</span>
 
         <span class="n">block_string</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
 
@@ -853,7 +869,7 @@
 
         <span class="k">if</span> <span class="n">guess_hash</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0000&quot;</span><span class="p">:</span>
 
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Proof iteration is valid&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Proof iteration is valid&quot;</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="bp">True</span>
 
@@ -891,7 +907,7 @@
 
             <span class="n">proof</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="s2">&quot;Successfully mined block proof&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Successfully mined block proof&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">proof</span>
 
@@ -911,7 +927,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Parsing new node address {address}&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Parsing new node address &#39;{address}&#39;&quot;</span><span class="p">)</span>
 
         <span class="n">parsed_url</span><span class="p">:</span> <span class="n">ParseResult</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
 
@@ -941,11 +957,11 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Determining chain validity&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Determining chain validity&quot;</span><span class="p">)</span>
 
         <span class="n">last_block</span> <span class="o">=</span> <span class="n">chain</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-        <span class="k">for</span> <span class="n">current_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chain</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">current_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chain</span><span class="p">)):</span>  <span class="c1"># start at 1 to not go over first dummy block</span>
 
             <span class="n">logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Inspecting block at index {current_index}&quot;</span><span class="p">)</span>
 
@@ -1013,7 +1029,7 @@
 
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">neighbouring_nodes</span><span class="p">:</span>
 
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Querying node for its full chain&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Querying node &#39;{node}&#39; for its full chain&quot;</span><span class="p">)</span>
 
             <span class="n">node_chain_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;http://{node}/chain&quot;</span><span class="p">)</span>
 
@@ -1114,6 +1130,8 @@
 
 <span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">chain</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="w"></span>
 
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="ss">&quot;Added block to the chain&quot;</span><span class="p">)</span><span class="w"></span>
+
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">block</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">add_transaction</span><span class="p">(</span><span class="w"></span>
@@ -1140,7 +1158,7 @@
 
 <span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Adding transaction to the blockchain&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Adding transaction to the list of current transactions&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">current_transactions</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="w"></span>
 
@@ -1184,7 +1202,9 @@
 
 <span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Ordering dictionary and dumping to json&quot;</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">ordering</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">consistent</span><span class="w"> </span><span class="n">hashes</span><span class="w"></span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">Ordering</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="n">dict</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">consistent</span><span class="w"> </span><span class="n">hashes</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Ordering block dictionary and dumping to json&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">block_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">sort_keys</span><span class="o">=</span><span class="k">True</span><span class="p">).</span><span class="n">encode</span><span class="p">()</span><span class="w"></span>
 
@@ -1220,7 +1240,7 @@
 
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">guess_hash</span><span class="o">[</span><span class="n">:4</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;0000&quot;</span><span class="err">:</span><span class="w"></span>
 
-<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Proof iteration is valid&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Proof iteration is valid&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">True</span><span class="w"></span>
 
@@ -1258,7 +1278,7 @@
 
 <span class="w">            </span><span class="n">proof</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="ss">&quot;Successfully mined block proof&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Successfully mined block proof&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">proof</span><span class="w"></span>
 
@@ -1278,7 +1298,7 @@
 
 <span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Parsing new node address {address}&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Parsing new node address &#39;{address}&#39;&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">        </span><span class="nl">parsed_url</span><span class="p">:</span><span class="w"> </span><span class="n">ParseResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">urlparse</span><span class="p">(</span><span class="n">address</span><span class="p">)</span><span class="w"></span>
 
@@ -1308,11 +1328,11 @@
 
 <span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Determining chain validity&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Determining chain validity&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">last_block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chain</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">current_index</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">chain</span><span class="p">))</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">current_index</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">chain</span><span class="p">))</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">go</span><span class="w"> </span><span class="k">over</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="n">dummy</span><span class="w"> </span><span class="n">block</span><span class="w"></span>
 
 <span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Inspecting block at index {current_index}&quot;</span><span class="p">)</span><span class="w"></span>
 
@@ -1380,7 +1400,7 @@
 
 <span class="s1">        for node in neighbouring_nodes:</span>
 
-<span class="s1">            logger.debug(&quot;Querying node for its full chain&quot;)</span>
+<span class="s1">            logger.debug(f&quot;Querying node &#39;</span><span class="err">{</span><span class="n">node</span><span class="err">}</span><span class="s1">&#39; for its full chain&quot;)</span>
 
 <span class="s1">            node_chain_response = requests.get(f&quot;http://{node}/chain&quot;)</span>
 
@@ -1445,7 +1465,9 @@ Hashes a new block.</p>
 
 <span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Ordering dictionary and dumping to json&quot;</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">ordering</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">consistent</span><span class="w"> </span><span class="n">hashes</span><span class="w"></span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">Ordering</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="n">dict</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">consistent</span><span class="w"> </span><span class="n">hashes</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Ordering block dictionary and dumping to json&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">block_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">sort_keys</span><span class="o">=</span><span class="k">True</span><span class="p">).</span><span class="n">encode</span><span class="p">()</span><span class="w"></span>
 
@@ -1496,7 +1518,7 @@ Validates a proof: does hash(last_proof, new_proof) contain 4 leading zeroes?</p
 
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">guess_hash</span><span class="o">[</span><span class="n">:4</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;0000&quot;</span><span class="err">:</span><span class="w"></span>
 
-<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Proof iteration is valid&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Proof iteration is valid&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">True</span><span class="w"></span>
 
@@ -1571,6 +1593,8 @@ Create a new block and add it to the chain.</p>
 
 <span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">chain</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="w"></span>
 
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="ss">&quot;Added block to the chain&quot;</span><span class="p">)</span><span class="w"></span>
+
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">block</span><span class="w"></span>
 </code></pre></div>
 
@@ -1615,7 +1639,7 @@ Adds a new transaction to the list of transactions.</p>
 
 <span class="ss">        &quot;&quot;&quot;</span>
 
-        <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Adding transaction to the blockchain&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Adding transaction to the list of current transactions&quot;</span><span class="p">)</span>
 
         <span class="k">self</span><span class="p">.</span><span class="n">current_transactions</span><span class="p">.</span><span class="n">append</span><span class="p">(</span>
 
@@ -1669,7 +1693,7 @@ Args:
 
             <span class="n">proof</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="n">logger</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="ss">&quot;Successfully mined block proof&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Successfully mined block proof&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">proof</span>
 </code></pre></div>
@@ -1703,7 +1727,7 @@ Register a new node as part of the network by adding it to the list of nodes.</p
 
 <span class="ss">        &quot;&quot;&quot;</span>
 
-        <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Parsing new node address {address}&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Parsing new node address &#39;{address}&#39;&quot;</span><span class="p">)</span>
 
         <span class="n">parsed_url</span><span class="p">:</span> <span class="n">ParseResult</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
 
@@ -1753,7 +1777,7 @@ the longest valid one in the network.</p>
 
 <span class="s1">        for node in neighbouring_nodes:</span>
 
-<span class="s1">            logger.debug(&quot;Querying node for its full chain&quot;)</span>
+<span class="s1">            logger.debug(f&quot;Querying node &#39;</span><span class="err">{</span><span class="n">node</span><span class="err">}</span><span class="s1">&#39; for its full chain&quot;)</span>
 
 <span class="s1">            node_chain_response = requests.get(f&quot;http://{node}/chain&quot;)</span>
 
@@ -1815,11 +1839,11 @@ Determine if a given blockchain from any arbitrary node in the network is valid.
 
 <span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Determining chain validity&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="ss">&quot;Determining chain validity&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">last_block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chain</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">current_index</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">chain</span><span class="p">))</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">current_index</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">chain</span><span class="p">))</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">go</span><span class="w"> </span><span class="k">over</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="n">dummy</span><span class="w"> </span><span class="n">block</span><span class="w"></span>
 
 <span class="w">            </span><span class="n">logger</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Inspecting block at index {current_index}&quot;</span><span class="p">)</span><span class="w"></span>
 
@@ -1884,7 +1908,7 @@ Determine if a given blockchain from any arbitrary node in the network is valid.
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../../docs/Functionality/Node/" title="Node" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../../docs/Walkthrough/" title="Example Walkthrough" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1893,7 +1917,7 @@ Determine if a given blockchain from any arbitrary node in the network is valid.
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Node
+                Example Walkthrough
               </span>
             </div>
           </a>

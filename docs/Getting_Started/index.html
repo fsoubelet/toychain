@@ -351,18 +351,30 @@
       
 
 
+  <li class="md-nav__item">
+    <a href="../Walkthrough/" title="Example Walkthrough" class="md-nav__link">
+      Example Walkthrough
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
-    <label class="md-nav__link" for="nav-4">
+    <label class="md-nav__link" for="nav-5">
       Reference
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Reference" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
+      <label class="md-nav__title" for="nav-5">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -378,16 +390,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
     
-    <label class="md-nav__link" for="nav-4-1">
+    <label class="md-nav__link" for="nav-5-1">
       Toychain
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Toychain" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-1">
+      <label class="md-nav__title" for="nav-5-1">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -546,7 +558,7 @@
 <p>There are two possible methods for installing and running toychain: either as a Python package with <a href="https://pip.pypa.io/en/stable/" target="_blank">pip</a>, or as a <a href="https://www.docker.com/" target="_blank">Docker</a> image.</p>
 <h3 id="with-pip">With pip</h3>
 <p>You can now install this simply in a virtual environment with:</p>
-<div class="highlight"><pre><span></span><code>pip install toychain
+<div class="highlight"><pre><span></span><code>$ pip install toychain
 </code></pre></div>
 
 <div class="admonition tip">
@@ -554,7 +566,7 @@
 <p>Don't know what a <strong>virtual environment</strong> is or how to set it up? Here is a good
 <a href="https://realpython.com/python-virtual-environments-a-primer/" target="_blank">primer on virtual environments</a> by RealPython.</p>
 </div>
-<details class="note"><summary>How about a development environment?</summary><p>Sure thing. This repository uses <a href="https://python-poetry.org/" target="_blank">Poetry</a> as a packaging and build tool. To set yourself 
+<details class="question"><summary>How about a development environment?</summary><p>Sure thing. This repository uses <a href="https://python-poetry.org/" target="_blank">Poetry</a> as a packaging and build tool. To set yourself 
 up, get a local copy through VCS and run:</p>
 <p><div class="highlight"><pre><span></span><code>poetry install
 </code></pre></div>
@@ -564,9 +576,7 @@ predefined command:</p>
 <div class="highlight"><pre><span></span><code>poetry run node
 </code></pre></div>
 
-<div class="admonition warning">
-<p class="admonition-title">Building documentation</p>
-<p>Here's a necessary tweak. As of right now the Portray package, which is used to build the documentation, specifies
+<details class="warning"><summary>Building documentation</summary><p>Here's a necessary tweak. As of right now the Portray package, which is used to build the documentation, specifies
 requirements for <code>mkdocs-material</code> and <code>pymdown-extensions</code> to be respectively in versions 4 and 6. However, this
 project's documentation makes use of features from <code>mkdocs-material &gt;= 5.2</code> and <code>pymdown-extensions &gt;= 7.0</code>.</p>
 <p>The workaround to get those working is to build and install Portray locally with compatibility for these higher versions.
@@ -577,13 +587,13 @@ You can do so by modifying the requirements in Portray's <code>pyproject.toml</c
 </ul>
 <p>You can then build wheels for this version with <code>poetry publish</code>. The final step is
 to <code>pip install</code> the built wheel into toychain's virtual environment. You can then use Portray to build documentation.</p>
-</div>
+</details>
 </details>
 <h3 id="with-docker">With Docker</h3>
 <p>It is possible to run nodes as Docker containers.
 For now, there is no existing image you can pull from Docker Hub, so you will have to build it localy.
 To do so, clone the repository and build the image with:</p>
-<div class="highlight"><pre><span></span><code>docker build -t blockchain .
+<div class="highlight"><pre><span></span><code>docker build -t toychain .
 </code></pre></div>
 
 <h2 id="running">Running</h2>
@@ -608,15 +618,20 @@ optional arguments:
 <h3 id="as-a-docker-container">As a Docker Container</h3>
 <p>Assuming you have built the image as instructed above, you can then run a container by mapping the node's port to a desired one at <code>localhost</code> on your machine.
 To map the node to port 5000, run:
-<div class="highlight"><pre><span></span><code>docker run --init --rm -p <span class="m">5000</span>:5000 blockchain
+<div class="highlight"><pre><span></span><code>docker run --init --rm -p <span class="m">5000</span>:5000 toychain
 </code></pre></div></p>
 <p>To emulate additional nodes, vary the public port number:
-<div class="highlight"><pre><span></span><code>docker run --init --rm -p <span class="m">5001</span>:5000 blockchain
-docker run --init --rm -p <span class="m">5002</span>:5000 blockchain
-docker run --init --rm -p <span class="m">5003</span>:5000 blockchain
+<div class="highlight"><pre><span></span><code>docker run --init --rm -p <span class="m">5001</span>:5000 toychain
+docker run --init --rm -p <span class="m">5002</span>:5000 toychain
+docker run --init --rm -p <span class="m">5003</span>:5000 toychain
 </code></pre></div></p>
 <p>You can then play around by POSTing to <code>/nodes/register</code> to add all your running instances to one another's networks, POSTing transactions, mining new blocks, and resolving the blockchain.</p>
 <p>Refer to the <a href="../Functionality/Blockchain/" title="Functionality">Functionality</a> section of this documentation for more information.</p>
+<div class="admonition question">
+<p class="admonition-title">What can I do with this?</p>
+<p>Honestly, not much. This was a learning project and it only models a blockchain's most simple functionality.
+But you can toy around with that, or try to build on it.</p>
+</div>
                 
               
               

@@ -261,21 +261,33 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href="../../../docs/Walkthrough/" title="Example Walkthrough" class="md-nav__link">
+      Example Walkthrough
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
-    <label class="md-nav__link" for="nav-4">
+    <label class="md-nav__link" for="nav-5">
       Reference
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Reference" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
+      <label class="md-nav__title" for="nav-5">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -293,16 +305,16 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1" checked>
     
-    <label class="md-nav__link" for="nav-4-1">
+    <label class="md-nav__link" for="nav-5-1">
       Toychain
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Toychain" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-1">
+      <label class="md-nav__title" for="nav-5-1">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -1267,7 +1279,7 @@
 
 <span class="sd">    Returns:</span>
 
-<span class="sd">        A simple text</span>
+<span class="sd">        A JSON response.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -1301,7 +1313,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Received GET request to add a block, mining proof for a new block&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Received GET request to add a block&quot;</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Mining proof for a new block&quot;</span><span class="p">)</span>
 
     <span class="n">last_block</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">last_block</span>
 
@@ -1313,13 +1327,15 @@
 
     <span class="c1"># The sender is &quot;0&quot; to signify that this node has mined a new coin.</span>
 
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Adding block reward transaction for mining this block&quot;</span><span class="p">)</span>
+
     <span class="n">blockchain</span><span class="o">.</span><span class="n">add_transaction</span><span class="p">(</span>
 
         <span class="n">sender</span><span class="o">=</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="n">recipient</span><span class="o">=</span><span class="n">node_identifier</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
 
     <span class="p">)</span>
 
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Forging new block and adding it to the chain&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Forging new block and adding it to the chain&quot;</span><span class="p">)</span>
 
     <span class="n">previous_hash</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">last_block</span><span class="p">)</span>
 
@@ -1355,9 +1371,7 @@
 
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Received POST request for new transaction&quot;</span><span class="p">)</span>
 
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Creating new transaction from POSTed data&quot;</span><span class="p">)</span>
-
-    <span class="n">transaction_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">add_transaction</span><span class="p">(</span>
+    <span class="n">transaction_block_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">blockchain</span><span class="o">.</span><span class="n">add_transaction</span><span class="p">(</span>
 
         <span class="n">sender</span><span class="o">=</span><span class="n">posted_transaction</span><span class="o">.</span><span class="n">sender</span><span class="p">,</span>
 
@@ -1369,9 +1383,9 @@
 
     <span class="k">return</span> <span class="p">{</span>
 
-        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Transaction added to the list of current transactions at &quot;</span>
+        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Transaction added to the list of current transactions and will mined into the &quot;</span>
 
-        <span class="n">f</span><span class="s2">&quot;index {transaction_index}&quot;</span>
+                   <span class="n">f</span><span class="s2">&quot;block at index {transaction_block_index}&quot;</span>
 
     <span class="p">}</span>
 
@@ -1389,13 +1403,13 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Received POST request for new nodes registration, getting payload&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Received POST request for new nodes registration&quot;</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">posted_transaction</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">new_node</span> <span class="ow">in</span> <span class="n">posted_transaction</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Registering new node to the network&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Registering new node `{new_node}` to the network&quot;</span><span class="p">)</span>
 
-        <span class="n">blockchain</span><span class="o">.</span><span class="n">register_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">blockchain</span><span class="o">.</span><span class="n">register_node</span><span class="p">(</span><span class="n">new_node</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="p">{</span>
 
@@ -1449,7 +1463,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Full chain requested, sending...&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Received GET request for the full chain&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="p">{</span>
 
@@ -1587,7 +1601,7 @@ GETing <code>/chain</code> will returns the full blockchain.</p>
 
 <span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Full chain requested, sending...&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Received GET request for the full chain&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
 
@@ -1636,7 +1650,9 @@ Mining endpoint. GETing <code>/mine</code> triggers the following actions:</p>
 
 <span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Received GET request to add a block, mining proof for a new block&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Received GET request to add a block&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Mining proof for a new block&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">    </span><span class="nl">last_block</span><span class="p">:</span><span class="w"> </span><span class="n">Dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">last_block</span><span class="w"></span>
 
@@ -1648,13 +1664,15 @@ Mining endpoint. GETing <code>/mine</code> triggers the following actions:</p>
 
 <span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">sender</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ss">&quot;0&quot;</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">signify</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">mined</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">coin</span><span class="p">.</span><span class="w"></span>
 
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Adding block reward transaction for mining this block&quot;</span><span class="p">)</span><span class="w"></span>
+
 <span class="w">    </span><span class="n">blockchain</span><span class="p">.</span><span class="n">add_transaction</span><span class="p">(</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">sender</span><span class="o">=</span><span class="ss">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">recipient</span><span class="o">=</span><span class="n">node_identifier</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
 
 <span class="w">    </span><span class="p">)</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Forging new block and adding it to the chain&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Forging new block and adding it to the chain&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">    </span><span class="nl">previous_hash</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">hash</span><span class="p">(</span><span class="n">last_block</span><span class="p">)</span><span class="w"></span>
 
@@ -1701,9 +1719,7 @@ Receives transaction data from a POST request and add it to the node's blockchai
 
 <span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Received POST request for new transaction&quot;</span><span class="p">)</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Creating new transaction from POSTed data&quot;</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">    </span><span class="nl">transaction_index</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">add_transaction</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">transaction_block_index</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockchain</span><span class="p">.</span><span class="n">add_transaction</span><span class="p">(</span><span class="w"></span>
 
 <span class="w">        </span><span class="n">sender</span><span class="o">=</span><span class="n">posted_transaction</span><span class="p">.</span><span class="n">sender</span><span class="p">,</span><span class="w"></span>
 
@@ -1715,9 +1731,9 @@ Receives transaction data from a POST request and add it to the node's blockchai
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
 
-<span class="w">        </span><span class="ss">&quot;message&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Transaction added to the list of current transactions at &quot;</span><span class="w"></span>
+<span class="w">        </span><span class="ss">&quot;message&quot;</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;Transaction added to the list of current transactions and will mined into the &quot;</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">f</span><span class="ss">&quot;index {transaction_index}&quot;</span><span class="w"></span>
+<span class="w">                   </span><span class="n">f</span><span class="ss">&quot;block at index {transaction_block_index}&quot;</span><span class="w"></span>
 
 <span class="w">    </span><span class="err">}</span><span class="w"></span>
 </code></pre></div>
@@ -1746,13 +1762,13 @@ Receives new nodes' location from a POST request and register those to this node
 
 <span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
 
-<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Received POST request for new nodes registration, getting payload&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Received POST request for new nodes registration&quot;</span><span class="p">)</span><span class="w"></span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">posted_transaction</span><span class="p">.</span><span class="nl">nodes</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">new_node</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">posted_transaction</span><span class="p">.</span><span class="nl">nodes</span><span class="p">:</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Registering new node to the network&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Registering new node `{new_node}` to the network&quot;</span><span class="p">)</span><span class="w"></span>
 
-<span class="w">        </span><span class="n">blockchain</span><span class="p">.</span><span class="n">register_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">blockchain</span><span class="p">.</span><span class="n">register_node</span><span class="p">(</span><span class="n">new_node</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
 
@@ -1772,7 +1788,7 @@ Receives new nodes' location from a POST request and register those to this node
 </code></pre></div>
 Greet the user and direct to the docs, that will detail the available endpoints.</p>
 <p>Returns:
-    A simple text</p>
+    A JSON response.</p>
 <details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">@node</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="ss">&quot;/&quot;</span><span class="p">)</span><span class="w"></span>
 
 <span class="n">def</span><span class="w"> </span><span class="n">root</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
@@ -1783,7 +1799,7 @@ Greet the user and direct to the docs, that will detail the available endpoints.
 
 <span class="ss">    Returns:</span>
 
-<span class="ss">        A simple text</span>
+<span class="ss">        A JSON response.</span>
 
 <span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
 
