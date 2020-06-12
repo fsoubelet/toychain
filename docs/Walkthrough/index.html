@@ -800,7 +800,7 @@ to this node's UUID.</p>
 <p class="admonition-title">Where does the first block come from?</p>
 <p>A first block is always mined when the node is started. This is because in this implementation, the proof of work is
 based on the <code>proof</code> value of the previous block, so manually mining a block requires that there is already a previous
-one. The dummy first block is always initiated <code>previous_hash</code> of 1, a <code>proof</code> of 100 and no transactions.</p>
+one. The dummy first block is always initiated with a <code>previous_hash</code> of 1, a <code>proof</code> of 100 and no transactions.</p>
 </div>
 <h2 id="resolving-conflicts">Resolving Conflicts</h2>
 <p>Right now, both nodes have the same chain (with slightly different timestamps for the blocks).
