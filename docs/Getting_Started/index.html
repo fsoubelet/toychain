@@ -576,18 +576,6 @@ predefined command:</p>
 <div class="highlight"><pre><span></span><code>poetry run node
 </code></pre></div>
 
-<details class="warning"><summary>Building documentation</summary><p>Here's a necessary tweak. As of right now the Portray package, which is used to build the documentation, specifies
-requirements for <code>mkdocs-material</code> and <code>pymdown-extensions</code> to be respectively in versions 4 and 6. However, this
-project's documentation makes use of features from <code>mkdocs-material &gt;= 5.2</code> and <code>pymdown-extensions &gt;= 7.0</code>.</p>
-<p>The workaround to get those working is to build and install Portray locally with compatibility for these higher versions.
-You can do so by modifying the requirements in Portray's <code>pyproject.toml</code> file, specifying:</p>
-<ul>
-<li><code>mkdocs-material = "^5.0"</code></li>
-<li><code>pymdown-extensions = "^7.0"</code>.</li>
-</ul>
-<p>You can then build wheels for this version with <code>poetry publish</code>. The final step is
-to <code>pip install</code> the built wheel into toychain's virtual environment. You can then use Portray to build documentation.</p>
-</details>
 </details>
 <h3 id="with-docker">With Docker</h3>
 <p>It is possible to run nodes as Docker containers.
