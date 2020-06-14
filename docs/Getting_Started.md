@@ -2,7 +2,7 @@
 
 ## Installation
 
-There are two possible methods for installing and running toychain: either as a Python package with [pip], or as a [Docker] image.
+There are two possible methods for installing and running toychain: either as a Python package with [pip]{target=_blank}, or as a [Docker]{target=_blank} image.
 
 ### With pip
 
@@ -14,11 +14,11 @@ pip install toychain
 
 !!! tip "Installation in a virtual environment"
     Don't know what a **virtual environment** is or how to set it up? Here is a good
-    [primer on virtual environments][virtual_env_primer] by RealPython.
+    [primer on virtual environments][virtual_env_primer]{target=_blank} by RealPython.
 
-??? note "How about a development environment?"
+??? question "How about a development environment?"
 
-    Sure thing. This repository uses [Poetry] as a packaging and build tool. To set yourself 
+    Sure thing. This repository uses [Poetry]{target=_blank} as a packaging and build tool. To set yourself 
     up, get a local copy through VCS and run:
     
     ```bash
@@ -39,7 +39,7 @@ For now, there is no existing image you can pull from Docker Hub, so you will ha
 To do so, clone the repository and build the image with:
 
 ```bash
-docker build -t blockchain .
+docker build -t toychain .
 ```
 
 ## Running
@@ -73,19 +73,23 @@ python -m toychain
 Assuming you have built the image as instructed above, you can then run a container by mapping the node's port to a desired one at `localhost` on your machine.
 To map the node to port 5000, run:
 ```bash
-docker run --init --rm -p 5000:5000 blockchain
+docker run --init --rm -p 5000:5000 toychain
 ```
 
 To emulate additional nodes, vary the public port number:
 ```bash
-docker run --init --rm -p 5001:5000 blockchain
-docker run --init --rm -p 5002:5000 blockchain
-docker run --init --rm -p 5003:5000 blockchain
+docker run --init --rm -p 5001:5000 toychain
+docker run --init --rm -p 5002:5000 toychain
+docker run --init --rm -p 5003:5000 toychain
 ```
 
 You can then play around by POSTing to `/nodes/register` to add all your running instances to one another's networks, POSTing transactions, mining new blocks, and resolving the blockchain.
 
 Refer to the [Functionality](./Functionality/Blockchain.md "Functionality") section of this documentation for more information.
+
+!!! question "What can I do with this?"
+    Honestly, not much. This was a learning project and it only models a blockchain's most simple functionality.
+    But you can toy around with that, or try to build on it.
 
 [Docker]: https://www.docker.com/
 [pip]: https://pip.pypa.io/en/stable/

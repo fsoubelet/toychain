@@ -3,7 +3,7 @@
 </h1>
 
 toychain is a very simplistic blockchain node modeling in Python.
-While the code is my own adaptation, the implementation is from the very good [tutorial] by Daniel van Flymen.
+While the code is my own adaptation, the implementation and architecture is from the very good [tutorial] by Daniel van Flymen.
 This adaptation uses [FastAPI] as a web framework, and [uvicorn] as ASGI server instead of the `Flask` app from van Flymen's tutorial.
 
 Link to [documentation].
