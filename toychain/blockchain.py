@@ -47,6 +47,7 @@ class BlockChain:
 
         logger.debug("Adding block to the chain")
         self.chain.append(block)
+        logger.success("Added block to the chain")
         return block
 
     def add_transaction(
@@ -63,7 +64,7 @@ class BlockChain:
         Returns:
             An integer containing the address of the block that will hold this transaction.
         """
-        logger.debug("Adding transaction to the blockchain")
+        logger.debug("Adding transaction to the list of current transactions")
         self.current_transactions.append(
             {"sender": sender, "recipient": recipient, "amount": amount}
         )
@@ -90,8 +91,10 @@ class BlockChain:
         Returns:
             The block's hash.
         """
-        logger.debug("Ordering dictionary and dumping to json")  # ordering for consistent hashes
+        # Ordering the block dict for consistent hashes
+        logger.debug("Ordering block dictionary and dumping to json")
         block_string = json.dumps(block, sort_keys=True).encode()
+
         logger.debug("Hashing dumped block")
         return hashlib.sha256(block_string).hexdigest()
 
@@ -111,7 +114,7 @@ class BlockChain:
         guess = f"{last_proof}{new_proof}".encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         if guess_hash[:4] == "0000":
-            logger.debug("Proof iteration is valid")
+            logger.trace("Proof iteration is valid")
             return True
         else:
             logger.trace("Proof is invalid")
@@ -132,7 +135,7 @@ class BlockChain:
         while self.validate_proof(last_proof, proof) is False:
             logger.trace("Proof didn't pass, iterating")
             proof += 1
-        logger.success("Successfully mined block proof")
+        logger.debug("Successfully mined block proof")
         return proof
 
     def register_node(self, address: str = None) -> None:
@@ -145,7 +148,7 @@ class BlockChain:
         Returns:
             Nothing, adds in place.
         """
-        logger.debug(f"Parsing new node address {address}")
+        logger.debug(f"Parsing new node address '{address}'")
         parsed_url: ParseResult = urlparse(address)
         node_netloc: str = parsed_url.netloc
 
@@ -165,10 +168,10 @@ class BlockChain:
         Returns:
             True if the chain is valid, False otherwise
         """
-        logger.debug("Determining chain validity")
+        logger.trace("Determining chain validity")
         last_block = chain[0]
 
-        for current_index in range(1, len(chain)):
+        for current_index in range(1, len(chain)):  # start at 1 to not go over first dummy block
             logger.trace(f"Inspecting block at index {current_index}")
             inspected_block = chain[current_index]
 
@@ -209,7 +212,7 @@ class BlockChain:
 
         logger.debug("Verifying chains from all nodes in the network")
         for node in neighbouring_nodes:
-            logger.debug("Querying node for its full chain")
+            logger.debug(f"Querying node '{node}' for its full chain")
             node_chain_response = requests.get(f"http://{node}/chain")
 
             if node_chain_response.status_code == 200:

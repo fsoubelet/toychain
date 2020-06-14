@@ -16,7 +16,7 @@ pip install toychain
     Don't know what a **virtual environment** is or how to set it up? Here is a good
     [primer on virtual environments][virtual_env_primer]{target=_blank} by RealPython.
 
-??? note "How about a development environment?"
+??? question "How about a development environment?"
 
     Sure thing. This repository uses [Poetry]{target=_blank} as a packaging and build tool. To set yourself 
     up, get a local copy through VCS and run:
@@ -31,21 +31,6 @@ pip install toychain
     ```bash
     poetry run node
     ```
-    
-    !!! warning "Building documentation"
-        
-        Here's a necessary tweak. As of right now the Portray package, which is used to build the documentation, specifies
-        requirements for `mkdocs-material` and `pymdown-extensions` to be respectively in versions 4 and 6. However, this
-        project's documentation makes use of features from `mkdocs-material >= 5.2` and `pymdown-extensions >= 7.0`.
-        
-        The workaround to get those working is to build and install Portray locally with compatibility for these higher versions.
-        You can do so by modifying the requirements in Portray's `pyproject.toml` file, specifying:
-        
-        - `mkdocs-material = "^5.0"`
-        - `pymdown-extensions = "^7.0"`.
-        
-        You can then build wheels for this version with `poetry publish`. The final step is
-        to `pip install` the built wheel into toychain's virtual environment. You can then use Portray to build documentation.
 
 ### With Docker
 
@@ -54,7 +39,7 @@ For now, there is no existing image you can pull from Docker Hub, so you will ha
 To do so, clone the repository and build the image with:
 
 ```bash
-docker build -t blockchain .
+docker build -t toychain .
 ```
 
 ## Running
@@ -88,19 +73,23 @@ python -m toychain
 Assuming you have built the image as instructed above, you can then run a container by mapping the node's port to a desired one at `localhost` on your machine.
 To map the node to port 5000, run:
 ```bash
-docker run --init --rm -p 5000:5000 blockchain
+docker run --init --rm -p 5000:5000 toychain
 ```
 
 To emulate additional nodes, vary the public port number:
 ```bash
-docker run --init --rm -p 5001:5000 blockchain
-docker run --init --rm -p 5002:5000 blockchain
-docker run --init --rm -p 5003:5000 blockchain
+docker run --init --rm -p 5001:5000 toychain
+docker run --init --rm -p 5002:5000 toychain
+docker run --init --rm -p 5003:5000 toychain
 ```
 
 You can then play around by POSTing to `/nodes/register` to add all your running instances to one another's networks, POSTing transactions, mining new blocks, and resolving the blockchain.
 
 Refer to the [Functionality](./Functionality/Blockchain.md "Functionality") section of this documentation for more information.
+
+!!! question "What can I do with this?"
+    Honestly, not much. This was a learning project and it only models a blockchain's most simple functionality.
+    But you can toy around with that, or try to build on it.
 
 [Docker]: https://www.docker.com/
 [pip]: https://pip.pypa.io/en/stable/

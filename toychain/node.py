@@ -41,7 +41,7 @@ def root():
     Greet the user and direct to the docs, that will detail the available endpoints.
 
     Returns:
-        A simple text
+        A JSON response.
     """
     return {
         "message": "This is a running node. To get a documentation overview of the available "
@@ -61,18 +61,21 @@ def mine_block():
     Returns:
         A JSON response.
     """
-    logger.info("Received GET request to add a block, mining proof for a new block")
+    logger.info("Received GET request to add a block")
+
+    logger.debug("Mining proof for a new block")
     last_block: Dict = blockchain.last_block
     last_proof: int = last_block["proof"]
     mined_proof: int = blockchain.proof_of_work(last_proof)
 
     # We must receive a reward for finding the proof.
     # The sender is "0" to signify that this node has mined a new coin.
+    logger.debug("Adding block reward transaction for mining this block")
     blockchain.add_transaction(
         sender="0", recipient=node_identifier, amount=1,
     )
 
-    logger.info("Forging new block and adding it to the chain")
+    logger.debug("Forging new block and adding it to the chain")
     previous_hash: str = blockchain.hash(last_block)
     block: Dict = blockchain.add_block(previous_hash=previous_hash, proof=mined_proof)
 
@@ -94,16 +97,15 @@ def new_transaction(posted_transaction: Transaction):
         A JSON response.
     """
     logger.info("Received POST request for new transaction")
-    logger.info("Creating new transaction from POSTed data")
-    transaction_index: int = blockchain.add_transaction(
+    transaction_block_index: int = blockchain.add_transaction(
         sender=posted_transaction.sender,
         recipient=posted_transaction.recipient,
         amount=posted_transaction.amount,
     )
 
     return {
-        "message": "Transaction added to the list of current transactions at "
-        f"index {transaction_index}"
+        "message": "Transaction added to the list of current transactions and will be mined into "
+                   f"the block at index {transaction_block_index}"
     }
 
 
@@ -115,11 +117,11 @@ def register_nodes(posted_transaction: ActiveNode):
     Returns:
         A JSON response.
     """
-    logger.info("Received POST request for new nodes registration, getting payload")
+    logger.info("Received POST request for new nodes registration")
 
-    for node in posted_transaction.nodes:
-        logger.debug("Registering new node to the network")
-        blockchain.register_node(node)
+    for new_node in posted_transaction.nodes:
+        logger.debug(f"Registering new node `{new_node}` to the network")
+        blockchain.register_node(new_node)
 
     return {
         "message": f"{len(posted_transaction.nodes)} new nodes have been successfully added",
@@ -154,7 +156,7 @@ def full_chain():
     Returns:
         The node's full blockchain list, as a JSON response.
     """
-    logger.info("Full chain requested, sending...")
+    logger.info("Received GET request for the full chain")
     return {
         "chain": blockchain.chain,
         "length": len(blockchain.chain),

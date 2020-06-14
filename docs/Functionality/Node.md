@@ -48,18 +48,23 @@ Here's how to POST a transaction to the node's `transactions/new` endpoint with 
 === "HTTPie"
     
     ```bash
-    echo '{ "sender": "d4ee26eee15148ee92c6cd394edd974e", "recipient": "someone-other-address", "amount": 5 }' | http POST http://localhost:5000/transactions/new
+    echo '{
+      "sender": "d4ee26eee15148ee92c6cd394edd974e",
+      "recipient": "someone-other-address",
+      "amount": 5
+    }' | http POST http://localhost:5000/transactions/new
     ```
 
 === "Wget"
     
     ```bash
-    wget --quiet \
-      --method POST \
-      --header 'content-type: application/json' \
-      --body-data '{\n "sender": "d4ee26eee15148ee92c6cd394edd974e",\n "recipient": "someone-other-address",\n "amount": 5\n}' \
-      --output-document \
-      - http://localhost:5000/transactions/new
+    wget -qSO- \
+    --header='Content-Type: application/json' \
+    --post-data='{
+      "sender": "d4ee26eee15148ee92c6cd394edd974e",
+      "recipient": "someone-other-address",
+      "amount": 5
+    }' http://localhost:5000/transactions/new
     ```
 
 Let's now consider that we have started a second node at `localhost:5001`.
@@ -79,18 +84,19 @@ POSTing a payload to register this new node to the first one's network would be 
 === "HTTPie"
     
     ```bash
-    echo '{ "nodes": ["http://127.0.0.1:5001"] }' | http POST http://localhost:5000/nodes/register
+    echo '{
+      "nodes": ["http://127.0.0.1:5001"]
+    }' | http POST http://localhost:5000/nodes/register
     ```
     
 === "Wget"
 
     ```bash
-    wget --quiet \
-      --method POST \
-      --header 'content-type: application/json' \
-      --body-data '{\n "nodes": ["http://127.0.0.1:5001"]\n}' \
-      --output-document \
-      - http://localhost:5000/nodes/register
+    wget -qSO- \
+    --header='Content-Type: application/json' \
+    --post-data='{
+      "nodes": ["http://127.0.0.1:5001"]
+    }' http://localhost:5000/nodes/register
     ```
 
 [cURL]: https://curl.haxx.se/
