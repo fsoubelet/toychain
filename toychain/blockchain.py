@@ -68,7 +68,7 @@ class BlockChain:
         self.current_transactions.append(
             {"sender": sender, "recipient": recipient, "amount": amount}
         )
-        return self.last_block["index"] + 1
+        return self.last_block["index"]  # index is already incremented in block creation
 
     @property
     def last_block(self) -> Dict:
