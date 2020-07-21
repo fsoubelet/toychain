@@ -105,7 +105,7 @@ def new_transaction(posted_transaction: Transaction):
 
     return {
         "message": "Transaction added to the list of current transactions and will be mined into "
-                   f"the block at index {transaction_block_index}"
+        f"the block at index {transaction_block_index}"
     }
 
 
