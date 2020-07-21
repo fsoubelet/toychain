@@ -69,7 +69,7 @@ class TestPOSTEndpoints:
         # Expecting mined in block at index 2 because no other block explicitly mined so far
         assert (
             response.json()["message"] == "Transaction added to the list of current "
-            "transactions and will be mined into the block at index 3"
+            "transactions and will be mined into the block at index 2"
         )
 
 
