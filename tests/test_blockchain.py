@@ -73,7 +73,7 @@ class TestBlocksAndTransactions:
 
     def test_return_last_block(self):
         blockchain = BlockChain()
-        blockchain.add_block()
+        _ = blockchain.add_block()
 
         created_block = blockchain.last_block
         assert len(blockchain.chain) == 2
