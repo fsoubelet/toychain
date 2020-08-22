@@ -15,12 +15,14 @@ from pydantic import BaseModel
 
 
 class Transaction(BaseModel):
+    """Class to represent a transaction in a block."""
     sender: str
     recipient: str
     amount: float
 
 
 class Block(BaseModel):
+    """Class to represent a block in the chain."""
     index: int
     timestamp: float
     transactions: List[Transaction]
