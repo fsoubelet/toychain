@@ -29,6 +29,7 @@ logger.success("Blockchain up and running!")
 
 class ActiveNode(BaseModel):
     """Class to validate a POST request with a list of nodes to register"""
+
     nodes: List[str]
 
 

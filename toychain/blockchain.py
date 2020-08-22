@@ -16,6 +16,7 @@ from pydantic import BaseModel
 
 class Transaction(BaseModel):
     """Class to represent a transaction in a block."""
+
     sender: str
     recipient: str
     amount: float
@@ -23,6 +24,7 @@ class Transaction(BaseModel):
 
 class Block(BaseModel):
     """Class to represent a block in the chain."""
+
     index: int
     timestamp: float
     transactions: List[Transaction]
@@ -188,30 +190,27 @@ class BlockChain:
         Returns:
             True if the chain is valid, False otherwise
         """
-        logger.trace("Determining chain validity")
-        last_block: Block = chain[0]
+        logger.trace("Determining chain validity, starting with first non-dummy block")
 
-        for current_index in range(1, len(chain)):  # start at 1 to not go over first dummy block
-            logger.trace(f"Inspecting block at index {current_index}")
-            inspected_block: Block = chain[current_index]
-
+        for previous_block, inspected_block in zip(chain[:-1], chain[1:]):
             logger.trace("Checking block's hash")
-            if inspected_block.previous_hash != self.hash(last_block):
-                logger.error(f"Invalid block tag 'previous_hash' {inspected_block.previous_hash}")
+            if inspected_block.previous_hash != self.hash(previous_block):
+                logger.error(f"Invalid block tag 'previous_hash': {inspected_block.previous_hash}")
                 return False
 
             logger.trace("Checking block's proof of work")
-            if not self.validate_proof(last_proof=last_bloc.proof, new_proof=inspected_block.proof):
+            if not self.validate_proof(
+                last_proof=previous_block.proof, new_proof=inspected_block.proof
+            ):
                 logger.error(
-                    f"Invalid proof from last block's proof {last_block.proof} and "
-                    f"inspected block's proof {inspected_block.proof}"
+                    f"Discrepancy between last block's proof '{previous_block.proof}' and "
+                    f"inspected block's proof '{inspected_block.proof}'"
                 )
                 return False
 
             logger.trace("Moving on to next block")
-            last_block = inspected_block
 
-        logger.debug("Chain is valid!")
+        logger.debug("Chain is valid")
         return True
 
     def resolve_conflicts(self) -> bool:
