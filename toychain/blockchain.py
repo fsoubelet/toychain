@@ -4,11 +4,13 @@ Simple emulation of a blockchain.
 
 import hashlib
 import json
+
 from time import time
 from typing import Dict, List, Optional
 from urllib.parse import ParseResult, urlparse
 
 import requests
+
 from loguru import logger
 
 
@@ -27,8 +29,8 @@ class BlockChain:
         Create a new block and add it to the chain.
 
         Args:
-            previous_hash: string (optional), hash of the previous block in the chain.
-            proof: integer, the proof given by the proof of work algorithm.
+            previous_hash (Optional[str]): hash of the previous block in the chain.
+            proof (int): the proof given by the proof of work algorithm.
 
         Returns:
             The new block as a dictionary.
@@ -57,12 +59,12 @@ class BlockChain:
         Adds a new transaction to the list of transactions.
 
         Args:
-            sender: string, address of the sender.
-            recipient: string, address of the recipient.
-            amount: float, the amount of the transaction.
+            sender (str): address of the sender.
+            recipient (str): address of the recipient.
+            amount (float): the amount of the transaction.
 
         Returns:
-            An integer containing the address of the block that will hold this transaction.
+            An integer containing the index of the block that will hold this transaction.
         """
         logger.debug("Adding transaction to the list of current transactions")
         self.current_transactions.append(
@@ -86,7 +88,7 @@ class BlockChain:
         Hashes a new block.
 
         Args:
-            block: dictionnary with the block's contents.
+            block (dict): the block's contents.
 
         Returns:
             The block's hash.
@@ -104,8 +106,8 @@ class BlockChain:
         Validates a proof: does hash(last_proof, new_proof) contain 4 leading zeroes?
 
         Args:
-            last_proof: integer, the previous proof in the chain.
-            new_proof: integer, the new proof.
+            last_proof (int): the previous proof in the chain.
+            new_proof (int): the new proof.
 
         Returns:
             True if new_proof is validated, False otherwise.
@@ -114,7 +116,7 @@ class BlockChain:
         guess = f"{last_proof}{new_proof}".encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         if guess_hash[:4] == "0000":
-            logger.trace("Proof iteration is valid")
+            logger.debug("Proof iteration is valid")
             return True
         else:
             logger.trace("Proof is invalid")
@@ -126,7 +128,7 @@ class BlockChain:
             - Find a number p' such that hash(pp') has leading 4 zeroes, where p is the previous p'
              - p is the previous proof, and p' is the new proof
         Args:
-            last_proof: integer, the previous proof in the chain.
+            last_proof (int): the previous proof in the chain.
 
         Returns:
             The new proof, an integer.
@@ -143,7 +145,7 @@ class BlockChain:
         Register a new node as part of the network by adding it to the list of nodes.
 
         Args:
-            address: string, address of node to register. Eg. 'http://192.168.0.5:5000'
+            address (str): string, address of node to register. Eg. 'http://192.168.0.5:5000'
 
         Returns:
             Nothing, adds in place.
@@ -151,19 +153,20 @@ class BlockChain:
         logger.debug(f"Parsing new node address '{address}'")
         parsed_url: ParseResult = urlparse(address)
         node_netloc: str = parsed_url.netloc
-
+        logger.debug(f"Netloc for new node is {node_netloc}")
+        logger.debug(f"{self.nodes}")
         if node_netloc in self.nodes:
             logger.warning(f"Node at {address} is already registered, skipping")
-
-        logger.debug("Adding new element to network's registered nodes")
-        self.nodes.add(node_netloc)
+        else:
+            logger.debug(f"Adding new element with address {address} to network's registered nodes")
+            self.nodes.add(node_netloc)
 
     def validate_chain(self, chain: List[Dict]) -> bool:
         """
         Determine if a given blockchain from any arbitrary node in the network is valid.
 
         Args:
-            chain: list, a complete blockchain (list of blocks as dicts).
+            chain (List[Dict]): a complete blockchain (list of blocks as dicts).
 
         Returns:
             True if the chain is valid, False otherwise

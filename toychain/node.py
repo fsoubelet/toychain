@@ -3,10 +3,12 @@ Node runner for Blockchain, to interact with using HTTP requests.
 """
 
 import argparse
+
 from typing import Dict, List
 from uuid import uuid4
 
 import uvicorn
+
 from fastapi import FastAPI
 from loguru import logger
 from pydantic import BaseModel
@@ -36,7 +38,7 @@ class Transaction(BaseModel):
 
 
 @node.get("/")
-def root():
+def root() -> Dict[str, str]:
     """
     Greet the user and direct to the docs, that will detail the available endpoints.
 
@@ -89,7 +91,7 @@ def mine_block():
 
 
 @node.post("/transactions/new")
-def new_transaction(posted_transaction: Transaction):
+def new_transaction(posted_transaction: Transaction) -> Dict[str, str]:
     """
     Receives transaction data from a POST request and add it to the node's blockchain.
 
@@ -120,11 +122,11 @@ def register_nodes(posted_transaction: ActiveNode):
     logger.info("Received POST request for new nodes registration")
 
     for new_node in posted_transaction.nodes:
-        logger.debug(f"Registering new node `{new_node}` to the network")
+        logger.debug(f"Attempting registration of new node `{new_node}` to the network")
         blockchain.register_node(new_node)
 
     return {
-        "message": f"{len(posted_transaction.nodes)} new nodes have been successfully added",
+        "message": f"{len(posted_transaction.nodes)} new node(s) have been successfully added",
         "total_nodes": list(blockchain.nodes),
     }
 
@@ -184,6 +186,7 @@ def _parse_arguments():
     return parser.parse_args()
 
 
+@logger.catch
 def run_node():
     """Runs the node"""
     commandline_arguments = _parse_arguments()
