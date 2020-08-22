@@ -15,15 +15,24 @@ uvicorn = "^0.11.5"
 requests = "^2.23.0"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.4.2"
+pytest = "^6.0"
+pytest-cov = "^2.10.1"
 pytest-sugar = "^0.9.3"
 black = { version = "^19.10b0", python = "^3.6" }
 pylint = "^2.4.4"
 portray = "^1.4"
+coverage = {extras = ["toml"], version = "^5.2.1"}
+mypy = "^0.782"
 
 [tool.pytest.ini_options]
-addopts = "-p no:sugar"
+addopts = "--cov-report=xml --cov-report term-missing --cov-config=pyproject.toml --cov=toychain"
 testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["toychain/"]
+
+[tool.coverage.report]
+omit = ["toychain/__main__.py"]
 
 [tool.isort]
 line_length = 100

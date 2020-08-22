@@ -161,7 +161,7 @@ class TestFullRun:
         assert consensus_5000.json()["new_chain"] == consensus_5001.json()["chain"]
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 def _server_5000():
     """
     Fixture to start a node at localhost:5000 in a different process for the duration of the
@@ -175,7 +175,7 @@ def _server_5000():
     process_at_post_5000.kill()
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 def _server_5001():
     """
     Fixture to start a node at localhost:5001 in a different process for the duration of the

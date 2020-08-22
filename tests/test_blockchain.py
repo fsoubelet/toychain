@@ -1,5 +1,4 @@
 import hashlib
-import json
 
 import pytest
 
@@ -79,6 +78,34 @@ class TestBlocksAndTransactions:
 
         assert len(blockchain.chain) == 2
         assert created_block is blockchain.chain[-1]
+
+    @pytest.mark.parametrize(
+        "sender, recipient, amount", [("me", "him", 5), ("you", "her", 10)],
+    )
+    def test_chain_validation(self, sender, recipient, amount):
+        blockchain = BlockChain()
+        last_block: Block = blockchain.last_block
+        mined_proof: int = blockchain.proof_of_work(last_block.proof)
+        blockchain.add_transaction(
+            sender=sender, recipient=recipient, amount=amount,
+        )
+        previous_hash: str = blockchain.hash(last_block)
+        _ = blockchain.add_block(previous_hash=previous_hash, proof=mined_proof)
+        assert blockchain.validate_chain(blockchain.chain)
+
+    @pytest.mark.parametrize("previous_hash, proof", [("nonsense", 1), ("surely_wrong", 1e6)])
+    def test_detects_invalid_hashes_chain(self, previous_hash, proof):
+        blockchain = BlockChain()
+        _ = blockchain.add_block(previous_hash=previous_hash, proof=proof)
+        assert blockchain.validate_chain(blockchain.chain) is False
+
+    @pytest.mark.parametrize("fake_proof", [1e5, 10])
+    def test_detects_invalid_proofs_chain(self, fake_proof):
+        blockchain = BlockChain()
+        last_block: Block = blockchain.last_block
+        previous_hash: str = blockchain.hash(last_block)  # needs to pass hash test
+        _ = blockchain.add_block(previous_hash=previous_hash, proof=fake_proof)
+        assert blockchain.validate_chain(blockchain.chain) is False
 
 
 class TestHashingAndProofs:

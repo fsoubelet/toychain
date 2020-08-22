@@ -19,8 +19,8 @@ logger.info("Instantiating node")
 node = FastAPI()
 
 logger.info("Generating globally unique address for this node")
-node_identifier = str(uuid4()).replace("-", "")
-logger.info(f"This is node ID {node_identifier}")
+NODE_IDENTIFIER = str(uuid4()).replace("-", "")
+logger.info(f"This is node ID {NODE_IDENTIFIER}")
 
 logger.info("Instantiating Blockchain for this node")
 blockchain = BlockChain()
@@ -28,8 +28,6 @@ logger.success("Blockchain up and running!")
 
 
 class ActiveNode(BaseModel):
-    """Class to validate a POST request with a list of nodes to register"""
-
     nodes: List[str]
 
 
@@ -70,7 +68,7 @@ def mine_block():
     # The sender is "0" to signify that this node has mined a new coin.
     logger.debug("Adding block reward transaction for mining this block")
     blockchain.add_transaction(
-        sender="0", recipient=node_identifier, amount=1,
+        sender="0", recipient=NODE_IDENTIFIER, amount=1,
     )
 
     logger.debug("Forging new block and adding it to the chain")

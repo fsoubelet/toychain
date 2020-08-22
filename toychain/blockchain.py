@@ -5,8 +5,8 @@ Simple emulation of a blockchain.
 import hashlib
 
 from time import time
-from typing import List, Optional, Set
-from urllib.parse import ParseResult, urlparse
+from typing import List, Optional, Set, Union
+from urllib.parse import ParseResult, ParseResultBytes, urlparse
 
 import requests
 
@@ -15,20 +15,16 @@ from pydantic import BaseModel
 
 
 class Transaction(BaseModel):
-    """Class to represent a transaction in a block."""
-
     sender: str
     recipient: str
     amount: float
 
 
 class Block(BaseModel):
-    """Class to represent a block in the chain."""
-
     index: int
     timestamp: float
     transactions: List[Transaction]
-    proof: int = None
+    proof: Optional[int]
     previous_hash: str
 
 
@@ -63,7 +59,7 @@ class BlockChain:
         )
 
         logger.debug("Resetting the current list of transations")
-        self.current_transactions: List[Transaction] = []
+        self.current_transactions = []
 
         logger.debug("Adding block to the chain")
         self.chain.append(block)
@@ -136,9 +132,8 @@ class BlockChain:
         if guess_hash[:4] == "0000":
             logger.debug("Proof iteration is valid")
             return True
-        else:
-            logger.trace("Proof is invalid")
-            return False
+        logger.trace("Proof is invalid")
+        return False
 
     def proof_of_work(self, last_proof: int = None) -> int:
         """
@@ -169,8 +164,8 @@ class BlockChain:
             Nothing, adds in place.
         """
         logger.debug(f"Parsing new node address '{address}'")
-        parsed_url: ParseResult = urlparse(address)
-        node_netloc: str = parsed_url.netloc
+        parsed_url: Union[ParseResult, ParseResultBytes] = urlparse(address)
+        node_netloc: str = str(parsed_url.netloc)
         logger.debug(f"Netloc for new node is {node_netloc}")
 
         logger.debug(f"{self.nodes}")
