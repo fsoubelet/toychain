@@ -57,13 +57,6 @@ class BlockChain:
             proof=proof,
             previous_hash=previous_hash or self.hash(self.chain[-1]),
         )
-        # block = {
-        #     "index": len(self.chain) + 1,
-        #     "timestamp": time(),
-        #     "transactions": self.current_transactions,
-        #     "proof": proof,
-        #     "previous_hash": previous_hash or self.hash(self.chain[-1]),
-        # }
 
         logger.debug("Resetting the current list of transations")
         self.current_transactions: List[Transaction] = []
@@ -117,7 +110,6 @@ class BlockChain:
         # Ordering the block dict for consistent hashes
         logger.debug("Ordering block dictionary and dumping to json")
         block_bytes: bytes = block.schema_json().encode()
-        # block_string = json.dumps(block, sort_keys=True).encode()
 
         logger.debug("Hashing dumped block")
         return hashlib.sha256(block_bytes).hexdigest()
