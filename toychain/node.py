@@ -4,7 +4,7 @@ Node runner for Blockchain, to interact with using HTTP requests.
 
 import argparse
 
-from typing import Dict, List
+from typing import List
 from uuid import uuid4
 
 import uvicorn
@@ -13,7 +13,7 @@ from fastapi import FastAPI
 from loguru import logger
 from pydantic import BaseModel
 
-from toychain.blockchain import BlockChain
+from toychain.blockchain import Block, BlockChain, Transaction
 
 logger.info("Instantiating node")
 node = FastAPI()
@@ -31,14 +31,8 @@ class ActiveNode(BaseModel):
     nodes: List[str]
 
 
-class Transaction(BaseModel):
-    sender: str
-    recipient: str
-    amount: float
-
-
 @node.get("/")
-def root() -> Dict[str, str]:
+def root():
     """
     Greet the user and direct to the docs, that will detail the available endpoints.
 
@@ -66,8 +60,8 @@ def mine_block():
     logger.info("Received GET request to add a block")
 
     logger.debug("Mining proof for a new block")
-    last_block: Dict = blockchain.last_block
-    last_proof: int = last_block["proof"]
+    last_block: Block = blockchain.last_block
+    last_proof: int = last_block.proof
     mined_proof: int = blockchain.proof_of_work(last_proof)
 
     # We must receive a reward for finding the proof.
@@ -79,19 +73,19 @@ def mine_block():
 
     logger.debug("Forging new block and adding it to the chain")
     previous_hash: str = blockchain.hash(last_block)
-    block: Dict = blockchain.add_block(previous_hash=previous_hash, proof=mined_proof)
+    block: Block = blockchain.add_block(previous_hash=previous_hash, proof=mined_proof)
 
     return {
         "message": "New Block Forged",
-        "index": block["index"],
-        "transactions": block["transactions"],
-        "proof": block["proof"],
-        "previous_hash": block["previous_hash"],
+        "index": block.index,
+        "transactions": block.transactions,
+        "proof": block.proof,
+        "previous_hash": block.previous_hash,
     }
 
 
 @node.post("/transactions/new")
-def new_transaction(posted_transaction: Transaction) -> Dict[str, str]:
+def new_transaction(posted_transaction: Transaction):
     """
     Receives transaction data from a POST request and add it to the node's blockchain.
 
@@ -123,7 +117,7 @@ def register_nodes(posted_transaction: ActiveNode):
 
     for new_node in posted_transaction.nodes:
         logger.debug(f"Attempting registration of new node `{new_node}` to the network")
-        blockchain.register_node(new_node)
+        blockchain.register_node(address=new_node)
 
     return {
         "message": f"{len(posted_transaction.nodes)} new node(s) have been successfully added",

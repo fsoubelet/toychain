@@ -3,28 +3,42 @@ Simple emulation of a blockchain.
 """
 
 import hashlib
-import json
 
 from time import time
-from typing import Dict, List, Optional
+from typing import List, Optional, Set
 from urllib.parse import ParseResult, urlparse
 
 import requests
 
 from loguru import logger
+from pydantic import BaseModel
+
+
+class Transaction(BaseModel):
+    sender: str
+    recipient: str
+    amount: float
+
+
+class Block(BaseModel):
+    index: int
+    timestamp: float
+    transactions: List[Transaction]
+    proof: int = None
+    previous_hash: str
 
 
 class BlockChain:
     """Simple class to emulate a blockchain"""
 
     def __init__(self):
-        self.chain: List[Dict] = []
-        self.current_transactions: List[Dict] = []
-        self.nodes = set()
+        self.chain: List[Block] = []
+        self.current_transactions: List[Transaction] = []
+        self.nodes: Set[str] = set()
         logger.debug("Initiating first block")
         self.add_block(previous_hash=1, proof=100)
 
-    def add_block(self, previous_hash: Optional[str] = None, proof: int = None) -> Dict:
+    def add_block(self, previous_hash: Optional[str] = None, proof: int = None) -> Block:
         """
         Create a new block and add it to the chain.
 
@@ -33,19 +47,26 @@ class BlockChain:
             proof (int): the proof given by the proof of work algorithm.
 
         Returns:
-            The new block as a dictionary.
+            The new block.
         """
         logger.debug("Creating a new block")
-        block = {
-            "index": len(self.chain) + 1,
-            "timestamp": time(),
-            "transactions": self.current_transactions,
-            "proof": proof,
-            "previous_hash": previous_hash or self.hash(self.chain[-1]),
-        }
+        block = Block(
+            index=len(self.chain) + 1,
+            timestamp=time(),
+            transactions=self.current_transactions,
+            proof=proof,
+            previous_hash=previous_hash or self.hash(self.chain[-1]),
+        )
+        # block = {
+        #     "index": len(self.chain) + 1,
+        #     "timestamp": time(),
+        #     "transactions": self.current_transactions,
+        #     "proof": proof,
+        #     "previous_hash": previous_hash or self.hash(self.chain[-1]),
+        # }
 
         logger.debug("Resetting the current list of transations")
-        self.current_transactions = []
+        self.current_transactions: List[Transaction] = []
 
         logger.debug("Adding block to the chain")
         self.chain.append(block)
@@ -68,37 +89,38 @@ class BlockChain:
         """
         logger.debug("Adding transaction to the list of current transactions")
         self.current_transactions.append(
-            {"sender": sender, "recipient": recipient, "amount": amount}
+            Transaction(sender=sender, recipient=recipient, amount=amount)
         )
-        return self.last_block["index"]  # index is already incremented in block creation
+        return self.last_block.index  # index is already incremented in block creation
 
     @property
-    def last_block(self) -> Dict:
+    def last_block(self) -> Block:
         """
         Returns the last block in the chain.
 
         Returns:
-            The last block in the chain, as a dictionnary object.
+            The last block in the chain.
         """
         return self.chain[-1]
 
     @staticmethod
-    def hash(block: Dict = None) -> str:
+    def hash(block: Block) -> str:
         """
         Hashes a new block.
 
         Args:
-            block (dict): the block's contents.
+            block (Block): the block's contents.
 
         Returns:
             The block's hash.
         """
         # Ordering the block dict for consistent hashes
         logger.debug("Ordering block dictionary and dumping to json")
-        block_string = json.dumps(block, sort_keys=True).encode()
+        block_bytes: bytes = block.schema_json().encode()
+        # block_string = json.dumps(block, sort_keys=True).encode()
 
         logger.debug("Hashing dumped block")
-        return hashlib.sha256(block_string).hexdigest()
+        return hashlib.sha256(block_bytes).hexdigest()
 
     @staticmethod
     def validate_proof(last_proof: int = None, new_proof: int = None) -> bool:
@@ -113,8 +135,8 @@ class BlockChain:
             True if new_proof is validated, False otherwise.
         """
         logger.trace("Checking proof validity")
-        guess = f"{last_proof}{new_proof}".encode()
-        guess_hash = hashlib.sha256(guess).hexdigest()
+        guess: bytes = f"{last_proof}{new_proof}".encode()
+        guess_hash: str = hashlib.sha256(guess).hexdigest()
         if guess_hash[:4] == "0000":
             logger.debug("Proof iteration is valid")
             return True
@@ -133,8 +155,8 @@ class BlockChain:
         Returns:
             The new proof, an integer.
         """
-        proof = 0
-        while self.validate_proof(last_proof, proof) is False:
+        proof: int = 0
+        while self.validate_proof(last_proof=last_proof, new_proof=proof) is False:
             logger.trace("Proof didn't pass, iterating")
             proof += 1
         logger.debug("Successfully mined block proof")
@@ -154,6 +176,7 @@ class BlockChain:
         parsed_url: ParseResult = urlparse(address)
         node_netloc: str = parsed_url.netloc
         logger.debug(f"Netloc for new node is {node_netloc}")
+
         logger.debug(f"{self.nodes}")
         if node_netloc in self.nodes:
             logger.warning(f"Node at {address} is already registered, skipping")
@@ -161,37 +184,33 @@ class BlockChain:
             logger.debug(f"Adding new element with address {address} to network's registered nodes")
             self.nodes.add(node_netloc)
 
-    def validate_chain(self, chain: List[Dict]) -> bool:
+    def validate_chain(self, chain: List[Block]) -> bool:
         """
         Determine if a given blockchain from any arbitrary node in the network is valid.
 
         Args:
-            chain (List[Dict]): a complete blockchain (list of blocks as dicts).
+            chain (List[Block]): a complete blockchain (list of blocks as dicts).
 
         Returns:
             True if the chain is valid, False otherwise
         """
         logger.trace("Determining chain validity")
-        last_block = chain[0]
+        last_block: Block = chain[0]
 
         for current_index in range(1, len(chain)):  # start at 1 to not go over first dummy block
             logger.trace(f"Inspecting block at index {current_index}")
-            inspected_block = chain[current_index]
+            inspected_block: Block = chain[current_index]
 
             logger.trace("Checking block's hash")
-            if inspected_block["previous_hash"] != self.hash(last_block):
-                logger.error(
-                    f"Invalid block tag 'previous_hash' " f"{inspected_block['previous_hash']}"
-                )
+            if inspected_block.previous_hash != self.hash(last_block):
+                logger.error(f"Invalid block tag 'previous_hash' {inspected_block.previous_hash}")
                 return False
 
             logger.trace("Checking block's proof of work")
-            if not self.validate_proof(
-                last_proof=last_block["proof"], new_proof=inspected_block["proof"]
-            ):
+            if not self.validate_proof(last_proof=last_bloc.proof, new_proof=inspected_block.proof):
                 logger.error(
-                    f"Invalid proof from last block's proof {last_block['proof']} and "
-                    f"inspected block's proof {inspected_block['proof']}"
+                    f"Invalid proof from last block's proof {last_block.proof} and "
+                    f"inspected block's proof {inspected_block.proof}"
                 )
                 return False
 
@@ -210,8 +229,8 @@ class BlockChain:
             True if the node's chain was replaced, False otherwise
         """
         neighbouring_nodes = self.nodes
-        new_chain = None
-        max_length = len(self.chain)  # initialize with this node's length
+        new_chain: List[Block] = None
+        max_length: int = len(self.chain)  # initialize with this node's length
 
         logger.debug("Verifying chains from all nodes in the network")
         for node in neighbouring_nodes:
