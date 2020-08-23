@@ -31,6 +31,12 @@ class Block(BaseModel):
 class BlockChain:
     """Simple class to emulate a blockchain"""
 
+    __slots__ = {
+        "chain": "List of different Block objects making up the blockchain",
+        "current_transactions": "List of Transaction objects to be added to the next block",
+        "nodes": "Set of different nodes registered on the network",
+    }
+
     def __init__(self):
         self.chain: List[Block] = []
         self.current_transactions: List[Transaction] = []
