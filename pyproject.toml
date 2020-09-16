@@ -11,7 +11,7 @@ repository = "https://github.com/fsoubelet/toychain"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-loguru = "^0.4.1"
+loguru = ">=0.4.1,<0.6.0"
 fastapi = "^0.55.1"
 uvicorn = "^0.11.5"
 requests = "^2.23.0"
