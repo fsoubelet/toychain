@@ -18,7 +18,7 @@ requests = "^2.23.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.2"
-pytest-sugar = "^0.9.3"
+pytest-sugar = "^0.9.4"
 
 [tool.poetry.scripts]
 node = "toychain.__main__:run_node"
