@@ -18,7 +18,7 @@ requests = "^2.23.0"
 pytest = "^5.4.2"
 pytest-sugar = "^0.9.3"
 black = { version = "^19.10b0", python = "^3.6" }
-pylint = "^2.4.4"
+pylint = "^2.6.0"
 portray = "^1.4"
 
 [tool.poetry.scripts]
