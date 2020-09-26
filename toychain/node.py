@@ -3,22 +3,24 @@ Node runner for Blockchain, to interact with using HTTP requests.
 """
 
 import argparse
-from typing import Dict, List
+
+from typing import List
 from uuid import uuid4
 
 import uvicorn
+
 from fastapi import FastAPI
 from loguru import logger
 from pydantic import BaseModel
 
-from toychain.blockchain import BlockChain
+from toychain.blockchain import Block, BlockChain, Transaction
 
 logger.info("Instantiating node")
 node = FastAPI()
 
 logger.info("Generating globally unique address for this node")
-node_identifier = str(uuid4()).replace("-", "")
-logger.info(f"This is node ID {node_identifier}")
+NODE_IDENTIFIER = str(uuid4()).replace("-", "")
+logger.info(f"This is node ID {NODE_IDENTIFIER}")
 
 logger.info("Instantiating Blockchain for this node")
 blockchain = BlockChain()
@@ -29,19 +31,13 @@ class ActiveNode(BaseModel):
     nodes: List[str]
 
 
-class Transaction(BaseModel):
-    sender: str
-    recipient: str
-    amount: float
-
-
 @node.get("/")
 def root():
     """
     Greet the user and direct to the docs, that will detail the available endpoints.
 
     Returns:
-        A simple text
+        A JSON response.
     """
     return {
         "message": "This is a running node. To get a documentation overview of the available "
@@ -61,27 +57,30 @@ def mine_block():
     Returns:
         A JSON response.
     """
-    logger.info("Received GET request to add a block, mining proof for a new block")
-    last_block: Dict = blockchain.last_block
-    last_proof: int = last_block["proof"]
+    logger.info("Received GET request to add a block")
+
+    logger.debug("Mining proof for a new block")
+    last_block: Block = blockchain.last_block
+    last_proof: int = last_block.proof
     mined_proof: int = blockchain.proof_of_work(last_proof)
 
     # We must receive a reward for finding the proof.
     # The sender is "0" to signify that this node has mined a new coin.
+    logger.debug("Adding block reward transaction for mining this block")
     blockchain.add_transaction(
-        sender="0", recipient=node_identifier, amount=1,
+        sender="0", recipient=NODE_IDENTIFIER, amount=1,
     )
 
-    logger.info("Forging new block and adding it to the chain")
+    logger.debug("Forging new block and adding it to the chain")
     previous_hash: str = blockchain.hash(last_block)
-    block: Dict = blockchain.add_block(previous_hash=previous_hash, proof=mined_proof)
+    block: Block = blockchain.add_block(previous_hash=previous_hash, proof=mined_proof)
 
     return {
         "message": "New Block Forged",
-        "index": block["index"],
-        "transactions": block["transactions"],
-        "proof": block["proof"],
-        "previous_hash": block["previous_hash"],
+        "index": block.index,
+        "transactions": block.transactions,
+        "proof": block.proof,
+        "previous_hash": block.previous_hash,
     }
 
 
@@ -94,16 +93,15 @@ def new_transaction(posted_transaction: Transaction):
         A JSON response.
     """
     logger.info("Received POST request for new transaction")
-    logger.info("Creating new transaction from POSTed data")
-    transaction_index: int = blockchain.add_transaction(
+    transaction_block_index: int = blockchain.add_transaction(
         sender=posted_transaction.sender,
         recipient=posted_transaction.recipient,
         amount=posted_transaction.amount,
     )
 
     return {
-        "message": "Transaction added to the list of current transactions at "
-        f"index {transaction_index}"
+        "message": "Transaction added to the list of current transactions and will be mined into "
+        f"the block at index {transaction_block_index}"
     }
 
 
@@ -115,14 +113,14 @@ def register_nodes(posted_transaction: ActiveNode):
     Returns:
         A JSON response.
     """
-    logger.info("Received POST request for new nodes registration, getting payload")
+    logger.info("Received POST request for new nodes registration")
 
-    for node in posted_transaction.nodes:
-        logger.debug("Registering new node to the network")
-        blockchain.register_node(node)
+    for new_node in posted_transaction.nodes:
+        logger.debug(f"Attempting registration of new node `{new_node}` to the network")
+        blockchain.register_node(address=new_node)
 
     return {
-        "message": f"{len(posted_transaction.nodes)} new nodes have been successfully added",
+        "message": f"{len(posted_transaction.nodes)} new node(s) have been successfully added",
         "total_nodes": list(blockchain.nodes),
     }
 
@@ -154,7 +152,7 @@ def full_chain():
     Returns:
         The node's full blockchain list, as a JSON response.
     """
-    logger.info("Full chain requested, sending...")
+    logger.info("Received GET request for the full chain")
     return {
         "chain": blockchain.chain,
         "length": len(blockchain.chain),
@@ -177,11 +175,12 @@ def _parse_arguments():
         dest="host",
         default="127.0.0.1",
         type=str,
-        help="The host on which to run the node. Defaults to '127.0.0.1', knows as 'localhost'.",
+        help="The host on which to run the node. Defaults to '127.0.0.1', known as 'localhost'.",
     )
     return parser.parse_args()
 
 
+@logger.catch
 def run_node():
     """Runs the node"""
     commandline_arguments = _parse_arguments()
