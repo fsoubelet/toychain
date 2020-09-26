@@ -71,16 +71,6 @@ jobs:
       - name: Install dependencies (Linux)
         if: startsWith(runner.os, 'Linux')
         shell: bash
-        run: poetry install -v -E  madx
-
-      - name: Install dependencies (macOS)
-        if: startsWith(runner.os, 'macOS')
-        shell: bash
-        run: poetry install -v
-
-      - name: Install dependencies (Windows)
-        if: startsWith(runner.os, 'Windows')
-        shell: bash
         run: poetry install -v
 
       - name: Run Tests
