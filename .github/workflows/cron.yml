@@ -7,7 +7,7 @@ defaults:
 
 on:  # Runs on master branch on Mondays at 3am UTC time
   schedule:
-    - cron:  '* 15 * * sat'
+    - cron:  '* 12 * * Sat'
 
 jobs:
   tests:
@@ -58,11 +58,6 @@ jobs:
         with:
           path: .venv
           key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
-
-      - name: Ensure cache is healthy
-        if: steps.cache.outputs.cache-hit == 'true'
-        shell: bash
-        run: poetry run pip --version >/dev/null 2>&1 || rm -rf .venv
 
       - name: Upgrade pip
         shell: bash
