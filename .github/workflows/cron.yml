@@ -7,7 +7,7 @@ defaults:
 
 on:  # Runs on master branch on Mondays at 3am UTC time
   schedule:
-    - cron:  '* 13 * * sat'
+    - cron:  '* 15 * * sat'
 
 jobs:
   tests:
