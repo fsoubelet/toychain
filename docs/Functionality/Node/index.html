@@ -494,7 +494,6 @@ Here's how to POST a transaction to the node's <code>transactions/new</code> end
 <span class="s1"> &quot;amount&quot;: 5</span>
 <span class="s1">}&#39;</span>
 </code></pre></div>
-
 </div>
 <input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">HTTPie</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;{</span>
@@ -503,7 +502,6 @@ Here's how to POST a transaction to the node's <code>transactions/new</code> end
 <span class="s1">  &quot;amount&quot;: 5</span>
 <span class="s1">}&#39;</span> <span class="p">|</span> http POST http://localhost:5000/transactions/new
 </code></pre></div>
-
 </div>
 <input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Wget</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>wget -qSO- <span class="se">\</span>
@@ -514,7 +512,6 @@ Here's how to POST a transaction to the node's <code>transactions/new</code> end
 <span class="s1">  &quot;amount&quot;: 5</span>
 <span class="s1">}&#39;</span> http://localhost:5000/transactions/new
 </code></pre></div>
-
 </div>
 </div>
 <p>Let's now consider that we have started a second node at <code>localhost:5001</code>.
@@ -527,14 +524,12 @@ POSTing a payload to register this new node to the first one's network would be 
 <span class="s1"> &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;]</span>
 <span class="s1">}&#39;</span>
 </code></pre></div>
-
 </div>
 <input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">HTTPie</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;{</span>
 <span class="s1">  &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;]</span>
 <span class="s1">}&#39;</span> <span class="p">|</span> http POST http://localhost:5000/nodes/register
 </code></pre></div>
-
 </div>
 <input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><label for="__tabbed_2_3">Wget</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>wget -qSO- <span class="se">\</span>
@@ -543,7 +538,6 @@ POSTing a payload to register this new node to the first one's network would be 
 <span class="s1">  &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;]</span>
 <span class="s1">}&#39;</span> http://localhost:5000/nodes/register
 </code></pre></div>
-
 </div>
 </div>
                 

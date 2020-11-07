@@ -544,7 +544,6 @@
 <p>You can now install this simply in a virtual environment with:</p>
 <div class="highlight"><pre><span></span><code>pip install toychain
 </code></pre></div>
-
 <div class="admonition tip">
 <p class="admonition-title">Installation in a virtual environment</p>
 <p>Don't know what a <strong>virtual environment</strong> is or how to set it up? Here is a good
@@ -559,7 +558,6 @@ To test your changes to the code, you can start up a node at <code>localhost:500
 predefined command:</p>
 <div class="highlight"><pre><span></span><code>poetry run node
 </code></pre></div>
-
 </details>
 <h3 id="with-docker">With Docker</h3>
 <p>It is possible to run nodes as Docker containers.
@@ -567,13 +565,11 @@ For now, there is no existing image you can pull from Docker Hub, so you will ha
 To do so, clone the repository and build the image with:</p>
 <div class="highlight"><pre><span></span><code>docker build -t toychain .
 </code></pre></div>
-
 <h2 id="running">Running</h2>
 <h3 id="as-a-python-package">As a Python Package</h3>
 <p>The usage is simple and goes as:</p>
 <div class="highlight"><pre><span></span><code>python -m toychain
 </code></pre></div>
-
 <details class="summary"><summary>Command Line Options</summary><p>You can specify the port as well as the host on which to run the node
 with the <code>--port</code> and <code>--host</code> flags, which allows you to easily spin
 up several nodes. The usage goes as:</p>
@@ -585,7 +581,6 @@ optional arguments:
   --host HOST           The host on which to run the node. Defaults to
                         <span class="s1">&#39;127.0.0.1&#39;</span>, known as <span class="s1">&#39;localhost&#39;</span>.
 </code></pre></div>
-
 </details>
 <h3 id="as-a-docker-container">As a Docker Container</h3>
 <p>Assuming you have built the image as instructed above, you can then run a container by mapping the node's port to a desired one at <code>localhost</code> on your machine.
