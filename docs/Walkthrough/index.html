@@ -517,10 +517,12 @@ If you decide to go with the latter, you will find included the command to run f
 <div class="highlight"><pre><span></span><code>docker run --init --rm -dp <span class="m">5000</span>:5000 toychain
 docker run --init --rm -dp <span class="m">5001</span>:5000 toychain
 </code></pre></div>
+
 <details class="note"><summary>As a Python command</summary><p>If you don't want to use Docker, you can use the toychain Python package. Run:</p>
 <div class="highlight"><pre><span></span><code>python -m toychain --port <span class="m">5000</span>
 python -m toychain --port <span class="m">5001</span>
 </code></pre></div>
+
 <div class="admonition warning">
 <p class="admonition-title">About processes</p>
 <p>The node needs an ASGI server to run, and we're using <a href="https://www.uvicorn.org/" target="_blank">uvicorn</a> for this. However, since
@@ -546,12 +548,14 @@ Let's first register the node at <code>localhost:5001</code> to the node at <cod
 <span class="s1">  &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;]</span>
 <span class="s1">}&#39;</span>
 </code></pre></div>
+
 </div>
 <input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">HTTPie</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;{</span>
 <span class="s1">  &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;]</span>
 <span class="s1">}&#39;</span> <span class="p">|</span> http POST http://localhost:5000/nodes/register
 </code></pre></div>
+
 </div>
 <input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Wget</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>wget -qSO- <span class="se">\</span>
@@ -560,6 +564,7 @@ Let's first register the node at <code>localhost:5001</code> to the node at <cod
 <span class="s1">  &quot;nodes&quot;: [&quot;http://127.0.0.1:5001&quot;]</span>
 <span class="s1">}&#39;</span> http://localhost:5000/nodes/register
 </code></pre></div>
+
 </div>
 <input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><label for="__tabbed_1_4">Through documentation</label><div class="tabbed-content">
 <p>To do so through the documentation, let's expand the <code>nodes/register</code> endpoint section at <code>localhost:5000/docs</code> and
@@ -576,6 +581,7 @@ click on <code>Try it out</code>. There, in the request body, let's replace <cod
     <span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
+
 <p>Registering the second one is the same process, by POSTing to <code>localhost:5001/nodes/register</code> and changing the port number to <code>5000</code> in the request body.</p>
 <div class="admonition tip">
 <p class="admonition-title">Watch the logs</p>
@@ -597,6 +603,7 @@ Let's make the nodes aware.</p>
 <span class="s1"> &quot;amount&quot;: 10</span>
 <span class="s1">}&#39;</span>
 </code></pre></div>
+
 </div>
 <input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">HTTPie</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;{</span>
@@ -605,6 +612,7 @@ Let's make the nodes aware.</p>
 <span class="s1">  &quot;amount&quot;: 10</span>
 <span class="s1">}&#39;</span> <span class="p">|</span> http POST http://localhost:5000/transactions/new
 </code></pre></div>
+
 </div>
 <input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><label for="__tabbed_2_3">Wget</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>wget -qSO- <span class="se">\</span>
@@ -615,6 +623,7 @@ Let's make the nodes aware.</p>
 <span class="s1">  &quot;amount&quot;: 10</span>
 <span class="s1">}&#39;</span> http://localhost:5000/transactions/new
 </code></pre></div>
+
 </div>
 <input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><label for="__tabbed_2_4">Through documentation</label><div class="tabbed-content">
 <p>Expand the <code>transactions/new</code> endpoint section at <code>localhost:5000/docs</code>, click <code>Try it out</code> and fill in the request
@@ -631,6 +640,7 @@ body as in the screenshot below.</p>
     <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Transaction added to the list of current transactions and will be mined into the block at index 2&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
+
 <div class="admonition example">
 <p>Let's POST the same transaction at <code>localhost:5001/transactions/new</code> so both nodes receive the same info.</p>
 </div>
@@ -644,14 +654,17 @@ To do so, we need to trigger a block mining by sending a GET request at the <cod
   --url http://localhost:5000/mine <span class="se">\</span>
   --header <span class="s1">&#39;content-type: application/json&#39;</span>
 </code></pre></div>
+
 </div>
 <input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">HTTPie</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>http http://localhost:5000/mine
 </code></pre></div>
+
 </div>
 <input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><label for="__tabbed_3_3">Wget</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>wget -qSO- --header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span> http://localhost:5000/mine
 </code></pre></div>
+
 </div>
 <input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><label for="__tabbed_3_4">Through documentation</label><div class="tabbed-content">
 <p>Expand the <code>/mine</code> endpoint section at <code>localhost:5000/docs</code>, click <code>Try it out</code> then <code>Execute</code>.</p>
@@ -684,6 +697,7 @@ The confirmation follows:</p>
     <span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
+
 <p>It contains many things:</p>
 <ul>
 <li>the <code>index</code> at which the block is located in the chain,</li>
@@ -711,14 +725,17 @@ to this node's UUID.</p>
   --url http://localhost:5000/chain <span class="se">\</span>
   --header <span class="s1">&#39;content-type: application/json&#39;</span>
 </code></pre></div>
+
 </div>
 <input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">HTTPie</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>http http://localhost:5000/chain
 </code></pre></div>
+
 </div>
 <input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><label for="__tabbed_4_3">Wget</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>wget -qSO- --header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span> http://localhost:5000/chain
 </code></pre></div>
+
 </div>
 <input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><label for="__tabbed_4_4">Through documentation</label><div class="tabbed-content">
 <p>Expand the <code>/chain</code> endpoint section at <code>localhost:5000/docs</code>, click <code>Try it out</code> then <code>Execute</code>.</p>
@@ -762,6 +779,7 @@ to this node's UUID.</p>
     <span class="nt">&quot;length&quot;</span><span class="p">:</span> <span class="mi">2</span>
 <span class="p">}</span>
 </code></pre></div>
+
 <div class="admonition question">
 <p class="admonition-title">Where does the first block come from?</p>
 <p>A first block is always mined when the node is started. This is because in this implementation, the proof of work is
@@ -778,14 +796,17 @@ This is when the <a href="https://en.wikipedia.org/wiki/Consensus_(computer_scie
   --url http://localhost:5001/mine <span class="se">\</span>
   --header <span class="s1">&#39;content-type: application/json&#39;</span>
 </code></pre></div>
+
 </div>
 <input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><label for="__tabbed_5_2">HTTPie</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>http http://localhost:5001/mine
 </code></pre></div>
+
 </div>
 <input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><label for="__tabbed_5_3">Wget</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>wget -qSO- --header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span> http://localhost:5001/mine
 </code></pre></div>
+
 </div>
 <input id="__tabbed_5_4" name="__tabbed_5" type="radio" /><label for="__tabbed_5_4">Through documentation</label><div class="tabbed-content">
 <p>Expand the <code>/mine</code> endpoint section at <code>localhost:5001/docs</code>, click <code>Try it out</code> then <code>Execute</code>.</p>
@@ -798,14 +819,17 @@ Let's have it run the consensus algorithm by sending a GET request at its <code>
   --url http://localhost:5000/nodes/resolve <span class="se">\</span>
   --header <span class="s1">&#39;content-type: application/json&#39;</span>
 </code></pre></div>
+
 </div>
 <input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><label for="__tabbed_6_2">HTTPie</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>http http://localhost:5000/nodes/resolve
 </code></pre></div>
+
 </div>
 <input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><label for="__tabbed_6_3">Wget</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>wget -qSO- --header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span> http://localhost:5000/nodes/resolve
 </code></pre></div>
+
 </div>
 <input id="__tabbed_6_4" name="__tabbed_6" type="radio" /><label for="__tabbed_6_4">Through documentation</label><div class="tabbed-content">
 <p>Expand the <code>/nodes/resolve</code> endpoint section at <code>localhost:5000/docs</code>, click <code>Try it out</code> then <code>Execute</code>.</p>
@@ -862,6 +886,7 @@ Let's have it run the consensus algorithm by sending a GET request at its <code>
     <span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
+
 <p>As we can see in the returned <code>message</code>, the node did replace its chain.
 You can GET <code>localhost:5001</code> to make sure the <code>chain</code> returned in the message above corresponds to the chain from the second node at <code>localhost:5001</code>.</p>
 <details class="tip"><summary>Why do we keep the longest chain?</summary><p>In short, for safety and reliability reasons. Once again, I can only recommend watching <a href="https://www.youtube.com/watch?v=bBC-nXj3Ng4" target="_blank">this excellent video</a>
