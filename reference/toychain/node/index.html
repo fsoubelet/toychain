@@ -1373,7 +1373,7 @@ Mining endpoint. GETing <code>/mine</code> triggers the following actions:</p>
 </details>
 <h3 id="new_transaction">new_transaction</h3>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">new_transaction</span><span class="p">(</span>
-    <span class="n">posted_transaction</span><span class="p">:</span> <span class="n">toychain</span><span class="o">.</span><span class="n">blockchain</span><span class="o">.</span><span class="n">Transaction</span>
+    <span class="n">posted_transaction</span><span class="p">:</span><span class="n">toychain</span><span class="o">.</span><span class="n">blockchain</span><span class="o">.</span><span class="n">Transaction</span>
 <span class="p">)</span>
 </code></pre></div>
 Receives transaction data from a POST request and add it to the node's blockchain.</p>
@@ -1418,7 +1418,7 @@ Receives transaction data from a POST request and add it to the node's blockchai
 </details>
 <h3 id="register_nodes">register_nodes</h3>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">register_nodes</span><span class="p">(</span>
-    <span class="n">posted_transaction</span><span class="p">:</span> <span class="n">toychain</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">ActiveNode</span>
+    <span class="n">posted_transaction</span><span class="p">:</span><span class="n">toychain</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">ActiveNode</span>
 <span class="p">)</span>
 </code></pre></div>
 Receives new nodes' location from a POST request and register those to this node's network.</p>
@@ -1515,7 +1515,7 @@ Runs the node</p>
 <h3 id="activenode">ActiveNode</h3>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ActiveNode</span><span class="p">(</span>
     <span class="n">__pydantic_self__</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="o">**</span><span class="n">data</span><span class="p">:</span><span class="n">Any</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -1539,329 +1539,72 @@ Runs the node</p>
 <h4 id="static-methods">Static methods</h4>
 <h5 id="construct">construct</h5>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">construct</span><span class="p">(</span>
-    <span class="n">_fields_set</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;SetStr&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">values</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="n">_fields_set</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;SetStr&#39;</span><span class="p">),</span> <span class="n">NoneType</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">values</span><span class="p">:</span><span class="n">Any</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
 </code></pre></div>
 Creates a new model setting <strong>dict</strong> and <strong>fields_set</strong> from trusted or pre-validated data.
 Default values are respected, but no other validation is performed.</p>
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="err">@</span><span class="n">classmethod</span>
-
-    <span class="n">def</span> <span class="n">construct</span><span class="p">(</span><span class="n">cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="s1">&#39;Model&#39;</span><span class="p">],</span> <span class="n">_fields_set</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;SetStr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">None</span><span class="p">,</span> <span class="o">**</span><span class="n">values</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span><span class="p">:</span>
-
-        <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">        Creates a new model setting __dict__ and __fields_set__ from trusted or pre-validated data.</span>
-
-<span class="sd">        Default values are respected, but no other validation is performed.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">m</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span>
-
-        <span class="n">object</span><span class="o">.</span><span class="n">__setattr__</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;__dict__&#39;</span><span class="p">,</span> <span class="p">{</span><span class="o">**</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">cls</span><span class="o">.</span><span class="n">__field_defaults__</span><span class="p">),</span> <span class="o">**</span><span class="n">values</span><span class="p">})</span>
-
-        <span class="k">if</span> <span class="n">_fields_set</span> <span class="k">is</span> <span class="n">None</span><span class="p">:</span>
-
-            <span class="n">_fields_set</span> <span class="o">=</span> <span class="n">set</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-
-        <span class="n">object</span><span class="o">.</span><span class="n">__setattr__</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;__fields_set__&#39;</span><span class="p">,</span> <span class="n">_fields_set</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">m</span>
-</code></pre></div>
-
-
-</details>
 <h5 id="from_orm">from_orm</h5>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">from_orm</span><span class="p">(</span>
-    <span class="n">obj</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="n">obj</span><span class="p">:</span><span class="n">Any</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
 </code></pre></div>
 
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@classmethod</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">from_orm</span><span class="p">(</span><span class="nl">cls</span><span class="p">:</span><span class="w"> </span><span class="n">Type</span><span class="o">[</span><span class="n">&#39;Model&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="nl">obj</span><span class="p">:</span><span class="w"> </span><span class="ow">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s1">&#39;Model&#39;</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="n">__config__</span><span class="p">.</span><span class="nl">orm_mode</span><span class="p">:</span><span class="w"></span>
-
-<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="n">ConfigError</span><span class="p">(</span><span class="s1">&#39;You must have the config attribute orm_mode=True to use from_orm&#39;</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="n">_decompose_class</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">values</span><span class="p">,</span><span class="w"> </span><span class="n">fields_set</span><span class="p">,</span><span class="w"> </span><span class="n">validation_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">validate_model</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="w"> </span><span class="n">obj</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nl">validation_error</span><span class="p">:</span><span class="w"></span>
-
-<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="n">validation_error</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">object</span><span class="p">.</span><span class="n">__setattr__</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;__dict__&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">values</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">object</span><span class="p">.</span><span class="n">__setattr__</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;__fields_set__&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">fields_set</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">m</span><span class="w"></span>
-</code></pre></div>
-
-
-</details>
 <h5 id="parse_file">parse_file</h5>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_file</span><span class="p">(</span>
-    <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">],</span>
+    <span class="n">path</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">],</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
-    <span class="n">proto</span><span class="p">:</span> <span class="n">pydantic</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">Protocol</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">allow_pickle</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">content_type</span><span class="p">:</span><span class="s1">&#39;unicode&#39;</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="p">:</span><span class="s1">&#39;unicode&#39;</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+    <span class="n">proto</span><span class="p">:</span><span class="n">pydantic</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">Protocol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">allow_pickle</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
 </code></pre></div>
 
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="err">@</span><span class="n">classmethod</span>
-
-    <span class="n">def</span> <span class="n">parse_file</span><span class="p">(</span>
-
-        <span class="n">cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="s1">&#39;Model&#39;</span><span class="p">],</span>
-
-        <span class="n">path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">],</span>
-
-        <span class="o">*</span><span class="p">,</span>
-
-        <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">None</span><span class="p">,</span>
-
-        <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
-
-        <span class="n">proto</span><span class="p">:</span> <span class="n">Protocol</span> <span class="o">=</span> <span class="n">None</span><span class="p">,</span>
-
-        <span class="n">allow_pickle</span><span class="p">:</span> <span class="nb nb-Type">bool</span> <span class="o">=</span> <span class="n">False</span><span class="p">,</span>
-
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span><span class="p">:</span>
-
-        <span class="n">obj</span> <span class="o">=</span> <span class="n">load_file</span><span class="p">(</span>
-
-            <span class="n">path</span><span class="p">,</span>
-
-            <span class="n">proto</span><span class="o">=</span><span class="n">proto</span><span class="p">,</span>
-
-            <span class="n">content_type</span><span class="o">=</span><span class="n">content_type</span><span class="p">,</span>
-
-            <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
-
-            <span class="n">allow_pickle</span><span class="o">=</span><span class="n">allow_pickle</span><span class="p">,</span>
-
-            <span class="n">json_loads</span><span class="o">=</span><span class="n">cls</span><span class="o">.</span><span class="n">__config__</span><span class="o">.</span><span class="n">json_loads</span><span class="p">,</span>
-
-        <span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">parse_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-</code></pre></div>
-
-
-</details>
 <h5 id="parse_obj">parse_obj</h5>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_obj</span><span class="p">(</span>
-    <span class="n">obj</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="n">obj</span><span class="p">:</span><span class="n">Any</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
 </code></pre></div>
 
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@classmethod</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">parse_obj</span><span class="p">(</span><span class="nl">cls</span><span class="p">:</span><span class="w"> </span><span class="n">Type</span><span class="o">[</span><span class="n">&#39;Model&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="nl">obj</span><span class="p">:</span><span class="w"> </span><span class="ow">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s1">&#39;Model&#39;</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="n">__custom_root_type__</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-
-<span class="w">            </span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="n">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">dict</span><span class="p">)</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">keys</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="err">{</span><span class="n">ROOT_KEY</span><span class="err">}</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="n">__fields__</span><span class="o">[</span><span class="n">ROOT_KEY</span><span class="o">]</span><span class="p">.</span><span class="n">shape</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SHAPE_MAPPING</span><span class="w"></span>
-
-<span class="w">        </span><span class="p">)</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">            </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="nl">ROOT_KEY</span><span class="p">:</span><span class="w"> </span><span class="n">obj</span><span class="err">}</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">dict</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">            </span><span class="k">try</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">                </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dict</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">            </span><span class="ow">except</span><span class="w"> </span><span class="p">(</span><span class="n">TypeError</span><span class="p">,</span><span class="w"> </span><span class="n">ValueError</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nl">e</span><span class="p">:</span><span class="w"></span>
-
-<span class="w">                </span><span class="n">exc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TypeError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{cls.__name__} expected dict not {obj.__class__.__name__}&#39;</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">                </span><span class="n">raise</span><span class="w"> </span><span class="n">ValidationError</span><span class="p">(</span><span class="o">[</span><span class="n">ErrorWrapper(exc, loc=ROOT_KEY)</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">cls</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">e</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">cls</span><span class="p">(</span><span class="o">**</span><span class="n">obj</span><span class="p">)</span><span class="w"></span>
-</code></pre></div>
-
-
-</details>
 <h5 id="parse_raw">parse_raw</h5>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_raw</span><span class="p">(</span>
-    <span class="n">b</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span>
+    <span class="n">b</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
-    <span class="n">proto</span><span class="p">:</span> <span class="n">pydantic</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">Protocol</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">allow_pickle</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">content_type</span><span class="p">:</span><span class="s1">&#39;unicode&#39;</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="p">:</span><span class="s1">&#39;unicode&#39;</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+    <span class="n">proto</span><span class="p">:</span><span class="n">pydantic</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">Protocol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">allow_pickle</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
 </code></pre></div>
 
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="err">@</span><span class="n">classmethod</span>
-
-    <span class="n">def</span> <span class="n">parse_raw</span><span class="p">(</span>
-
-        <span class="n">cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="s1">&#39;Model&#39;</span><span class="p">],</span>
-
-        <span class="n">b</span><span class="p">:</span> <span class="n">StrBytes</span><span class="p">,</span>
-
-        <span class="o">*</span><span class="p">,</span>
-
-        <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">None</span><span class="p">,</span>
-
-        <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
-
-        <span class="n">proto</span><span class="p">:</span> <span class="n">Protocol</span> <span class="o">=</span> <span class="n">None</span><span class="p">,</span>
-
-        <span class="n">allow_pickle</span><span class="p">:</span> <span class="nb nb-Type">bool</span> <span class="o">=</span> <span class="n">False</span><span class="p">,</span>
-
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span><span class="p">:</span>
-
-        <span class="n">try</span><span class="p">:</span>
-
-            <span class="n">obj</span> <span class="o">=</span> <span class="n">load_str_bytes</span><span class="p">(</span>
-
-                <span class="n">b</span><span class="p">,</span>
-
-                <span class="n">proto</span><span class="o">=</span><span class="n">proto</span><span class="p">,</span>
-
-                <span class="n">content_type</span><span class="o">=</span><span class="n">content_type</span><span class="p">,</span>
-
-                <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
-
-                <span class="n">allow_pickle</span><span class="o">=</span><span class="n">allow_pickle</span><span class="p">,</span>
-
-                <span class="n">json_loads</span><span class="o">=</span><span class="n">cls</span><span class="o">.</span><span class="n">__config__</span><span class="o">.</span><span class="n">json_loads</span><span class="p">,</span>
-
-            <span class="p">)</span>
-
-        <span class="n">except</span> <span class="p">(</span><span class="n">ValueError</span><span class="p">,</span> <span class="n">TypeError</span><span class="p">,</span> <span class="n">UnicodeDecodeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-
-            <span class="n">raise</span> <span class="n">ValidationError</span><span class="p">([</span><span class="n">ErrorWrapper</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">ROOT_KEY</span><span class="p">)],</span> <span class="n">cls</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">parse_obj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-</code></pre></div>
-
-
-</details>
 <h5 id="schema">schema</h5>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">schema</span><span class="p">(</span>
-    <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">by_alias</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;DictStrAny&#39;</span>
 </code></pre></div>
 
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@classmethod</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="k">schema</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="w"> </span><span class="nl">by_alias</span><span class="p">:</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">True</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s1">&#39;DictStrAny&#39;</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">cached</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="n">__schema_cache__</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="n">by_alias</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">cached</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">cached</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_schema</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="w"> </span><span class="n">by_alias</span><span class="o">=</span><span class="n">by_alias</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">cls</span><span class="p">.</span><span class="n">__schema_cache__</span><span class="o">[</span><span class="n">by_alias</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="w"></span>
-</code></pre></div>
-
-
-</details>
 <h5 id="schema_json">schema_json</h5>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">schema_json</span><span class="p">(</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">dumps_kwargs</span><span class="p">:</span> <span class="n">Any</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+    <span class="n">by_alias</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">dumps_kwargs</span><span class="p">:</span><span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;unicode&#39;</span>
 </code></pre></div>
 
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="nd">@classmethod</span>
-
-    <span class="k">def</span> <span class="nf">schema_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="o">**</span><span class="n">dumps_kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-
-        <span class="kn">from</span> <span class="nn">.json</span> <span class="kn">import</span> <span class="n">pydantic_encoder</span>
-
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__config__</span><span class="o">.</span><span class="n">json_dumps</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">schema</span><span class="p">(</span><span class="n">by_alias</span><span class="o">=</span><span class="n">by_alias</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="n">pydantic_encoder</span><span class="p">,</span> <span class="o">**</span><span class="n">dumps_kwargs</span><span class="p">)</span>
-</code></pre></div>
-
-
-</details>
 <h5 id="update_forward_refs">update_forward_refs</h5>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">update_forward_refs</span><span class="p">(</span>
-    <span class="o">**</span><span class="n">localns</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="o">**</span><span class="n">localns</span><span class="p">:</span><span class="n">Any</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 Try to update ForwardRefs on fields based on this Model, globalns and localns.</p>
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@classmethod</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">update_forward_refs</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="nl">localns</span><span class="p">:</span><span class="w"> </span><span class="ow">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
-
-<span class="ss">        Try to update ForwardRefs on fields based on this Model, globalns and localns.</span>
-
-<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">globalns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">modules</span><span class="o">[</span><span class="n">cls.__module__</span><span class="o">]</span><span class="p">.</span><span class="n">__dict__</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">globalns</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">cls</span><span class="p">.</span><span class="n">__name__</span><span class="p">,</span><span class="w"> </span><span class="n">cls</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="n">__fields__</span><span class="p">.</span><span class="k">values</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">            </span><span class="n">update_field_forward_refs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">globalns</span><span class="o">=</span><span class="n">globalns</span><span class="p">,</span><span class="w"> </span><span class="n">localns</span><span class="o">=</span><span class="n">localns</span><span class="p">)</span><span class="w"></span>
-</code></pre></div>
-
-
-</details>
 <h5 id="validate">validate</h5>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span>
-    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="n">value</span><span class="p">:</span><span class="n">Any</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
 </code></pre></div>
 
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@classmethod</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">validate</span><span class="p">(</span><span class="nl">cls</span><span class="p">:</span><span class="w"> </span><span class="n">Type</span><span class="o">[</span><span class="n">&#39;Model&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="err">:</span><span class="w"> </span><span class="ow">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s1">&#39;Model&#39;</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">isinstance</span><span class="p">(</span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">dict</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">cls</span><span class="p">(</span><span class="o">**</span><span class="k">value</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="n">isinstance</span><span class="p">(</span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">cls</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">value</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="n">__config__</span><span class="p">.</span><span class="nl">orm_mode</span><span class="p">:</span><span class="w"></span>
-
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="n">from_orm</span><span class="p">(</span><span class="k">value</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="nl">__custom_root_type__</span><span class="p">:</span><span class="w"></span>
-
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">cls</span><span class="p">.</span><span class="n">parse_obj</span><span class="p">(</span><span class="k">value</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">            </span><span class="k">try</span><span class="err">:</span><span class="w"></span>
-
-<span class="w">                </span><span class="n">value_as_dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dict</span><span class="p">(</span><span class="k">value</span><span class="p">)</span><span class="w"></span>
-
-<span class="w">            </span><span class="ow">except</span><span class="w"> </span><span class="p">(</span><span class="n">TypeError</span><span class="p">,</span><span class="w"> </span><span class="n">ValueError</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nl">e</span><span class="p">:</span><span class="w"></span>
-
-<span class="w">                </span><span class="n">raise</span><span class="w"> </span><span class="n">DictError</span><span class="p">()</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">e</span><span class="w"></span>
-
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">cls</span><span class="p">(</span><span class="o">**</span><span class="n">value_as_dict</span><span class="p">)</span><span class="w"></span>
-</code></pre></div>
-
-
-</details>
 <h4 id="instance-variables">Instance variables</h4>
 <div class="highlight"><pre><span></span><code><span class="n">fields</span>
 </code></pre></div>
@@ -1869,12 +1612,12 @@ Try to update ForwardRefs on fields based on this Model, globalns and localns.</
 <h4 id="methods">Methods</h4>
 <h5 id="copy">copy</h5>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">copy</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span>
+    <span class="bp">self</span><span class="p">:</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">include</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">exclude</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">update</span><span class="p">:</span> <span class="s1">&#39;DictStrAny&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">deep</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">include</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">update</span><span class="p">:</span><span class="s1">&#39;DictStrAny&#39;</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">deep</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span>
 </code></pre></div>
 Duplicate a model, optionally choose which fields to include, exclude and change.</p>
@@ -1884,250 +1627,43 @@ Duplicate a model, optionally choose which fields to include, exclude and change
     the new model: you should trust this data
 :param deep: set to <code>True</code> to make a deep copy of the model
 :return: new model instance</p>
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">copy</span><span class="p">(</span>
-
-        <span class="n">self</span><span class="o">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span>
-
-        <span class="o">*</span><span class="p">,</span>
-
-        <span class="n">include</span><span class="o">:</span> <span class="k">Union</span><span class="err">[</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">,</span> <span class="s1">&#39;MappingIntStrAny&#39;</span><span class="err">]</span> <span class="o">=</span> <span class="k">None</span><span class="p">,</span>
-
-        <span class="k">exclude</span><span class="o">:</span> <span class="k">Union</span><span class="err">[</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">,</span> <span class="s1">&#39;MappingIntStrAny&#39;</span><span class="err">]</span> <span class="o">=</span> <span class="k">None</span><span class="p">,</span>
-
-        <span class="k">update</span><span class="o">:</span> <span class="s1">&#39;DictStrAny&#39;</span> <span class="o">=</span> <span class="k">None</span><span class="p">,</span>
-
-        <span class="n">deep</span><span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="no">False</span><span class="p">,</span>
-
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Model&#39;</span><span class="o">:</span>
-
-        <span class="s2">&quot;</span><span class="se">&quot;&quot;</span><span class="s2"></span>
-
-<span class="s2">        Duplicate a model, optionally choose which fields to include, exclude and change.</span>
-
-<span class="s2">        :param include: fields to include in new model</span>
-
-<span class="s2">        :param exclude: fields to exclude from new model, as with values this takes precedence over include</span>
-
-<span class="s2">        :param update: values to change/add in the new model. Note: the data is not validated before creating</span>
-
-<span class="s2">            the new model: you should trust this data</span>
-
-<span class="s2">        :param deep: set to `True` to make a deep copy of the model</span>
-
-<span class="s2">        :return: new model instance</span>
-
-<span class="s2">        </span><span class="se">&quot;&quot;</span><span class="s2">&quot;</span>
-
-        <span class="n">v</span> <span class="o">=</span> <span class="n">dict</span><span class="p">(</span>
-
-            <span class="n">self</span><span class="p">.</span><span class="n">_iter</span><span class="p">(</span><span class="n">to_dict</span><span class="o">=</span><span class="no">False</span><span class="p">,</span> <span class="n">by_alias</span><span class="o">=</span><span class="no">False</span><span class="p">,</span> <span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span> <span class="k">exclude</span><span class="o">=</span><span class="k">exclude</span><span class="p">,</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="no">False</span><span class="p">),</span>
-
-            <span class="o">**</span><span class="p">(</span><span class="k">update</span> <span class="k">or</span> <span class="err">{}</span><span class="p">),</span>
-
-        <span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">deep</span><span class="o">:</span>
-
-            <span class="n">v</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-
-        <span class="n">cls</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">__class__</span>
-
-        <span class="n">m</span> <span class="o">=</span> <span class="n">cls</span><span class="p">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span>
-
-        <span class="n">object</span><span class="p">.</span><span class="n">__setattr__</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;__dict__&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-
-        <span class="n">object</span><span class="p">.</span><span class="n">__setattr__</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;__fields_set__&#39;</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">__fields_set__</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
-
-        <span class="k">return</span> <span class="n">m</span>
-</code></pre></div>
-
-
-</details>
 <h5 id="dict">dict</h5>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">dict</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">include</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">exclude</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">skip_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">exclude_unset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">exclude_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">exclude_none</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">include</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">by_alias</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">skip_defaults</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude_unset</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">exclude_defaults</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">exclude_none</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;DictStrAny&#39;</span>
 </code></pre></div>
 Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.</p>
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">dict</span><span class="p">(</span>
-
-        <span class="k">self</span><span class="p">,</span>
-
-        <span class="o">*</span><span class="p">,</span>
-
-        <span class="n">include</span><span class="p">:</span> <span class="k">Union</span><span class="p">[</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">,</span> <span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">None</span><span class="p">,</span>
-
-        <span class="n">exclude</span><span class="p">:</span> <span class="k">Union</span><span class="p">[</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">,</span> <span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">None</span><span class="p">,</span>
-
-        <span class="n">by_alias</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="k">False</span><span class="p">,</span>
-
-        <span class="n">skip_defaults</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="k">None</span><span class="p">,</span>
-
-        <span class="n">exclude_unset</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="k">False</span><span class="p">,</span>
-
-        <span class="n">exclude_defaults</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="k">False</span><span class="p">,</span>
-
-        <span class="n">exclude_none</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="k">False</span><span class="p">,</span>
-
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;DictStrAny&#39;</span><span class="p">:</span>
-
-        <span class="ss">&quot;&quot;&quot;</span>
-
-<span class="ss">        Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.</span>
-
-<span class="ss">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">skip_defaults</span> <span class="k">is</span> <span class="k">not</span> <span class="k">None</span><span class="p">:</span>
-
-            <span class="n">warnings</span><span class="p">.</span><span class="n">warn</span><span class="p">(</span>
-
-                <span class="n">f</span><span class="s1">&#39;{self.__class__.__name__}.dict(): &quot;skip_defaults&quot; is deprecated and replaced by &quot;exclude_unset&quot;&#39;</span><span class="p">,</span>
-
-                <span class="n">DeprecationWarning</span><span class="p">,</span>
-
-            <span class="p">)</span>
-
-            <span class="n">exclude_unset</span> <span class="o">=</span> <span class="n">skip_defaults</span>
-
-        <span class="k">return</span> <span class="n">dict</span><span class="p">(</span>
-
-            <span class="k">self</span><span class="p">.</span><span class="n">_iter</span><span class="p">(</span>
-
-                <span class="n">to_dict</span><span class="o">=</span><span class="k">True</span><span class="p">,</span>
-
-                <span class="n">by_alias</span><span class="o">=</span><span class="n">by_alias</span><span class="p">,</span>
-
-                <span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span>
-
-                <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">,</span>
-
-                <span class="n">exclude_unset</span><span class="o">=</span><span class="n">exclude_unset</span><span class="p">,</span>
-
-                <span class="n">exclude_defaults</span><span class="o">=</span><span class="n">exclude_defaults</span><span class="p">,</span>
-
-                <span class="n">exclude_none</span><span class="o">=</span><span class="n">exclude_none</span><span class="p">,</span>
-
-            <span class="p">)</span>
-
-        <span class="p">)</span>
-</code></pre></div>
-
-
-</details>
 <h5 id="json">json</h5>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">json</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">include</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">exclude</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">skip_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">exclude_unset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">exclude_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">exclude_none</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">encoder</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">dumps_kwargs</span><span class="p">:</span> <span class="n">Any</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+    <span class="n">include</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">),</span> <span class="n">_ForwardRef</span><span class="p">(</span><span class="s1">&#39;MappingIntStrAny&#39;</span><span class="p">)]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">by_alias</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">skip_defaults</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude_unset</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">exclude_defaults</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">exclude_none</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">encoder</span><span class="p">:</span><span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">],</span> <span class="n">NoneType</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">dumps_kwargs</span><span class="p">:</span><span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;unicode&#39;</span>
 </code></pre></div>
 Generate a JSON representation of the model, <code>include</code> and <code>exclude</code> arguments as per <code>dict()</code>.</p>
 <p><code>encoder</code> is an optional function to supply as <code>default</code> to json.dumps(), other arguments as per <code>json.dumps()</code>.</p>
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="kt">json</span><span class="p">(</span>
-
-        <span class="n">self</span><span class="p">,</span>
-
-        <span class="o">*</span><span class="p">,</span>
-
-        <span class="n">include</span><span class="o">:</span> <span class="k">Union</span><span class="err">[</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">,</span> <span class="s1">&#39;MappingIntStrAny&#39;</span><span class="err">]</span> <span class="o">=</span> <span class="k">None</span><span class="p">,</span>
-
-        <span class="k">exclude</span><span class="o">:</span> <span class="k">Union</span><span class="err">[</span><span class="s1">&#39;AbstractSetIntStr&#39;</span><span class="p">,</span> <span class="s1">&#39;MappingIntStrAny&#39;</span><span class="err">]</span> <span class="o">=</span> <span class="k">None</span><span class="p">,</span>
-
-        <span class="n">by_alias</span><span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="no">False</span><span class="p">,</span>
-
-        <span class="n">skip_defaults</span><span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="k">None</span><span class="p">,</span>
-
-        <span class="n">exclude_unset</span><span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="no">False</span><span class="p">,</span>
-
-        <span class="n">exclude_defaults</span><span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="no">False</span><span class="p">,</span>
-
-        <span class="n">exclude_none</span><span class="o">:</span> <span class="kt">bool</span> <span class="o">=</span> <span class="no">False</span><span class="p">,</span>
-
-        <span class="n">encoder</span><span class="o">:</span> <span class="k">Optional</span><span class="err">[</span><span class="n">Callable</span><span class="err">[[</span><span class="k">Any</span><span class="err">]</span><span class="p">,</span> <span class="k">Any</span><span class="err">]]</span> <span class="o">=</span> <span class="k">None</span><span class="p">,</span>
-
-        <span class="o">**</span><span class="n">dumps_kwargs</span><span class="o">:</span> <span class="k">Any</span><span class="p">,</span>
-
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">str</span><span class="o">:</span>
-
-        <span class="s2">&quot;</span><span class="se">&quot;&quot;</span><span class="s2"></span>
-
-<span class="s2">        Generate a JSON representation of the model, `include` and `exclude` arguments as per `dict()`.</span>
-
-<span class="s2">        `encoder` is an optional function to supply as `default` to json.dumps(), other arguments as per `json.dumps()`.</span>
-
-<span class="s2">        </span><span class="se">&quot;&quot;</span><span class="s2">&quot;</span>
-
-        <span class="k">if</span> <span class="n">skip_defaults</span> <span class="k">is</span> <span class="k">not</span> <span class="k">None</span><span class="o">:</span>
-
-            <span class="k">warnings</span><span class="p">.</span><span class="n">warn</span><span class="p">(</span>
-
-                <span class="n">f</span><span class="s1">&#39;{self.__class__.__name__}.json(): &quot;skip_defaults&quot; is deprecated and replaced by &quot;exclude_unset&quot;&#39;</span><span class="p">,</span>
-
-                <span class="n">DeprecationWarning</span><span class="p">,</span>
-
-            <span class="p">)</span>
-
-            <span class="n">exclude_unset</span> <span class="o">=</span> <span class="n">skip_defaults</span>
-
-        <span class="n">encoder</span> <span class="o">=</span> <span class="nf">cast</span><span class="p">(</span><span class="n">Callable</span><span class="err">[[</span><span class="k">Any</span><span class="err">]</span><span class="p">,</span> <span class="k">Any</span><span class="err">]</span><span class="p">,</span> <span class="n">encoder</span> <span class="k">or</span> <span class="n">self</span><span class="p">.</span><span class="n">__json_encoder__</span><span class="p">)</span>
-
-        <span class="k">data</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">dict</span><span class="p">(</span>
-
-            <span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span>
-
-            <span class="k">exclude</span><span class="o">=</span><span class="k">exclude</span><span class="p">,</span>
-
-            <span class="n">by_alias</span><span class="o">=</span><span class="n">by_alias</span><span class="p">,</span>
-
-            <span class="n">exclude_unset</span><span class="o">=</span><span class="n">exclude_unset</span><span class="p">,</span>
-
-            <span class="n">exclude_defaults</span><span class="o">=</span><span class="n">exclude_defaults</span><span class="p">,</span>
-
-            <span class="n">exclude_none</span><span class="o">=</span><span class="n">exclude_none</span><span class="p">,</span>
-
-        <span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">__custom_root_type__</span><span class="o">:</span>
-
-            <span class="k">data</span> <span class="o">=</span> <span class="k">data</span><span class="err">[</span><span class="n">ROOT_KEY</span><span class="err">]</span>
-
-        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">__config__</span><span class="p">.</span><span class="n">json_dumps</span><span class="p">(</span><span class="k">data</span><span class="p">,</span> <span class="k">default</span><span class="o">=</span><span class="n">encoder</span><span class="p">,</span> <span class="o">**</span><span class="n">dumps_kwargs</span><span class="p">)</span>
-</code></pre></div>
-
-
-</details>
 <h5 id="to_string">to_string</h5>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="n">pretty</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+    <span class="n">pretty</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;unicode&#39;</span>
 </code></pre></div>
-
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">to_string</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">pretty</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="k">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">str</span><span class="p">:</span>
-
-        <span class="n">warnings</span><span class="p">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;`model.to_string()` method is deprecated, use `str(model)` instead&#39;</span><span class="p">,</span> <span class="n">DeprecationWarning</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">str</span><span class="p">(</span><span class="k">self</span><span class="p">)</span>
-</code></pre></div>
-
-
-</details>
                 
               
               
