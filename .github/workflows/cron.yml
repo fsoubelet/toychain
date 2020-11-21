@@ -49,7 +49,7 @@ jobs:
       - name: Configure Poetry
         shell: bash
         run: |
-          echo "::set-env name=PATH::$HOME/.poetry/bin:$PATH"
+          echo "PATH=$HOME/.poetry/bin:$PATH" >> $GITHUB_ENV
           poetry config virtualenvs.in-project true
 
       - name: Upgrade pip
