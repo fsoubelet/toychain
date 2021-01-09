@@ -21,7 +21,7 @@ pytest-sugar = "^0.9.3"
 black = { version = "^20.8b1", python = "^3.6" }
 pylint = "^2.4.4"
 portray = "^1.4"
-coverage = {extras = ["toml"], version = "^5.2.1"}
+coverage = {extras = ["toml"], version = "^5.3.1"}
 mypy = "^0.782"
 
 [tool.pytest.ini_options]
