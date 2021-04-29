@@ -1,0 +1,55 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  target-branch: master
+  ignore:
+  - dependency-name: fastapi
+    versions:
+    - "> 0.55.1, < 1"
+  - dependency-name: mypy
+    versions:
+    - "> 0.782, < 1"
+  - dependency-name: pytest
+    versions:
+    - "> 6.0.2, < 7"
+  - dependency-name: uvicorn
+    versions:
+    - ">= 0.12.a, < 0.13"
+  - dependency-name: pylint
+    versions:
+    - 2.6.2
+    - 2.7.0
+    - 2.7.1
+    - 2.7.2
+    - 2.7.3
+    - 2.7.4
+    - 2.8.1
+    - 2.8.2
+  - dependency-name: py
+    versions:
+    - 1.10.0
+  - dependency-name: jinja2
+    versions:
+    - 2.11.3
+  - dependency-name: portray
+    versions:
+    - 1.5.0
+    - 1.5.1
+    - 1.5.2
+  - dependency-name: coverage
+    versions:
+    - "5.4"
+  - dependency-name: pytest-cov
+    versions:
+    - 2.11.1
+  - dependency-name: requests
+    versions:
+    - 2.25.1
+  - dependency-name: uvicorn
+    versions:
+    - 0.13.3
