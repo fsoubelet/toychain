@@ -20,7 +20,7 @@ pytest-cov = "^2.10.1"
 pytest-sugar = "^0.9.3"
 black = { version = "^20.8b1", python = "^3.6" }
 pylint = "^2.4.4"
-portray = "^1.4"
+portray = "^1.7"
 coverage = {extras = ["toml"], version = "^5.5"}
 mypy = "^0.782"
 
