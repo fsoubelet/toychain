@@ -8,9 +8,15 @@ This adaptation uses [FastAPI] as a web framework, and [uvicorn] as ASGI server 
 
 Link to [documentation].
 
-## License
+---
 
-Copyright &copy; 2020 Felix Soubelet. [MIT License](LICENSE)
+<div align="center">
+  <sub><strong>Made with ♥︎ by fsoubelet</strong></sub>
+  <br>
+  <sub><strong>MIT &copy 2019 Felix Soubelet</strong></sub>
+</div>
+
+
 
 [documentation]: https://fsoubelet.github.io/toychain/
 [FastAPI]: https://fastapi.tiangolo.com/
